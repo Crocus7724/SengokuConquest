@@ -4,15 +4,15 @@ package sengoku_conquest.character;
  * Created by C011457331 on 2016/11/18.
  */
 public class Job {
-    private int Hp = 0;
-    private int Ep = 0;
+    private int hp = 0;
+    private int ep = 0;
 
     public int getHp() {
-        return Hp;
+        return hp;
     }
 
     public int getEp() {
-        return Ep;
+        return ep;
     }
 
     public int getAtk() {
@@ -34,7 +34,15 @@ public class Job {
 
     public Job(JobType type) {
         this.type = type;
-        Hp=type.getHp();
+        hp=type.getHp();
+        atk=type.getAtk();
+        def=type.getDef();
+        ep=type.getEp();
+    }
+
+    // 特殊攻撃初期化処理
+    public void initializeSpecialAtack(){
+
     }
 
 }
