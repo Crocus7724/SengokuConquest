@@ -36,10 +36,24 @@ public final class GameEngine {
         return str;
     }
 
+    /**
+     * ユーザーから数字入力を待ちます
+     * 返り値は-1のときは不正な値です
+     *
+     * @param range 正しい値の範囲(0~range)
+     * @return ユーザからの入力
+     */
     public int readNumber(final int range) {
         return readNumber(x -> x > 0 || x <= range);
     }
 
+    /**
+     * ユーザーから数字入力を待ちます
+     * 返り値は-1のときは不正な値です
+     *
+     * @param predicate 入力された数字が正しいかの条件式
+     * @return ユーザからの入力
+     */
     public int readNumber(final Predicate<Integer> predicate) {
         BufferedReader br = null;
         int num = -1;
