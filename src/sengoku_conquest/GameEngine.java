@@ -15,12 +15,16 @@ public class GameEngine {
         System.out.println(message);
     }
 
-    public String readLineFromUserInput() throws IOException {
+    public String readLineFromUserInput()  {
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
-        java.lang.String str = br.readLine();
+        String str = null;
+        try {
+            str = br.readLine();
+        } catch (IOException e) {
+            return null;
+        }
+
         return str;
-
-
     }
 }
