@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
  */
 
 public class GameEngine {
-
+    public static final GameEngine current=new GameEngine();
 
     public void showMessage(String message) {
         System.out.println(message);

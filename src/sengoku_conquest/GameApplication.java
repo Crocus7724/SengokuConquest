@@ -12,11 +12,14 @@ import sengoku_conquest.map.Area;
  * Created by C0114105 on 2016/11/18.
  */
 public class GameApplication {
+    public static final GameApplication current = new GameApplication();
     private MainCharacter mainCharacter;
-    public void gameStart(){
+
+    public void gameStart() {
 
     }
-    Map<Integer,Area> map = new HashMap<Integer, Area>();
+
+    Map<Integer, Area> map = new HashMap<Integer, Area>();
 
     public MainCharacter getMainCharacter() {
         return mainCharacter;
