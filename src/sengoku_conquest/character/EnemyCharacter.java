@@ -5,6 +5,10 @@ package sengoku_conquest.character;
  */
 public class EnemyCharacter {
     private int pops = 0;
+
+    public int doSpecialAtack() {
+        return 0;
+    }
 }
 
 

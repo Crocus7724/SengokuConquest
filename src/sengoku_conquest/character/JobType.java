@@ -4,8 +4,10 @@ package sengoku_conquest.character;
  * Created by C011457331 on 2016/11/18.
  */
 public enum JobType {
-    SAMURAI(100,100,100,5),
-
+    SAMURAI(105,100,100,5),
+    NINJA(100,100,100,5),
+    ASHIGARU(100,100,100,5),
+    KOMUSOU(100,100,100,5),
     ;
 
     public int getHp() {
