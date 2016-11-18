@@ -4,13 +4,26 @@ package sengoku_conquest.map;
  * Created by C0114105 on 2016/11/18.
  */
 public class Area {
-    int Areanum=17;
-    String Areaname="start";
-    NextAreaInfo nextAreaInfo;
+    private int areaNum =17;
+    private String areaName ="start";
 
-    public Area(int areanum, String areaname, NextAreaInfo nextAreaInfo) {
-        Areanum = areanum;
-        Areaname = areaname;
+    private NextAreaInfo nextAreaInfo;
+
+    public Area(int areaNum, String areaName, NextAreaInfo nextAreaInfo) {
+        this.areaNum = areaNum;
+        areaName = areaName;
         this.nextAreaInfo = nextAreaInfo;
+    }
+
+    public int getAreaNum() {
+        return areaNum;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public NextAreaInfo getNextAreaInfo() {
+        return nextAreaInfo;
     }
 }
