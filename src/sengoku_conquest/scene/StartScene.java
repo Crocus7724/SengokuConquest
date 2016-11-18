@@ -18,6 +18,16 @@ public class StartScene extends Scene {
         gm.showMessage("1：ゲームスタート");
         String input = gm.readLineFromUserInput();
 
+        if (input==null|| !input.matches("[0-9]")){
+            gm.showMessage("半角数字を入力してください");
+            start();
+        }
+        int num = Integer.parseInt(input);
+        if (num<0||num>2){
+            gm.showMessage("選択肢の数字を入力してください");
+            start();
+        }
+
         // ルール表示
         if (input.equals("0")) {
             gm.showMessage("ここにルールを表示");
@@ -34,15 +44,15 @@ public class StartScene extends Scene {
 
             // Job選択
             String str = gm.readLineFromUserInput();
+
+
             if (str==null|| !str.matches("[0-9]")){
-                gm.showMessage("値に誤りがあります");
+                gm.showMessage("半角数字を入力してください");
                 start();
             }
-
-            int num = Integer.parseInt(str);
-
+            num = Integer.parseInt(str);
             if (num<0||num>values.length){
-                gm.showMessage("値に誤りがあります");
+                gm.showMessage("選択肢の数字を入力してください");
                 start();
             }
 
