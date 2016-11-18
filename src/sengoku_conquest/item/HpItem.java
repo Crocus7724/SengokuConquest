@@ -1,5 +1,7 @@
 package sengoku_conquest.item;
 
+import sengoku_conquest.character.Character;
+
 /**
  * Created by C0114544 on 2016/11/18.
  */
@@ -14,7 +16,8 @@ public class HpItem implements Item {
     public int recoveryHP = 50;
 
     @Override
-    public int useItem() {
-        return 0;
+    public void useItem(Character character) {
+        character.getStatus();
+
     }
 }
