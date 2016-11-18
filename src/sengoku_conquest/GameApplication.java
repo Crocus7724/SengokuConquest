@@ -24,6 +24,10 @@ public class GameApplication {
     public MainCharacter getMainCharacter() {
         return mainCharacter;
     }
+
+    public void setMainCharacter(MainCharacter mainCharacter) {
+        this.mainCharacter = mainCharacter;
+    }
 }
 
 
