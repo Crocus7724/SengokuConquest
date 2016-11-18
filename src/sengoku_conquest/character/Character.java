@@ -4,8 +4,7 @@ package sengoku_conquest.character;
  * Created by C011457331 on 2016/11/18.
  */
 public class Character {
-
-    Status status;
+    private Status status;
 
     public Character(Status status, String name, int level) {
         this.status = status;
@@ -18,5 +17,14 @@ public class Character {
 
     public Status getStatus() {
         return status;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }
