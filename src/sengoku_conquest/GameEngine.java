@@ -19,11 +19,11 @@ public class GameEngine {
         System.out.println(message);
     }
 
-    public void readLineFromUserInput() throws IOException {
+    public java.lang.String readLineFromUserInput() throws IOException {
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
         java.lang.String str = br.readLine();
-        return;
+        return str;
 
 
     }
