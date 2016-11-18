@@ -12,12 +12,19 @@ public class EpItem implements Item{
         return "いにしえの秘薬";
     }
 
-    @Override 
+    public int recoveryEp = 3;
+
+    @Override
     public void useItem(Character character) {
-        character.getStatus();
+        int ep  = character.getStatus().getCurrentEp() + recoveryEp;
+        if(ep > character.getStatus().getMaxEp()) {
+            ep = character.getStatus().getMaxEp();
+        }
+        character.getStatus().setCurrentEp(ep);
 
     }
+}
 
-    public int recoveryEp = 3;
+
 
 }

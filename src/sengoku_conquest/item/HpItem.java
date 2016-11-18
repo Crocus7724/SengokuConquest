@@ -10,6 +10,7 @@ public class HpItem implements Item {
 
     @Override
     public String getName() {
+
         return "握り飯";
     }
 
@@ -17,7 +18,14 @@ public class HpItem implements Item {
 
     @Override
     public void useItem(Character character) {
-        character.getStatus();
+        int hp  = character.getStatus().getCurrentHp() + recoveryHP;
 
+        if(hp > character.getStatus().getMaxHp()) {
+            hp = character.getStatus().getMaxHp();
+        }
+
+        character.getStatus().setCurrentHp(hp);
+
+        }
     }
 }
