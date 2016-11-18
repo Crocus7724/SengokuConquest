@@ -1,5 +1,7 @@
 package sengoku_conquest;
 
+import sengoku_conquest.utilities.Predicate;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,14 +10,14 @@ import java.io.InputStreamReader;
  * Created by C0114544 on 2016/11/18.
  */
 
-public class GameEngine {
-    public static final GameEngine current=new GameEngine();
+public final class GameEngine {
+    public static final GameEngine current = new GameEngine();
 
     public void showMessage(String message) {
         System.out.println(message);
     }
 
-    public String readLineFromUserInput()  {
+    public String readLineFromUserInput() {
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
         String str = null;
@@ -23,8 +25,45 @@ public class GameEngine {
             str = br.readLine();
         } catch (IOException e) {
             return null;
+        } finally {
+            try {
+                br.close();
+            } catch (IOException ignored) {
+            }
+
         }
 
         return str;
+    }
+
+    public int readNumber(final int range) {
+        return readNumber(x -> x > 0 || x <= range);
+    }
+
+    public int readNumber(final Predicate<Integer> predicate) {
+        BufferedReader br = null;
+        int num = -1;
+        try {
+            br = new BufferedReader(new InputStreamReader(System.in));
+            final String read = br.readLine();
+
+            if (read.isEmpty() || !read.matches("[0-9]")) return -1;
+
+            num = Integer.parseInt(read);
+
+            if (!predicate.accept(num)) return -1;
+
+        } catch (IOException e) {
+            return -1;
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException ignored) {
+                }
+            }
+        }
+
+        return num;
     }
 }
