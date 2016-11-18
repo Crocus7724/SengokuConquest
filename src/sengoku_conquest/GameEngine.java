@@ -1,9 +1,5 @@
 package sengoku_conquest;
 
-import com.sun.org.apache.xpath.internal.operations.String;
-
-import org.omg.CORBA_2_3.portable.InputStream;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +15,7 @@ public class GameEngine {
         System.out.println(message);
     }
 
-    public java.lang.String readLineFromUserInput() throws IOException {
+    public String readLineFromUserInput() throws IOException {
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
         java.lang.String str = br.readLine();
