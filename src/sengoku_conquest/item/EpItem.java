@@ -12,7 +12,7 @@ public class EpItem implements Item{
         return "いにしえの秘薬";
     }
 
-    @Override
+    @Override 
     public void useItem(Character character) {
         character.getStatus();
 
