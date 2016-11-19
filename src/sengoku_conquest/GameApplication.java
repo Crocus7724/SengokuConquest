@@ -12,6 +12,8 @@ import sengoku_conquest.scene.StartScene;
  */
 public class GameApplication {
     private List<Scene> sceneList =new ArrayList<>();
+
+    private int turn;
     public static final GameApplication current = new GameApplication();
     private MainCharacter mainCharacter;
 
@@ -40,6 +42,18 @@ public class GameApplication {
     public void previousScene(){
         final Scene scene = sceneList.get(sceneList.size() - 2);
         scene.doRestart();
+    }
+
+    public void decreaseTurn(){
+        this.turn--;
+    }
+
+    public void increaseTurn(int num){
+        this.turn+=num;
+    }
+
+    public int getTurn() {
+        return turn;
     }
 }
 
