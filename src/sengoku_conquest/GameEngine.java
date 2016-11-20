@@ -1,10 +1,12 @@
 package sengoku_conquest;
 
+import sengoku_conquest.utilities.Action;
 import sengoku_conquest.utilities.Predicate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 /**
  * Created by C0114544 on 2016/11/18.
@@ -13,8 +15,14 @@ import java.io.InputStreamReader;
 public final class GameEngine {
     public static final GameEngine current = new GameEngine();
 
+    private int indentation=0;
+
+    public void setIndentation(int indentation){
+        this.indentation=indentation;
+    }
+
     public void showMessage(String message) {
-        System.out.println(message);
+        System.out.println(getIndentation()+message);
     }
 
     public String readLineFromUserInput() {
@@ -79,5 +87,20 @@ public final class GameEngine {
         }
 
         return num;
+    }
+
+    public void showIndentedMessage(Action indentedMessage){
+        indentation++;
+        indentedMessage.accept();
+        indentation--;
+    }
+
+    private String getIndentation(){
+        String s="";
+        for (int i=0;i<indentation;i++){
+            s+="    ";
+        }
+
+        return s;
     }
 }
