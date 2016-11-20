@@ -8,6 +8,7 @@ import sengoku_conquest.item.Item;
 import sengoku_conquest.map.Area;
 import sengoku_conquest.map.BossArea;
 import sengoku_conquest.map.EmptyArea;
+import sengoku_conquest.scene.EndScene;
 import sengoku_conquest.scene.Scene;
 import sengoku_conquest.scene.StartScene;
 import sengoku_conquest.utilities.MappingData;
@@ -55,6 +56,9 @@ public class GameApplication {
 
     public void decreaseTurn() {
         this.turn--;
+        if(turn==0){
+            nextScene(new EndScene());
+        }
     }
 
     public void increaseTurn(int num) {
