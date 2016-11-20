@@ -15,7 +15,7 @@ public class CsvHelper {
      * @param path 読み込むcsvファイルのパス
      * @return カンマ(, )区切りの文字列を分割したものを列ごとにまとめたもの
      */
-    public static List<String[]> read(String path,boolean hasHeader) {
+    public static List<String[]> read(final String path,final boolean hasHeader) {
         List<String[]> lines = new ArrayList<>();
         BufferedReader br = null;
         FileReader fr = null;

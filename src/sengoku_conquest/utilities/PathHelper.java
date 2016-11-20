@@ -8,9 +8,9 @@ import java.nio.file.Paths;
 public class PathHelper {
     public static final String currentPath=System.getProperty("user.dir");
 
+    public static final String mapsPath=getConstFolderPath("maps.csv");
 
-
-    private String getConstFolderPath(final String fileName){
-        return Paths.get("src","sengoku_conquest","const_values",fileName).toString();
+    private static String getConstFolderPath(final String fileName){
+        return Paths.get(currentPath,"src","sengoku_conquest","const_values",fileName).toString();
     }
 }

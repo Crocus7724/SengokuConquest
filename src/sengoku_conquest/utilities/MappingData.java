@@ -17,7 +17,7 @@ public class MappingData {
     public static Area[] createArea() {
         final List<Area> areaList = new ArrayList<>();
 
-        final List<String[]> areaData = CsvHelper.read("",true);
+        final List<String[]> areaData = CsvHelper.read(PathHelper.mapsPath,true);
 
         for (String[] data : areaData) {
             String name = data[0];
