@@ -17,13 +17,8 @@ public class CsvHelper {
      */
     public static List<String[]> read(final String path,final boolean hasHeader) {
         List<String[]> lines = new ArrayList<>();
-        BufferedReader br = null;
-        FileReader fr = null;
 
-        try {
-            fr = new FileReader(path);
-            br = new BufferedReader(fr);
-
+        try(BufferedReader br=new BufferedReader(new FileReader(path))) {
             String line;
             if(hasHeader)br.readLine();
             while ((line = br.readLine()) != null) {
@@ -33,21 +28,6 @@ public class CsvHelper {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (fr != null) {
-                    fr.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
         return lines;

@@ -6,7 +6,6 @@ import sengoku_conquest.utilities.Predicate;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 /**
  * Created by C0114544 on 2016/11/18.
@@ -26,19 +25,11 @@ public final class GameEngine {
     }
 
     public String readLineFromUserInput() {
-        InputStreamReader is = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(is);
         String str = null;
-        try {
+        try(BufferedReader br=new BufferedReader(new InputStreamReader(System.in))) {
             str = br.readLine();
         } catch (IOException e) {
             return null;
-        } finally {
-            try {
-                br.close();
-            } catch (IOException ignored) {
-            }
-
         }
 
         return str;
@@ -63,28 +54,13 @@ public final class GameEngine {
      * @return ユーザからの入力
      */
     public int readNumber(final Predicate<Integer> predicate) {
-        BufferedReader br = null;
-        int num = -1;
-        try {
-            br = new BufferedReader(new InputStreamReader(System.in));
-            final String read = br.readLine();
+        final String input = readLineFromUserInput();
 
-            if (read.isEmpty() || !read.matches("[0-9]")) return -1;
+        if(input==null||input.isEmpty()||!input.matches("[0-9]"))return -1;
 
-            num = Integer.parseInt(read);
+        int num=Integer.parseInt(input);
 
-            if (!predicate.accept(num)) return -1;
-
-        } catch (IOException e) {
-            return -1;
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException ignored) {
-                }
-            }
-        }
+        if(!predicate.accept(num))return -1;
 
         return num;
     }
@@ -96,11 +72,11 @@ public final class GameEngine {
     }
 
     private String getIndentation(){
-        String s="";
+        StringBuilder builder=new StringBuilder();
         for (int i=0;i<indentation;i++){
-            s+="    ";
+            builder.append("    ");
         }
 
-        return s;
+        return builder.toString();
     }
 }
