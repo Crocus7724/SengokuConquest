@@ -13,5 +13,7 @@ public class SpecialAttackCommand extends NormalAttackCommand {
     @Override
     protected Boolean execute(EnemyCharacter enemy) {
         //TODO : 特殊攻撃実装後に実装
+
+        return super.execute(enemy);
     }
 }
