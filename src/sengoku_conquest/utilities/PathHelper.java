@@ -10,6 +10,8 @@ public class PathHelper {
 
     public static final String mapsPath=getConstFolderPath("maps.csv");
 
+    public static final String enemiesPath=getConstFolderPath("enemies.csv");
+
     private static String getConstFolderPath(final String fileName){
         return Paths.get(currentPath,"src","sengoku_conquest","const_values",fileName).toString();
     }
