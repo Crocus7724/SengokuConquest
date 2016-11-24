@@ -20,6 +20,10 @@ public final class GameEngine {
         this.indentation=indentation;
     }
 
+    public void show(String message){
+        System.out.print(getIndentation()+message);
+    }
+
     public void showMessage(String message) {
         System.out.println(getIndentation()+message);
     }
