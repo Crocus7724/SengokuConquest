@@ -43,7 +43,7 @@ public final class GameEngine {
      * @return ユーザからの入力
      */
     public int readNumber(final int range) {
-        return readNumber(x -> x > 0 || x <= range);
+        return readNumber(x -> x > 0 && x <= range);
     }
 
     /**
