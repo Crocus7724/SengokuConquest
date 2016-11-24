@@ -47,8 +47,7 @@ public class MappingData {
             int popMin=Integer.parseInt(data[2]);
             int popMax=Integer.parseInt(data[3]);
 
-            //TODO : EnemyCharacterが実装されたら実装する
-            enemyList.add(new EnemyData(new EnemyCharacter(),popMin,popMax));
+            enemyList.add(new EnemyData(new EnemyCharacter(name,level),popMin,popMax));
         }
 
         return enemyList.toArray(new EnemyData[0]);
