@@ -1,5 +1,6 @@
 package sengoku_conquest.utilities;
 
+import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.map.Area;
 import sengoku_conquest.map.NextAreaInfo;
 
@@ -33,5 +34,23 @@ public class MappingData {
         }
 
         return areaList.toArray(new Area[0]);
+    }
+
+    public static EnemyData[] createEnemies(){
+        final List<EnemyData> enemyList=new ArrayList<>();
+
+        final List<String[]> enemyData=CsvHelper.read(PathHelper.enemiesPath,true);
+
+        for (String[] data:enemyData){
+            String name=data[0];
+            int level=Integer.parseInt(data[1]);
+            int popMin=Integer.parseInt(data[2]);
+            int popMax=Integer.parseInt(data[3]);
+
+            //TODO : EnemyCharacterが実装されたら実装する
+            enemyList.add(new EnemyData(new EnemyCharacter(),popMin,popMax));
+        }
+
+        return enemyList.toArray(new EnemyData[0]);
     }
 }
