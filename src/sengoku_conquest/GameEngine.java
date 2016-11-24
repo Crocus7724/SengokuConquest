@@ -20,6 +20,10 @@ public final class GameEngine {
         this.indentation=indentation;
     }
 
+    public void show(String message){
+        System.out.print(getIndentation()+message);
+    }
+
     public void showMessage(String message) {
         System.out.println(getIndentation()+message);
     }
@@ -43,7 +47,7 @@ public final class GameEngine {
      * @return ユーザからの入力
      */
     public int readNumber(final int range) {
-        return readNumber(x -> x > 0 || x <= range);
+        return readNumber(x -> x > 0 && x <= range);
     }
 
     /**
