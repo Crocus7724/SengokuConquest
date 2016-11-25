@@ -11,9 +11,11 @@ public class BossCharacter extends EnemyCharacter {
 
     }
 
-    public boolean getisCharged(){return isCharged;}
+    public boolean getIsCharged(){return isCharged;}
     //↑一応作ったけどいるかどうか不明メソッド名も仮
 
 
-
+    public void setCharged(boolean charged) {
+        isCharged = charged;
+    }
 }
