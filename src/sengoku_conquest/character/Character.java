@@ -30,4 +30,9 @@ public class Character {
     public int getLevel() {
         return level;
     }
+
+    protected void setLevel(int level) {
+        this.level=level;
+    }
+
 }

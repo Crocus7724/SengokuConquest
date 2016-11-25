@@ -1,5 +1,6 @@
 package sengoku_conquest.character;
 
+import sengoku_conquest.GameApplication;
 import sengoku_conquest.item.Item;
 
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class MainCharacter extends Character{
                 || level==5 && exp>=15
                 ){
             level++;
+            MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
+            mainCharacter.setLevel(level);
 
             final Status currentStatus=getStatus();
             Status nextStatus = new Status(currentStatus.getMaxHp()+5, currentStatus.getCurrentEp(), currentStatus.getAtk()+2, getStatus().getDef()+2);
