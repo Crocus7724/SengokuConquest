@@ -29,7 +29,7 @@ public class  EndScene extends Scene{
 
     @Override
     void end() {
-        if(getTurn() >= 0){
+        if(GameApplication.current.getTurn() >= 0){
             engine.showMessage("GAME OVER.../n" +
                     "THANK YOU FOR PLAYING.../n" +
                     "行動ターンがなくなってしまった！！/n" +
@@ -40,7 +40,7 @@ public class  EndScene extends Scene{
                     "マーケテイング担当　山田諒　/n" +
                     "プレイ担当　　　　　YOU　　 /n");
         }
-        if(getMainCharacter().getStatus().getCurrentHp >= 0){
+        if(GameApplication.current.getMainCharacter().getStatus().getCurrentHp >= 0){
             engine.showMessage("GAME OVER.../n" +
                     "THANK YOU FOR PLAYING.../n" +
                     "戦闘に敗北してしまった...世界は暗黒に包まれた.../n" +
