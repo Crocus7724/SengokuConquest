@@ -16,15 +16,16 @@ public class StartScene extends Scene {
         GameEngine gm = new GameEngine();
         gm.showMessage("0：ルール表示");
         gm.showMessage("1：ゲームスタート");
-        String input = gm.readLineFromUserInput();
+
+        int input = check(gm,2);
 
         // ルール表示
-        if (input.equals("0")) {
+        if (input==0) {
             gm.showMessage("ここにルールを表示");
         }
 
         // ゲーム開始
-        if (input.equals("1")) {
+        if (input==1) {
             gm.showMessage("職を選択してください");
             JobType[] values = JobType.values();
             for (int i = 0; i < values.length; i++) {
@@ -32,30 +33,32 @@ public class StartScene extends Scene {
                 gm.showMessage(i + " : " + type.name());
             }
 
-            // Job選択
-            String str = gm.readLineFromUserInput();
-            if (str==null|| !str.matches("[0-9]")){
-                gm.showMessage("値に誤りがあります");
-                start();
-            }
-
-            int num = Integer.parseInt(str);
-
-            if (num<0||num>values.length){
-                gm.showMessage("値に誤りがあります");
-                start();
-            }
-
+            int num = check(gm,values.length);
             Job job = new Job(values[num]);
 
             GameApplication.current.setMainCharacter(new MainCharacter(job));
 
-
             // エリアシーンへ
-
 
         }
     }
+
+    // 選択チェック
+    private static int check(GameEngine gm, int max){
+        String str = gm.readLineFromUserInput();
+
+        if (str==null|| !str.matches("[0-9]")){
+            gm.showMessage("コマンドを入力しなおしてください");
+            return check(gm,max);
+        }
+        int num = Integer.parseInt(str);
+        if (num<0||num>max){
+            gm.showMessage("選択肢の数字を入力してください");
+            return check(gm,max);
+        }
+        return num;
+    }
+
 
     @Override
     void end() {

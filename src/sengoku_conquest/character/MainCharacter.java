@@ -20,6 +20,22 @@ public class MainCharacter extends Character{
 
     public void setExp(int exp) {
         this.exp = exp;
+        int level = getLevel();
+
+        if(level==1 && exp>=1
+                || level==2 && exp>=4
+                || level==3 && exp>=7
+                || level==4 && exp>=10
+                || level==5 && exp>=15
+                ){
+            level++;
+
+            final Status currentStatus=getStatus();
+            Status nextStatus = new Status(currentStatus.getMaxHp()+5, currentStatus.getCurrentEp(), currentStatus.getAtk()+2, getStatus().getDef()+2);
+            setStatus(nextStatus);
+            nextStatus.setCurrentHp(nextStatus.getCurrentHp()+5);
+            nextStatus.setCurrentEp(nextStatus.getCurrentEp());
+        }
     }
 
     public int getExp() {
