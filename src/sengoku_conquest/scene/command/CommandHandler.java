@@ -11,4 +11,6 @@ public abstract class CommandHandler<T,R> {
     public R doExecute(T parameter){
         return execute(parameter);
     }
+
+    public abstract String getCommandName();
 }
