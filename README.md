@@ -19,3 +19,52 @@
 | GameEngine | readLineFromUserInput() | String | ユーザの入力を取得する |
 | GameEngine | readNumber(int) | int | ユーザからの入力を取得する　1〜引数の値以外の値が入力された場合-1が返ってくる |
 | GameEngine | setIndentation(int) | void | インデントの値を設定する |
+
+## 命名規則
+基本的にはJavaの命名規則に則る
+
+### パッケージ名
+snake_case
+
+```java
+pacakge HogeHoge;//NG
+pacakge hogeHoge;//NG
+pacakge hoge_hoge;//OK
+```
+
+### クラス
+PascalCase
+
+```java
+public class hogeHoge{
+}//NG
+
+public class Hoge_Hoge{
+}//NG
+
+public class HogeHoge{
+}//OK
+```
+
+### メソッド
+lowerCamelCase
+
+```java
+public void HogeHoge(){
+}//NG
+
+public void hoge_hoge(){
+}//NG
+
+public void hogeHoge(){
+}//OK
+```
+
+### フィールド・ローカル変数・引数
+lowerCamelCase
+
+```java
+public int HogeHoge=0;//NG
+public int hoge_hoge=0;//NG
+public int hogeHoge=0;//OK
+```
