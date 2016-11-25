@@ -31,9 +31,10 @@ public class MainCharacter extends Character{
             level++;
 
             final Status currentStatus=getStatus();
-            Status nextStatus = new Status(currentStatus.getMaxHp()+5, currentStatus.getMaxEp(), currentStatus.getAtk()+2, getStatus().getDef()+2);
+            Status nextStatus = new Status(currentStatus.getMaxHp()+5, currentStatus.getCurrentEp(), currentStatus.getAtk()+2, getStatus().getDef()+2);
             setStatus(nextStatus);
             nextStatus.setCurrentHp(nextStatus.getCurrentHp()+5);
+            nextStatus.setCurrentEp(nextStatus.getCurrentEp());
         }
     }
 
