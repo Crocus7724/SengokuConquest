@@ -1,15 +1,16 @@
 package sengoku_conquest.scene.command;
 
 import sengoku_conquest.GameEngine;
+import sengoku_conquest.character.EnemyCharacter;
 
 /**
  * Created by Yamamoto on 2016/11/24.
  */
-public class EscapeCommand extends CommandHandler<Object,Boolean> {
+public class EscapeCommand extends BattleCommandHandler {
     private GameEngine engine=GameEngine.current;
 
     @Override
-    protected Boolean execute(Object parameter) {
+    protected Boolean execute(EnemyCharacter parameter) {
         return askEscape();
     }
 
