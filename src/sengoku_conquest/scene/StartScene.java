@@ -39,7 +39,7 @@ public class StartScene extends Scene {
             GameApplication.current.setMainCharacter(new MainCharacter(job));
 
             // エリアシーンへ
-
+            GameApplication.current.nextScene(new AreaScene(GameApplication.current.getMap().get(17)));
         }
     }
 
