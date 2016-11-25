@@ -2,6 +2,7 @@ package sengoku_conquest.scene;
 
 import com.sun.org.apache.xpath.internal.operations.String;
 
+import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
 
 /**
