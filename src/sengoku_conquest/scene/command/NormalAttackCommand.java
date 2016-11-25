@@ -26,6 +26,11 @@ public class NormalAttackCommand extends BattleCommandHandler {
         return true;
     }
 
+    @Override
+    public String getCommandName() {
+        return "通常攻撃";
+    }
+
     protected void attackCharacter(Character attacker,Character defender){
         engine.showMessage(attacker.getName()+"の攻撃!");
 

@@ -21,6 +21,11 @@ public class RestCommand extends AreaCommandHandler {
         return askRest();
     }
 
+    @Override
+    public String getCommandName() {
+        return "休憩";
+    }
+
 
     private boolean askRest(){
         engine.showMessage("1ターン消費してHPを30回復します。よろしいですか？");

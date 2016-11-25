@@ -24,6 +24,11 @@ public class MoveCommand extends AreaCommandHandler{
         return null;
     }
 
+    @Override
+    public String getCommandName() {
+        return "移動";
+    }
+
     private int selectMoveCommand() {
         Map<Integer, String> map = new HashMap<>();
         int i = 1;
