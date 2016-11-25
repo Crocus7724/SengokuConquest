@@ -71,6 +71,10 @@ public class BattleScene extends Scene {
     private BattleCommandHandler askCommand() {
         engine.showMessage("コマンドを選択して下さい");
 
+        engine.showMessage("1 : 通常攻撃");
+        engine.showMessage("2 : 特殊攻撃");
+        engine.showMessage("3 : 逃げる");
+
         final int input = engine.readNumber(commandList.size());
 
         if (input <= commandList.size()) {
