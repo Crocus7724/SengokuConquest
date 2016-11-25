@@ -11,7 +11,7 @@ public class Area {
 
     public Area(int areaNum, String areaName, NextAreaInfo nextAreaInfo) {
         this.areaNum = areaNum;
-        areaName = areaName;
+        this.areaName = areaName;
         this.nextAreaInfo = nextAreaInfo;
     }
 
