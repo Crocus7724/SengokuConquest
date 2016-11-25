@@ -7,6 +7,7 @@ public class NextAreaInfo {
     private int west;
     private int east;
     private int north;
+    private int south;
     
     public NextAreaInfo(int west, int east, int north, int south) {
         this.west = west;
@@ -32,5 +33,5 @@ public class NextAreaInfo {
         return south;
     }
 
-    private int south;
+
 }
