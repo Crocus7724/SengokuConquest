@@ -14,6 +14,11 @@ public class EscapeCommand extends BattleCommandHandler {
         return askEscape();
     }
 
+    @Override
+    public String getCommandName() {
+        return "逃走";
+    }
+
     private boolean askEscape(){
         engine.showMessage("本当に逃走しますか?");
         final int input=engine.readNumber(2);
