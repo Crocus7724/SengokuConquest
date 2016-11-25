@@ -1,11 +1,15 @@
 package sengoku_conquest.character;
 
+import javafx.application.Application;
+import sengoku_conquest.GameApplication;
+
 /**
  * Created by C011457331 on 2016/11/18.
  */
 public class Job {
     private int hp = 0;
     private int ep = 0;
+    private SpecialAttack specialAttack;
 
     public int getHp() {
         return hp;
@@ -45,4 +49,70 @@ public class Job {
 
     }
 
+
+    private SpecialAttack SamuraiAttack=new SpecialAttack() {
+        @Override
+        public void attack(EnemyCharacter character) {
+            MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
+            int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 1.45)),character.getStatus().getDef());
+            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
+        }
+
+        @Override
+        public void didAttacked(EnemyCharacter character) {
+
+        }
+    };
+
+    private SpecialAttack NinjaAttack=new SpecialAttack() {
+        @Override
+        public void attack(EnemyCharacter character) {
+            MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
+            int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 0.8)),character.getStatus().getDef());
+            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
+        }
+
+        @Override
+        public void didAttacked(EnemyCharacter character) {
+
+
+        }
+    };
+
+    private SpecialAttack AshigaruAttack=new SpecialAttack() {
+        @Override
+        public void attack(EnemyCharacter character) {
+            MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
+            int damage=calc((mainCharacter.getStatus().getAtk()),character.getStatus().getDef());
+            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
+        }
+
+        @Override
+        public void didAttacked(EnemyCharacter character) {
+
+        }
+    };
+
+    private SpecialAttack KomusouAttack=new SpecialAttack() {
+        @Override
+        public void attack(EnemyCharacter character) {
+            MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
+            int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 1.2)),character.getStatus().getDef());
+            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
+
+
+//
+//            int recoveryHp;
+//            if(){
+//
+//            }
+
+
+        }
+
+        @Override
+        public void didAttacked(EnemyCharacter character) {
+
+        }
+    };
 }
