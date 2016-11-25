@@ -15,10 +15,13 @@ public class Character {
     private String name;
     private int level = 0;
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public Status getStatus() {
         return status;
     }
-
 
     public String getName() {
         return name;
