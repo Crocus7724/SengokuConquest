@@ -48,7 +48,7 @@ public class StartScene extends Scene {
         String str = gm.readLineFromUserInput();
 
         if (str==null|| !str.matches("[0-9]")){
-            gm.showMessage("半角数字を入力してください");
+            gm.showMessage("コマンドを入力しなおしてください");
             return check(gm,max);
         }
         int num = Integer.parseInt(str);
