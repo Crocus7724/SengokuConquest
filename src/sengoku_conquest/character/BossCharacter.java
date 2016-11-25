@@ -8,12 +8,10 @@ public class BossCharacter extends EnemyCharacter {
     public BossCharacter(){
         super("織田信長",4);
         this.isCharged = false;
-
     }
 
     public boolean getIsCharged(){return isCharged;}
     //↑一応作ったけどいるかどうか不明メソッド名も仮
-
 
     public void setCharged(boolean charged) {
         isCharged = charged;
