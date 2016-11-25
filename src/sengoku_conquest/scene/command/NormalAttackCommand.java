@@ -10,7 +10,7 @@ import sengoku_conquest.utilities.DamageCalcurator;
 /**
  * Created by Yamamoto on 2016/11/24.
  */
-public class NormalAttackCommand extends CommandHandler<EnemyCharacter,Boolean> {
+public class NormalAttackCommand extends BattleCommandHandler {
     private GameEngine engine=GameEngine.current;
     private MainCharacter mainCharacter= GameApplication.current.getMainCharacter();
     @Override
