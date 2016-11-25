@@ -17,7 +17,7 @@ import sengoku_conquest.map.Area;
  */
 
 public class ItemCommand extends AreaCommandHandler {
-
+    private GameEngine engine=GameEngine.current;
     @Override
     protected Boolean execute(Area parameter) {
         List<Item> itemList = GameApplication.current.getMainCharacter().getItems();
@@ -32,7 +32,7 @@ public class ItemCommand extends AreaCommandHandler {
                 epItemCount++;
             }
             else{
-                //engine.showMessage("どこかでバグが起きてるYO/n");
+                engine.showMessage("どこかでバグが起きてるYO/n");
             }
             }
 
@@ -40,12 +40,22 @@ public class ItemCommand extends AreaCommandHandler {
         if(hpItemCount>0){
             //TODO : HPアイテム表示フラグ
             hasHpItem=true;
+            engine.showMessage("握り飯:" + hpItemCount + "個/n");
         }
 
+        boolean hasEpItem=false;
         if(epItemCount>0){
             // TODO : EPアイテム表示フラグ
+            hasEpItem=true;
+            engine.showMessage("いにしえの秘薬:" + epItemCount + "個/n");
         }
-return null;
+        else{
+            engine.showMessage("どこかでバグが起きてるYO/n");
+        }
+
+
+
+    return null;
         }
 
     }
