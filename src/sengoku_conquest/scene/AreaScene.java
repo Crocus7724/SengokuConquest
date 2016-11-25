@@ -1,21 +1,20 @@
 package sengoku_conquest.scene;
 
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import sengoku_conquest.character.Character;
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
 import sengoku_conquest.character.MainCharacter;
-import sengoku_conquest.item.EpItem;
-import sengoku_conquest.item.HpItem;
 import sengoku_conquest.item.Item;
 import sengoku_conquest.map.Area;
-import sengoku_conquest.map.EmptyArea;
+import sengoku_conquest.map.BossArea;
+import sengoku_conquest.map.EnemyArea;
 import sengoku_conquest.map.ItemArea;
-import sengoku_conquest.map.NextAreaInfo;
+import sengoku_conquest.scene.command.AreaCommandHandler;
+import sengoku_conquest.scene.command.MoveCommand;
+import sengoku_conquest.scene.command.RestCommand;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Yamamoto on 2016/11/18.
@@ -24,20 +23,32 @@ public class AreaScene extends Scene{
     private Area area;
     private GameEngine engine;
     private MainCharacter character;
-    AreaScene(Area area){
+    private List<AreaCommandHandler> commandList=new ArrayList<>();
+
+    public AreaScene(Area area){
         this.area = area;
         this.engine = new GameEngine();
 
-
+        commandList.add(new MoveCommand());
+        commandList.add(new RestCommand());
     }
 
     @Override
     void start() {
-        if(area instanceof EmptyArea){
-        waitPlayerCommand();
-        }else if (area instanceof ItemArea){
-
+        GameEngine.current.showMessage("現在位置 : "+area.getAreaNum());
+        if (area instanceof ItemArea){
+            getItemFromArea((ItemArea)area);
+        }else if(area instanceof EnemyArea){
+            final EnemyArea enemyArea = (EnemyArea) this.area;
+            if(enemyArea.getEnemy().getStatus().getCurrentHp()>0) {
+                GameApplication.current.nextScene(new BattleScene(enemyArea.getEnemy()));
+            }
+        }else if(area.getClass()==BossArea.class){
+            GameApplication.current.nextScene(new BossScene());
+            return;
         }
+
+        selectCommand();
     }
 
     @Override
@@ -49,136 +60,30 @@ public class AreaScene extends Scene{
     void restart() {
 
     }
-    private void waitPlayerCommand() {
-        engine.showMessage("コマンドを入力なさってください");
-        boolean hasitem = false;
-        engine.showMessage("1:移動");
-        engine.showMessage("2:休憩");
-        if(!GameApplication.current.getMainCharacter().getItems().isEmpty()) {
-            engine.showMessage("3:アイテム");
-            hasitem = true;
-        }
-        java.lang.String input = engine.readLineFromUserInput();
-        if(input == null){
-            engine.showMessage("コマンドを入力しなおしてください");
-            waitPlayerCommand();
-        }
-        if(input.isEmpty()|| !input.matches("[0-9]")){
-            engine.showMessage("入力が不正です");
-            waitPlayerCommand();
-        }
-        int num = Integer.parseInt(input);
-        if(num>0 &&num<(hasitem ? 4:3))     {
-            switch (num){
-                case 1:
-                    selectMoveCommand();
-                case 2:
-                    selctLestCommand();
-                case 3:
-                    selectItemCommand();
 
-            }
+    private void selectCommand(){
+        engine.showMessage("コマンドを入力して下さい");
+
+        for (int i=0;i<commandList.size();i++){
+            engine.showMessage(i+1+" : "+commandList.get(i).getCommandName());
         }
 
+        final int input = engine.readNumber(commandList.size());
+
+        if(input==-1){
+            selectCommand();
+            return;
+        }
+
+        commandList.get(input-1).doExecute(area);
     }
 
-    private int selectMoveCommand() {
-        Map<Integer, String> map = new HashMap<>();
-        int i = 1;
+    private void getItemFromArea(ItemArea area){
+        final Item item = area.getItem();
 
-            if (area.getNextAreaInfo().getEast() != -1) {
+        engine.showMessage(item.getName()+"を見つけた!!");
 
-                engine.showMessage(i+":東");
-                map.put(i,"E");
-                i++;
-            }
-            if (area.getNextAreaInfo().getNorth() != -1) {
-                engine.showMessage(i+":北");
-                map.put(i,"N");
-                i++;
-            }
-            if (area.getNextAreaInfo().getSouth() != -1) {
-                engine.showMessage(i+":南");
-                map.put(i,"S");
-                i++;
-            }
-            if (area.getNextAreaInfo().getWest() != -1) {
-                engine.showMessage(i+":西");
-                map.put(i,"W");
-                i++;
-            }
-        java.lang.String input = engine.readLineFromUserInput();
-        if(input == null){
-            engine.showMessage("コマンドを入力しなおしてください");
-            selectMoveCommand();
-        }
-        if(input.isEmpty()|| !input.matches("[0-9]")){
-            engine.showMessage("入力が不正です");
-            selectMoveCommand();
-        }
-            int num = Integer.parseInt(input);
-        if(num<0 &&num>=i)     {
-            String s = map.get(num);
-        if(s.equals("E")){
-            return area.getNextAreaInfo().getEast();
-        }else if(s.equals("N")){
-            return area.getNextAreaInfo().getNorth();
-        }else if(s.equals("S")){
-            return area.getNextAreaInfo().getSouth();
-        }else {
-            return area.getNextAreaInfo().getWest();
-        }
-
-        }
-        engine.showMessage("値が不正です");
-        return selectMoveCommand();
-        }
-
-    public int recoveryHP = 30;
-    private void selctLestCommand(){//HPを回復するメソッドです
-        int hp  = character.getStatus().getCurrentHp() + recoveryHP;
-
-
-        if(hp > character.getStatus().getMaxHp()) {
-            hp = character.getStatus().getMaxHp();
-        }
-
-        character.getStatus().setCurrentHp(hp);
-        GameApplication.current.decreaseTurn();
-        //↑これで現在のターンから1ターン減算することができているでしょうか
-    }
-
-    private void selectItemCommand(){
-        GameApplication.current.getMainCharacter().getItems();
-        HpItem Hpitem = new HpItem();
-        EpItem Epitem = new EpItem();
-            engine.showMessage("1" + Hpitem.getName());
-
-            engine.showMessage("2" + Epitem.getName());
-
-        java.lang.String input = engine.readLineFromUserInput();
-        if(input==null){
-            engine.showMessage("コマンドを入力しなおしてください");
-            selectMoveCommand();
-        }
-        if(input.isEmpty()||!input.matches("[0-9]")){
-            engine.showMessage("入力が不正です");
-            selectItemCommand();
-        }
-        int num = Integer.parseInt(input);
-        if(0<num && num<3){
-            switch (num){
-                case 1:
-                    Hpitem.useItem(GameApplication.current.getMainCharacter());
-
-
-                case 2:
-                    Epitem.useItem(GameApplication.current.getMainCharacter());
-            }
-        }
-
-
-
+        GameApplication.current.getMainCharacter().getItems().add(item);
     }
 }
 

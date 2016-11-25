@@ -30,7 +30,7 @@ public class GameApplication {
         nextScene(new StartScene());
     }
 
-    Map<Integer, Area> map = new HashMap<Integer, Area>();
+    private Map<Integer, Area> map = new HashMap<Integer, Area>();
 
     public MainCharacter getMainCharacter() {
         return mainCharacter;
@@ -38,6 +38,10 @@ public class GameApplication {
 
     public void setMainCharacter(MainCharacter mainCharacter) {
         this.mainCharacter = mainCharacter;
+    }
+
+    public Map<Integer,Area> getMap(){
+        return map;
     }
 
     public void nextScene(Scene scene) {

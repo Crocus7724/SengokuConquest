@@ -30,8 +30,8 @@ public class MainCharacter extends Character{
                 || level==5 && exp>=15
                 ){
             level++;
-            MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
-            mainCharacter.setLevel(level);
+
+            setLevel(level);
 
             final Status currentStatus=getStatus();
             Status nextStatus = new Status(currentStatus.getMaxHp()+5, currentStatus.getCurrentEp(), currentStatus.getAtk()+2, getStatus().getDef()+2);
