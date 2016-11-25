@@ -11,7 +11,8 @@ import sengoku_conquest.map.Area;
  */
 public class RestCommand extends AreaCommandHandler {
     private GameEngine engine = GameEngine.current;
-    private MainCharacter character ;
+    private MainCharacter character = GameApplication.current.getMainCharacter();
+
     public int recoverHp;
     private boolean result;
 
@@ -19,6 +20,7 @@ public class RestCommand extends AreaCommandHandler {
     protected Boolean execute(Area parameter) {
         return askRest();
     }
+
 
     private boolean askRest(){
         engine.showMessage("1ターン消費してHPを30回復します。よろしいですか？");
