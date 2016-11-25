@@ -30,7 +30,9 @@ public final class GameEngine {
 
     public String readLineFromUserInput() {
         String str = null;
-        try(BufferedReader br=new BufferedReader(new InputStreamReader(System.in))) {
+        BufferedReader br=null;
+        try {
+            br=new BufferedReader(new InputStreamReader(System.in));
             str = br.readLine();
         } catch (IOException e) {
             return null;
