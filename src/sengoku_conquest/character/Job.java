@@ -100,12 +100,16 @@ public class Job {
             int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 1.2)),character.getStatus().getDef());
             character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
 
-
-//
-//            int recoveryHp;
-//            if(){
-//
+            // 敵を倒したとき回復量変化
+//            if(enemyHp<0){
+//                damage += enemyHp;
 //            }
+
+            mainCharacter.getStatus().setCurrentHp(damage);
+
+            if(mainCharacter.getStatus().getCurrentHp()>mainCharacter.getStatus().getMaxHp()){
+                mainCharacter.getStatus().setCurrentHp(mainCharacter.getStatus().getMaxHp());
+            }
 
 
         }
