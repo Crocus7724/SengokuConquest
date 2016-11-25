@@ -5,19 +5,18 @@ import java.util.*;
 import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
 import sengoku_conquest.item.Item;
-import sengoku_conquest.map.Area;
-import sengoku_conquest.map.BossArea;
-import sengoku_conquest.map.EmptyArea;
+import sengoku_conquest.map.*;
 import sengoku_conquest.scene.EndScene;
 import sengoku_conquest.scene.Scene;
 import sengoku_conquest.scene.StartScene;
+import sengoku_conquest.utilities.EnemyData;
 import sengoku_conquest.utilities.MappingData;
 
 /**
  * Created by C0114105 on 2016/11/18.
  */
 public class GameApplication {
-    private Random random=new Random();
+    private Random random = new Random(200000);
     private List<Scene> sceneList = new ArrayList<>();
 
     private int turn;
@@ -56,7 +55,7 @@ public class GameApplication {
 
     public void decreaseTurn() {
         this.turn--;
-        if(turn==0){
+        if (turn == 0) {
             nextScene(new EndScene());
         }
     }
@@ -72,6 +71,15 @@ public class GameApplication {
     private void createMapData() {
         Area[] areaList = MappingData.createArea();
 
+        //スタートエリア初期化
+        Area startArea = areaList[17 - 1];
+        map.put(17, new EmptyArea(startArea.getAreaNum(), startArea.getAreaName(), startArea.getNextAreaInfo()));
+        startArea = areaList[16 - 1];
+        map.put(16, new EmptyArea(startArea.getAreaNum(), startArea.getAreaName(), startArea.getNextAreaInfo()));
+
+        createItemArea(areaList);
+
+        //ボスエリア初期化
         Area bossArea = areaList[14 - 1];
         map.put(14, new BossArea(bossArea.getAreaNum(), bossArea.getAreaName(), bossArea.getNextAreaInfo()));
 
@@ -83,33 +91,50 @@ public class GameApplication {
             }
         }
 
-        //TODO : Itemマップ初期化
-        //TODO : Enemyエリア初期化
+        createEnemyArea(areaList);
 
         //空エリア初期化
-        for (Area area : areaList){
-            if(!map.containsKey(area.getAreaNum()))continue;
+        for (Area area : areaList) {
+            if (map.containsKey(area.getAreaNum())) continue;
 
-            map.put(area.getAreaNum(),new EmptyArea(area.getAreaNum(),area.getAreaName(),area.getNextAreaInfo()));
+            map.put(area.getAreaNum(), new EmptyArea(area.getAreaNum(), area.getAreaName(), area.getNextAreaInfo()));
         }
     }
 
-    private EnemyCharacter getEnemy(){
-        //TODO : Enemyの初期化
-        return null;
+    private void createItemArea(Area[] areaList) {
+        int key = createNotContainsKey(2, 11);
+        Area itemArea = areaList[key - 1];
+        map.put(key, new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        key = createNotContainsKey(12, 18);
+        itemArea = areaList[key - 1];
+        map.put(key, new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        key = createNotContainsKey(20, 25);
+        itemArea = areaList[key - 1];
+        map.put(key, new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
     }
 
-    private Item getItem(){
-        //TODO : Itemの初期化
-        return null;
+    private void createEnemyArea(Area[] areaList) {
+        final EnemyData[] enemies = MappingData.createEnemies();
+
+        for (EnemyData data : enemies) {
+            int key = 0;
+            if (data.popMax == data.popMin) {
+                key = data.popMax;
+            } else {
+                key = createNotContainsKey(data.popMin, data.popMax);
+            }
+            Area area = areaList[key];
+            map.put(area.getAreaNum(), new EnemyArea(data.enemy, area.getAreaNum(), area.getAreaName(), area.getNextAreaInfo()));
+        }
     }
 
-    private int createNotContainsKey(int start,int end){
+    private int createNotContainsKey(int start, int end) {
+
         final int i = random.nextInt(end - start) + start;
 
-        if(!map.containsKey(i))return i;
+        if (!map.containsKey(i)) return i;
 
-        return createNotContainsKey(start,end);
+        return createNotContainsKey(start, end);
     }
 }
 
