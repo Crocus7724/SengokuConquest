@@ -102,6 +102,11 @@ public class ItemCommand extends AreaCommandHandler {
         return null;
     }
 
+    @Override
+    public String getCommandName() {
+        return "アイテム使用";
+    }
+
     private void useItem(int index) {
         List<Item> itemList = GameApplication.current.getMainCharacter().getItems();
         itemList.get(index).useItem(GameApplication.current.getMainCharacter());
