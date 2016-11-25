@@ -9,7 +9,7 @@ import sengoku_conquest.character.EnemyCharacter;
 public class BossArea extends EnemyArea {
     public BossArea(int areanum, String areaname, NextAreaInfo nextAreaInfo) {
         super(new EnemyCharacter("nobunaga",4),areanum, areaname, nextAreaInfo);
-        
+
     }
 
 }
