@@ -25,6 +25,7 @@ public class GameApplication {
     private int turn = 0;
     private int count;
     public static final GameApplication current = new GameApplication();
+    private boolean isEscaped=false;
     private MainCharacter mainCharacter;
 
     public void gameStart() {
@@ -48,6 +49,14 @@ public class GameApplication {
         return map;
     }
 
+    public void setIsEscaped(boolean isEscaped){
+        this.isEscaped=isEscaped;
+    }
+
+    public boolean getIsEscaped(){
+        return this.isEscaped;
+    }
+
     public void nextScene(Scene scene) {
         if (!sceneList.isEmpty()) {
             sceneList.get(sceneList.size() - 1).doEnd();
@@ -57,7 +66,8 @@ public class GameApplication {
     }
 
     public void previousScene() {
-        final Scene scene = sceneList.get(sceneList.size() - 2);
+        sceneList.remove(sceneList.size()-1);
+        final Scene scene = sceneList.get(sceneList.size() - 1);
         scene.doRestart();
     }
 
