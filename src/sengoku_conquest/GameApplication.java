@@ -16,15 +16,15 @@ import sengoku_conquest.utilities.MappingData;
  * Created by C0114105 on 2016/11/18.
  */
 public class GameApplication {
-    private Random random = new Random(200000);
+    private Random random = new Random((int)(Math.random()*1000));
     private List<Scene> sceneList = new ArrayList<>();
 
-    private int turn;
+    private int turn=0;
     public static final GameApplication current = new GameApplication();
     private MainCharacter mainCharacter;
 
     public void gameStart() {
-
+        increaseTurn(30);
         createMapData();
 
         nextScene(new StartScene());

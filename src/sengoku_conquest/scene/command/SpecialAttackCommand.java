@@ -16,4 +16,9 @@ public class SpecialAttackCommand extends NormalAttackCommand {
 
         return super.execute(enemy);
     }
+
+    @Override
+    public String getCommandName() {
+        return "特殊攻撃";
+    }
 }
