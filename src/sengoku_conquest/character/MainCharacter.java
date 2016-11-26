@@ -15,7 +15,7 @@ public class MainCharacter extends Character{
     private Job job;
 
     public MainCharacter(Job job) {
-        super(new Status(job.getHp(),job.getAtk(),job.getDef(),job.getEp()),job.getType().name(),1);
+        super(new Status(job.getHp(),job.getEp(),job.getAtk(),job.getDef()),job.getType().name(),1);
         this.job = job;
     }
 
