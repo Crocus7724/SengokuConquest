@@ -1,7 +1,10 @@
 package sengoku_conquest;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
 import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
 import sengoku_conquest.item.Item;
@@ -16,10 +19,10 @@ import sengoku_conquest.utilities.MappingData;
  * Created by C0114105 on 2016/11/18.
  */
 public class GameApplication {
-    private Random random = new Random((int)(Math.random()*1000));
+    private Random random = new Random((long) (Math.random() * 1000));
     private List<Scene> sceneList = new ArrayList<>();
-
-    private int turn=0;
+    private int turn = 0;
+    private int count;
     public static final GameApplication current = new GameApplication();
     private MainCharacter mainCharacter;
 
@@ -40,7 +43,7 @@ public class GameApplication {
         this.mainCharacter = mainCharacter;
     }
 
-    public Map<Integer,Area> getMap(){
+    public Map<Integer, Area> getMap() {
         return map;
     }
 
@@ -108,13 +111,13 @@ public class GameApplication {
     private void createItemArea(Area[] areaList) {
         int key = createNotContainsKey(2, 11);
         Area itemArea = areaList[key - 1];
-        map.put(key, new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        map.put(itemArea.getAreaNum(), new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
         key = createNotContainsKey(12, 18);
         itemArea = areaList[key - 1];
-        map.put(key, new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        map.put(itemArea.getAreaNum(), new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
         key = createNotContainsKey(20, 25);
         itemArea = areaList[key - 1];
-        map.put(key, new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        map.put(itemArea.getAreaNum(), new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
     }
 
     private void createEnemyArea(Area[] areaList) {
@@ -127,18 +130,36 @@ public class GameApplication {
             } else {
                 key = createNotContainsKey(data.popMin, data.popMax);
             }
-            Area area = areaList[key];
+            Area area = areaList[key-1];
             map.put(area.getAreaNum(), new EnemyArea(data.enemy, area.getAreaNum(), area.getAreaName(), area.getNextAreaInfo()));
         }
     }
 
     private int createNotContainsKey(int start, int end) {
+        try {
+            if (count > 100) {
+                for (int i=start;i<=end;i++){
+                    if(!map.containsKey(i)){
+                        return i;
+                    }
+                }
+                throw new IllegalStateException();
+            }
 
-        final int i = random.nextInt(end - start) + start;
+            final int i = (int) (Math.random() * (end - start)) + start;
 
-        if (!map.containsKey(i)) return i;
+            if (!map.containsKey(i)) {
+                count = 0;
+                return i;
+            }
 
-        return createNotContainsKey(start, end);
+            count++;
+            return createNotContainsKey(start, end);
+        }catch (StackOverflowError error){
+            System.out.println(start+" : "+end);
+        }
+
+        return createNotContainsKey(start,end);
     }
 }
 
