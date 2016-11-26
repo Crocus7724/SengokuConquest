@@ -41,7 +41,7 @@ public class EndScene extends Scene {
             engine.showMessage("GAME CLEAR!!\n" +
                     "THANK YOU FOR PLAYING!!\n" +
                     "見事全国を制覇しました!!\n" +
-                    "           STAFF/n" +
+                    "           STAFF\n" +
                     "チームリーダー　　　江元和樹\n" +
                     "設計担当者　　　　　伊賀成寿\n" +
                     "プログラミング担当　山本一樹\n" +
