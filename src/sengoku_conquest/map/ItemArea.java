@@ -8,12 +8,18 @@ import sengoku_conquest.item.Item;
  */
 public class ItemArea extends Area {
     private Item item;
+    private boolean isFind=false;
     public ItemArea(Item item,int areaNumber, String areaName, NextAreaInfo nextAreaInfo) {
         super(areaNumber, areaName, nextAreaInfo);
         this.item=item;
     }
 
     public Item getItem() {
+        isFind=true;
         return item;
+    }
+
+    public boolean isFind() {
+        return isFind;
     }
 }
