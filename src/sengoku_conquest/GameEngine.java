@@ -1,5 +1,6 @@
 package sengoku_conquest;
 
+import sengoku_conquest.character.MainCharacter;
 import sengoku_conquest.utilities.Action;
 import sengoku_conquest.utilities.Predicate;
 
@@ -14,25 +15,25 @@ import java.io.InputStreamReader;
 public final class GameEngine {
     public static final GameEngine current = new GameEngine();
 
-    private int indentation=0;
+    private int indentation = 0;
 
-    public void setIndentation(int indentation){
-        this.indentation=indentation;
+    public void setIndentation(int indentation) {
+        this.indentation = indentation;
     }
 
-    public void show(String message){
-        System.out.print(getIndentation()+message);
+    public void show(String message) {
+        System.out.print(getIndentation() + message);
     }
 
     public void showMessage(String message) {
-        System.out.println(getIndentation()+message);
+        System.out.println(getIndentation() + message);
     }
 
     public String readLineFromUserInput() {
         String str = null;
-        BufferedReader br=null;
+        BufferedReader br = null;
         try {
-            br=new BufferedReader(new InputStreamReader(System.in));
+            br = new BufferedReader(new InputStreamReader(System.in));
             str = br.readLine();
         } catch (IOException e) {
             return null;
@@ -62,24 +63,70 @@ public final class GameEngine {
     public int readNumber(final Predicate<Integer> predicate) {
         final String input = readLineFromUserInput();
 
-        if(input==null||input.isEmpty()||!input.matches("[0-9]"))return -1;
+        if (input == null || input.isEmpty() || !input.matches("[0-9]")) return -1;
 
-        int num=Integer.parseInt(input);
+        int num = Integer.parseInt(input);
 
-        if(!predicate.accept(num))return -1;
+        if (!predicate.accept(num)) return -1;
 
         return num;
     }
 
-    public void showIndentedMessage(Action indentedMessage){
+    public void showIndentedMessage(Action indentedMessage) {
         indentation++;
         indentedMessage.accept();
         indentation--;
     }
 
-    private String getIndentation(){
-        StringBuilder builder=new StringBuilder();
-        for (int i=0;i<indentation;i++){
+    public void showBoxMessage(String title,String... messages){
+        int maxLength = title.length();
+
+        for (String message : messages) {
+            if (maxLength < message.length()) {
+                maxLength = message.length();
+            }
+        }
+
+        maxLength += 2;
+        writeHorizontalLine(title,maxLength);
+        StringBuilder builder;
+        for (String message : messages) {
+            builder = new StringBuilder();
+            builder.append("| ");
+
+            builder.append(message);
+
+            for (int i = 0; i < (maxLength - message.length()) - 1; i++) {
+                builder.append(" ");
+            }
+
+            builder.append("|");
+            showMessage(builder.toString());
+        }
+
+        writeHorizontalLine("",maxLength);
+    }
+
+    private void writeHorizontalLine(String title,int length) {
+        StringBuilder builder = new StringBuilder();
+
+        int first=(length-title.length())/2;
+
+        for (int i = 0; i < first+1; i++) {
+            builder.append("-");
+        }
+
+        builder.append(title);
+
+        for (int i=0;i<(length-title.length())-first+1;i++){
+            builder.append("-");
+        }
+        showMessage(builder.toString());
+    }
+
+    private String getIndentation() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < indentation; i++) {
             builder.append("    ");
         }
 
