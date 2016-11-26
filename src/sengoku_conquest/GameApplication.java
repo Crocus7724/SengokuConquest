@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
 import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
+import sengoku_conquest.item.HpItem;
 import sengoku_conquest.item.Item;
 import sengoku_conquest.map.*;
 import sengoku_conquest.scene.EndScene;
@@ -111,13 +112,13 @@ public class GameApplication {
     private void createItemArea(Area[] areaList) {
         int key = createNotContainsKey(2, 11);
         Area itemArea = areaList[key - 1];
-        map.put(itemArea.getAreaNum(), new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        map.put(itemArea.getAreaNum(), new ItemArea(new HpItem(),itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
         key = createNotContainsKey(12, 18);
         itemArea = areaList[key - 1];
-        map.put(itemArea.getAreaNum(), new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        map.put(itemArea.getAreaNum(), new ItemArea(new HpItem(),itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
         key = createNotContainsKey(20, 25);
         itemArea = areaList[key - 1];
-        map.put(itemArea.getAreaNum(), new ItemArea(itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        map.put(itemArea.getAreaNum(), new ItemArea(new HpItem(),itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
     }
 
     private void createEnemyArea(Area[] areaList) {
