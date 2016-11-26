@@ -21,6 +21,10 @@ public class EscapeCommand extends BattleCommandHandler {
 
     private boolean askEscape(){
         engine.showMessage("本当に逃走しますか?");
+
+        engine.showMessage("1 : はい");
+        engine.showMessage("2 : いいえ");
+
         final int input=engine.readNumber(2);
 
         if(input==-1){

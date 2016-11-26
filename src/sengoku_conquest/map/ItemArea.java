@@ -1,5 +1,6 @@
 package sengoku_conquest.map;
 
+import sengoku_conquest.item.HpItem;
 import sengoku_conquest.item.Item;
 
 /**
@@ -7,11 +8,18 @@ import sengoku_conquest.item.Item;
  */
 public class ItemArea extends Area {
     private Item item;
-    public ItemArea(int areanum, String areaname, NextAreaInfo nextAreaInfo) {
-        super(areanum, areaname, nextAreaInfo);
+    private boolean isFind=false;
+    public ItemArea(Item item,int areaNumber, String areaName, NextAreaInfo nextAreaInfo) {
+        super(areaNumber, areaName, nextAreaInfo);
+        this.item=item;
     }
 
     public Item getItem() {
+        isFind=true;
         return item;
+    }
+
+    public boolean isFind() {
+        return isFind;
     }
 }

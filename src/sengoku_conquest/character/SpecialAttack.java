@@ -7,11 +7,12 @@ import java.util.Random;
  */
 public abstract class SpecialAttack {
     private static Random r=new Random(100000);
-    abstract void attack(EnemyCharacter character);
-    abstract void didAttacked(EnemyCharacter character);
+    public abstract void attack(EnemyCharacter character);
+    public abstract void didAttacked(EnemyCharacter character);
+    public abstract String getName();
 
-    protected int calc(int attacker,int deffender){
-        return attacker-deffender+getRandomDamage();
+    protected int calc(int attacker,int defender){
+        return attacker-defender+getRandomDamage();
     }
 
     private int getRandomDamage(){

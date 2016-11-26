@@ -1,11 +1,13 @@
 package sengoku_conquest;
 
+import sengoku_conquest.character.MainCharacter;
 import sengoku_conquest.utilities.Action;
 import sengoku_conquest.utilities.Predicate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.*;
 
 /**
  * Created by C0114544 on 2016/11/18.
@@ -14,25 +16,25 @@ import java.io.InputStreamReader;
 public final class GameEngine {
     public static final GameEngine current = new GameEngine();
 
-    private int indentation=0;
+    private int indentation = 0;
 
-    public void setIndentation(int indentation){
-        this.indentation=indentation;
+    public void setIndentation(int indentation) {
+        this.indentation = indentation;
     }
 
-    public void show(String message){
-        System.out.print(getIndentation()+message);
+    public void show(String message) {
+        System.out.print(getIndentation() + message);
     }
 
     public void showMessage(String message) {
-        System.out.println(getIndentation()+message);
+        System.out.println(getIndentation() + message);
     }
 
     public String readLineFromUserInput() {
         String str = null;
-        BufferedReader br=null;
+        BufferedReader br = null;
         try {
-            br=new BufferedReader(new InputStreamReader(System.in));
+            br = new BufferedReader(new InputStreamReader(System.in));
             str = br.readLine();
         } catch (IOException e) {
             return null;
@@ -62,27 +64,114 @@ public final class GameEngine {
     public int readNumber(final Predicate<Integer> predicate) {
         final String input = readLineFromUserInput();
 
-        if(input==null||input.isEmpty()||!input.matches("[0-9]"))return -1;
+        if (input == null || input.isEmpty() || !input.matches("[0-9]")) return -1;
 
-        int num=Integer.parseInt(input);
+        int num = Integer.parseInt(input);
 
-        if(!predicate.accept(num))return -1;
+        if (!predicate.accept(num)) return -1;
 
         return num;
     }
 
-    public void showIndentedMessage(Action indentedMessage){
+    public void showIndentedMessage(Action indentedMessage) {
         indentation++;
         indentedMessage.accept();
         indentation--;
     }
 
-    private String getIndentation(){
-        StringBuilder builder=new StringBuilder();
-        for (int i=0;i<indentation;i++){
+    public void showBoxMessage(String title, String... messages) {
+        int maxLength = title.length();
+
+        for (String message : messages) {
+            if (maxLength < message.length()) {
+                maxLength = message.length();
+            }
+        }
+
+        maxLength += 2;
+        writeHorizontalLine(title, maxLength);
+        StringBuilder builder;
+        for (String message : messages) {
+            builder = new StringBuilder();
+            builder.append("| ");
+
+            builder.append(message);
+
+            for (int i = 0; i < (maxLength - message.length()) - 1; i++) {
+                builder.append(" ");
+            }
+
+            builder.append("|");
+            showMessage(builder.toString());
+        }
+
+        writeHorizontalLine("", maxLength);
+    }
+
+    public void showBoxMessage(String title, Map<String, String> messages) {
+        //キモい
+        final int[] maxKeyLength = {0};
+        messages.entrySet().stream()
+                .filter(messageEntry -> maxKeyLength[0] < messageEntry.getKey().length())
+                .forEach(messageEntry -> maxKeyLength[0] = messageEntry.getKey().length());
+        maxKeyLength[0]+=1;
+        List<String> messageList=new ArrayList<>();
+        StringBuilder builder;
+        for (Map.Entry<String, String> messageEntry : messages.entrySet()){
+            builder=new StringBuilder();
+            builder.append(messageEntry.getKey());
+            for (int i = 0; i<(maxKeyLength[0] -messageEntry.getKey().length()); i++){
+                builder.append(" ");
+            }
+
+            builder.append(messageEntry.getValue());
+            messageList.add(builder.toString());
+        }
+
+        showBoxMessage(title,messageList.toArray(new String[0]));
+    }
+
+    public void showMainCharacterStatus() {
+        Map<String,String> status=new LinkedHashMap<>();
+        final MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
+
+        status.put("NAME",mainCharacter.getName());
+        status.put("LEVEL",mainCharacter.getLevel()+"");
+        status.put("EXP",mainCharacter.getExp()+"");
+        status.put("HP",mainCharacter.getStatus().getCurrentHp()+" / "+mainCharacter.getStatus().getMaxHp());
+        status.put("EP",mainCharacter.getStatus().getCurrentEp()+" / "+mainCharacter.getStatus().getMaxEp());
+        status.put("ATK",mainCharacter.getStatus().getAtk()+"");
+        status.put("DEF",mainCharacter.getStatus().getDef()+"");
+
+        showBoxMessage("STATUS",status);
+    }
+
+    private void writeHorizontalLine(String title, int length) {
+        StringBuilder builder = new StringBuilder();
+
+        int first = (length - title.length()) / 2;
+
+        for (int i = 0; i < first + 1; i++) {
+            builder.append("-");
+        }
+
+        builder.append(title);
+
+        for (int i = 0; i < (length - title.length()) - first + 1; i++) {
+            builder.append("-");
+        }
+        showMessage(builder.toString());
+    }
+
+    private String getIndentation() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < indentation; i++) {
             builder.append("    ");
         }
 
         return builder.toString();
+    }
+    private String convertString(int i){
+        return String.valueOf(i);
     }
 }
