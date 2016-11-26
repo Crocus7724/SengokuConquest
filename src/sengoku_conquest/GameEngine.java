@@ -7,6 +7,7 @@ import sengoku_conquest.utilities.Predicate;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.*;
 
 /**
  * Created by C0114544 on 2016/11/18.
@@ -78,7 +79,7 @@ public final class GameEngine {
         indentation--;
     }
 
-    public void showBoxMessage(String title,String... messages){
+    public void showBoxMessage(String title, String... messages) {
         int maxLength = title.length();
 
         for (String message : messages) {
@@ -88,7 +89,7 @@ public final class GameEngine {
         }
 
         maxLength += 2;
-        writeHorizontalLine(title,maxLength);
+        writeHorizontalLine(title, maxLength);
         StringBuilder builder;
         for (String message : messages) {
             builder = new StringBuilder();
@@ -104,21 +105,59 @@ public final class GameEngine {
             showMessage(builder.toString());
         }
 
-        writeHorizontalLine("",maxLength);
+        writeHorizontalLine("", maxLength);
     }
 
-    private void writeHorizontalLine(String title,int length) {
+    public void showBoxMessage(String title, Map<String, String> messages) {
+        //キモい
+        final int[] maxKeyLength = {0};
+        messages.entrySet().stream()
+                .filter(messageEntry -> maxKeyLength[0] < messageEntry.getKey().length())
+                .forEach(messageEntry -> maxKeyLength[0] = messageEntry.getKey().length());
+        maxKeyLength[0]+=1;
+        List<String> messageList=new ArrayList<>();
+        StringBuilder builder;
+        for (Map.Entry<String, String> messageEntry : messages.entrySet()){
+            builder=new StringBuilder();
+            builder.append(messageEntry.getKey());
+            for (int i = 0; i<(maxKeyLength[0] -messageEntry.getKey().length()); i++){
+                builder.append(" ");
+            }
+
+            builder.append(messageEntry.getValue());
+            messageList.add(builder.toString());
+        }
+
+        showBoxMessage(title,messageList.toArray(new String[0]));
+    }
+
+    public void showMainCharacterStatus() {
+        Map<String,String> status=new LinkedHashMap<>();
+        final MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
+
+        status.put("NAME",mainCharacter.getName());
+        status.put("LEVEL",mainCharacter.getLevel()+"");
+        status.put("EXP",mainCharacter.getExp()+"");
+        status.put("HP",mainCharacter.getStatus().getCurrentHp()+" / "+mainCharacter.getStatus().getMaxHp());
+        status.put("EP",mainCharacter.getStatus().getCurrentEp()+" / "+mainCharacter.getStatus().getMaxEp());
+        status.put("ATK",mainCharacter.getStatus().getAtk()+"");
+        status.put("DEF",mainCharacter.getStatus().getDef()+"");
+
+        showBoxMessage("STATUS",status);
+    }
+
+    private void writeHorizontalLine(String title, int length) {
         StringBuilder builder = new StringBuilder();
 
-        int first=(length-title.length())/2;
+        int first = (length - title.length()) / 2;
 
-        for (int i = 0; i < first+1; i++) {
+        for (int i = 0; i < first + 1; i++) {
             builder.append("-");
         }
 
         builder.append(title);
 
-        for (int i=0;i<(length-title.length())-first+1;i++){
+        for (int i = 0; i < (length - title.length()) - first + 1; i++) {
             builder.append("-");
         }
         showMessage(builder.toString());
@@ -131,5 +170,8 @@ public final class GameEngine {
         }
 
         return builder.toString();
+    }
+    private String convertString(int i){
+        return String.valueOf(i);
     }
 }
