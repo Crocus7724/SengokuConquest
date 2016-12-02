@@ -50,7 +50,7 @@ public class BossScene extends Scene{
 
     private void selectCommand(){
         engine.showMainCharacterStatus();
-        engine.showBoxMessage("Enemy Status",get());
+        GameEngine.current.showBar("敵体力 : ", boss.getStatus().getMaxHp(), boss.getStatus().getCurrentHp());
         engine.showMessage("コマンドを選択して下さい");
 
         for (int i = 0; i < commandList.size(); i++) {

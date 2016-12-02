@@ -2,10 +2,8 @@ package sengoku_conquest.scene.command;
 
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
+import sengoku_conquest.character.*;
 import sengoku_conquest.character.Character;
-import sengoku_conquest.character.EnemyCharacter;
-import sengoku_conquest.character.MainCharacter;
-import sengoku_conquest.character.SpecialAttack;
 
 /**
  * Created by Yamamoto on 2016/11/24.
@@ -34,9 +32,13 @@ public class SpecialAttackCommand extends NormalAttackCommand {
             attackCharacter(enemy,mainCharacter);
         }
 
+        if(!checkCharacterHp(mainCharacter)||mainCharacter.getJob().getType()!= JobType.NINJA){
+            return false;
+        }
+
         specialAttack.didAttacked(enemy);
 
-        if(!checkCharacterHp(mainCharacter))return true;
+        if(!checkCharacterHp(enemy))return true;
 
         return false;
     }

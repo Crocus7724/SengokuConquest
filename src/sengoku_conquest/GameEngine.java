@@ -192,4 +192,27 @@ public final class GameEngine {
     private String convertString(int i) {
         return String.valueOf(i);
     }
+
+    public void showBar(String title, int max, int par) {
+        int b = max/20;
+        show(title + "[");
+
+        for (int i = 0; i < 20; i++) {
+            if (i*b<=par) {
+                show("=");
+                continue;
+            }
+            show(" ");
+        }
+
+        showMessage("]");
+    }
+
+    public void wait(int milliseconds){
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+
+        }
+    }
 }

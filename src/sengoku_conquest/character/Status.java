@@ -10,11 +10,20 @@ public class Status {
     private int def = 0;
 
     public void setCurrentHp(int currentHp) {
-        this.currentHp = currentHp;
+        if (currentHp < 0) {
+            this.currentHp = 0;
+        } else {
+
+            this.currentHp = currentHp;
+        }
     }
 
     public void setCurrentEp(int currentEp) {
-        this.currentEp = currentEp;
+        if(currentEp<0){
+            this.currentEp=0;
+        }else {
+            this.currentEp = currentEp;
+        }
     }
 
     private int currentHp = 0;
