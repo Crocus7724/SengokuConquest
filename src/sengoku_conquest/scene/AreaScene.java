@@ -34,7 +34,18 @@ public class AreaScene extends Scene {
 
         commandList.add(new MoveCommand());
         commandList.add(new RestCommand());
+        commandList.add(new AreaCommandHandler() {
+            @Override
+            protected Boolean execute(Area parameter) {
+                GameEngine.current.showMainCharacterStatus();
+                return false;
+            }
 
+            @Override
+            public String getCommandName() {
+                return "ステータスを表示する";
+            }
+        });
     }
 
     @Override
@@ -80,15 +91,16 @@ public class AreaScene extends Scene {
 
     private void selectCommand() {
         engine.showMessage("コマンドを入力して下さい");
+        int i=0;
 
-        for (int i = 0; i < commandList.size(); i++) {
+        for (; i < commandList.size(); i++) {
             engine.showMessage(i + 1 + " : " + commandList.get(i).getCommandName());
         }
 
         boolean hasItem = false;
 
         if (character.getItems().size() > 0) {
-            engine.showMessage(3 + " : " + itemCommand.getCommandName());
+            engine.showMessage(i + 1 + " : " + itemCommand.getCommandName());
             hasItem = true;
         }
 
@@ -99,7 +111,7 @@ public class AreaScene extends Scene {
             selectCommand();
             return;
         }
-        if (input == 3) {
+        if (input == i + 1) {
             itemCommand.doExecute(area);
         } else {
             commandList.get(input - 1).doExecute(area);
