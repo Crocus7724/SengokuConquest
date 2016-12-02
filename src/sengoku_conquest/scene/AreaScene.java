@@ -40,6 +40,7 @@ public class AreaScene extends Scene {
     @Override
     void start() {
         GameEngine.current.showMessage("現在位置 : " + area.getAreaNum());
+        GameEngine.current.showMessage("ターン数 : "+GameApplication.current.getTurn());
         if (area instanceof ItemArea) {
             getItemFromArea((ItemArea) area);
         } else if (area instanceof BossArea) {
