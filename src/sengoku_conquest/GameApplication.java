@@ -27,7 +27,7 @@ public class GameApplication {
     public static final GameApplication current = new GameApplication();
     private boolean isEscaped=false;
     private MainCharacter mainCharacter;
-    private int killedCount;
+    private int killedCount=0;
 
     public void gameStart() {
         increaseTurn(30);
