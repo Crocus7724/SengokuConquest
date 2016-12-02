@@ -1,6 +1,7 @@
 package sengoku_conquest.scene.command;
 
 import sengoku_conquest.GameApplication;
+import sengoku_conquest.GameEngine;
 import sengoku_conquest.character.Character;
 import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
@@ -15,6 +16,13 @@ public class SpecialAttackCommand extends NormalAttackCommand {
 
     @Override
     protected Boolean execute(EnemyCharacter enemy) {
+        final int currentEp = mainCharacter.getStatus().getCurrentEp();
+        if(currentEp==0){
+            GameEngine.current.showMessage("EPが足りません");
+            return false;
+        }
+
+        mainCharacter.getStatus().setCurrentEp(currentEp - 1);
         specialAttack=mainCharacter.getJob().getSpecialAttack();
         doSpecialAttack(enemy);
 

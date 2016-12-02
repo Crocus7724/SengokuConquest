@@ -34,6 +34,7 @@ public class BattleScene extends Scene {
         if (!run()) {
             GameApplication.current.nextScene(new EndScene());
         } else {
+            GameApplication.current.increaseKilledCount();
             GameApplication.current.previousScene();
         }
     }

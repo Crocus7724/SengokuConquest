@@ -27,6 +27,7 @@ public class GameApplication {
     public static final GameApplication current = new GameApplication();
     private boolean isEscaped=false;
     private MainCharacter mainCharacter;
+    private int killedCount;
 
     public void gameStart() {
         increaseTurn(30);
@@ -84,6 +85,14 @@ public class GameApplication {
 
     public int getTurn() {
         return turn;
+    }
+
+    public void increaseKilledCount(){
+        killedCount++;
+    }
+
+    public int getKilledCount(){
+        return killedCount;
     }
 
     private void createMapData() {
