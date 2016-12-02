@@ -32,8 +32,6 @@ public class ItemCommand extends AreaCommandHandler {
             }
             if (item instanceof EpItem) {
                 epItemCount++;
-            } else {
-                engine.showMessage("どこかでバグが起きてるYO/n");
             }
         }
 
@@ -51,8 +49,6 @@ public class ItemCommand extends AreaCommandHandler {
             hasEpItem = true;
             n++;
             engine.showMessage(n + " : いにしえの秘薬:" + epItemCount + "個");
-        } else {
-            engine.showMessage("どこかでバグが起きてるYO");
         }
 
         n++;
