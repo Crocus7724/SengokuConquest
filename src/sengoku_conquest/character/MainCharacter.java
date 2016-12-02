@@ -20,14 +20,14 @@ public class MainCharacter extends Character{
     }
 
     public void setExp(int exp) {
-        this.exp = exp;
+        this.exp += exp;
         int level = getLevel();
 
-        if(level==1 && exp>=1
-                || level==2 && exp>=4
-                || level==3 && exp>=7
-                || level==4 && exp>=10
-                || level==5 && exp>=15
+        if(level==1 && this.exp>=1
+                || level==2 && this.exp>=4
+                || level==3 && this.exp>=7
+                || level==4 && this.exp>=10
+                || level==5 && this.exp>=15
                 ){
             level++;
 

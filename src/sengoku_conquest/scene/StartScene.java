@@ -14,8 +14,9 @@ public class StartScene extends Scene {
     @Override
     void start() {
         GameEngine gm = GameEngine.current;
-        gm.showMessage("1：ルール表示");
-        gm.showMessage("2：ゲームスタート");
+        gm.showMessage("1：物語を読む");
+        gm.showMessage("2：ルール表示");
+        gm.showMessage("3：ゲームスタート");
 
         int input = GameEngine.current.readNumber(2);
 
@@ -25,8 +26,13 @@ public class StartScene extends Scene {
             return;
         }
 
-        // ルール表示
+        // ストーリー表示
         if (input == 1) {
+            gm.showMessage("");
+        }
+
+        // ルール表示
+        if (input == 2) {
             gm.showMessage("");
         }
         gm.showMessage("職を選択してください");
