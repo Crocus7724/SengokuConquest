@@ -30,6 +30,10 @@ public class BossScene extends Scene{
 
     @Override
     void start() {
+        if(GameApplication.current.getKilledCount()<4){
+            GameEngine.current.showMessage("不思議なチカラで阻まれた!!");
+            GameApplication.current.previousScene();
+        }
         engine.showMessage(boss.getName()+"が現れた!!");
         selectCommand();
     }

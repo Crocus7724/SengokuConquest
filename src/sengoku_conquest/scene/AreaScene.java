@@ -69,6 +69,9 @@ public class AreaScene extends Scene {
             GameApplication.current.setIsEscaped(false);
             GameApplication.current.previousScene();
             return;
+        }else if(area.getAreaNum()==14&&GameApplication.current.getKilledCount()<4){
+            GameApplication.current.previousScene();
+            return;
         }
 
         start();
