@@ -18,9 +18,10 @@ public class EndScene extends Scene {
     @Override
     void start() {
         if (GameApplication.current.getTurn() <= 0) {
-            engine.showMessage("GAME OVER...\n" +
-                    "THANK YOU FOR PLAYING...\n" +
+            engine.showMessage(
                     "行動ターンがなくなってしまった！！\n" +
+                    "GAME OVER...\n" +
+                    "THANK YOU FOR PLAYING...\n" +
                     "           STAFF\n" +
                     "チームリーダー　　　江元和樹\n" +
                     "設計担当者　　　　　伊賀成寿\n" +
@@ -28,9 +29,10 @@ public class EndScene extends Scene {
                     "マーケテイング担当　山田諒　\n" +
                     "プレイ担当　　　　　YOU　　 \n");
         } else if (GameApplication.current.getMainCharacter().getStatus().getCurrentHp() <= 0) {
-            engine.showMessage("GAME OVER...\n" +
-                    "THANK YOU FOR PLAYING...\n" +
+            engine.showMessage(
                     "戦闘に敗北してしまった...世界は暗黒に包まれた...\n" +
+                    "GAME OVER...\n" +
+                    "THANK YOU FOR PLAYING...\n" +
                     "           STAFF\n" +
                     "チームリーダー　　　江元和樹\n" +
                     "設計担当者　　　　　伊賀成寿\n" +
@@ -38,9 +40,10 @@ public class EndScene extends Scene {
                     "マーケテイング担当　山田諒　\n" +
                     "プレイ担当　　　　　YOU　　 \n");
         } else {
-            engine.showMessage("GAME CLEAR!!\n" +
-                    "THANK YOU FOR PLAYING!!\n" +
+            engine.showMessage(
                     "見事全国を制覇しました!!\n" +
+                    "GAME CLEAR!!\n" +
+                    "THANK YOU FOR PLAYING!!\n" +
                     "           STAFF\n" +
                     "チームリーダー　　　江元和樹\n" +
                     "設計担当者　　　　　伊賀成寿\n" +
