@@ -3,6 +3,7 @@ package sengoku_conquest.character;
 import javafx.application.Application;
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
+import sengoku_conquest.utilities.DamageCalcurator;
 
 import static sengoku_conquest.character.JobType.ASHIGARU;
 import static sengoku_conquest.character.JobType.KOMUSOU;
@@ -141,16 +142,16 @@ public class Job {
         @Override
         public void attack(EnemyCharacter character) {
             MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
-            int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 1.2)),character.getStatus().getDef());
+            int damage= DamageCalcurator.calc(((int) (mainCharacter.getStatus().getAtk() * 1.2)),character.getStatus().getDef());
             GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた");
             int didDamage = character.getStatus().getCurrentHp() - damage;
             if (didDamage < 0) {
-                didDamage=character.getStatus().getCurrentHp();
+                damage=character.getStatus().getCurrentHp();
             }
             character.getStatus().setCurrentHp(didDamage);
 
-            GameEngine.current.showMessage(mainCharacter.getName()+"は"+didDamage+"回復した!!");
-            mainCharacter.getStatus().setCurrentHp(didDamage);
+            GameEngine.current.showMessage(mainCharacter.getName()+"は"+damage+"回復した!!");
+            mainCharacter.getStatus().setCurrentHp(mainCharacter.getStatus().getCurrentHp()+damage);
         }
 
         @Override
