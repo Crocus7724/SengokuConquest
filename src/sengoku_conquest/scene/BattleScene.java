@@ -4,6 +4,7 @@ import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
 import sengoku_conquest.character.Character;
 import sengoku_conquest.character.EnemyCharacter;
+import sengoku_conquest.character.MainCharacter;
 import sengoku_conquest.scene.command.*;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public class BattleScene extends Scene {
     private final GameEngine engine = GameEngine.current;
+    private final MainCharacter mainCharacter=GameApplication.current.getMainCharacter();
     private final EnemyCharacter enemy;
     private List<BattleCommandHandler> commandList;
 
@@ -32,6 +34,7 @@ public class BattleScene extends Scene {
         if (!run()) {
             GameApplication.current.nextScene(new EndScene());
         } else {
+            GameApplication.current.increaseKilledCount();
             GameApplication.current.previousScene();
         }
     }
@@ -47,29 +50,38 @@ public class BattleScene extends Scene {
     }
 
     private boolean run() {
+
         final BattleCommandHandler command = askCommand();
 
         if (command instanceof EscapeCommand) {
             if (command.doExecute(enemy)) {
                 engine.showMessage("逃走した!!");
+                GameApplication.current.setIsEscaped(true);
                 GameApplication.current.decreaseTurn();
                 GameApplication.current.previousScene();
+                return true;
             }
         }
 
-        command.doExecute(enemy);
-
-        if (GameApplication.current.getMainCharacter().getStatus().getCurrentHp() <= 0) {
-            return false;
-        } else if (enemy.getStatus().getCurrentHp() <= 0) {
-            return true;
+        if(command.doExecute(enemy)) {
+            if (GameApplication.current.getMainCharacter().getStatus().getCurrentHp() <= 0) {
+                return false;
+            } else if (enemy.getStatus().getCurrentHp() <= 0) {
+                GameEngine.current.showMessage(enemy.getName() + "を倒した!!");
+                addExp(enemy.getLevel());
+                return true;
+            }
         }
-
         return run();
     }
 
     private BattleCommandHandler askCommand() {
+        GameEngine.current.showMainCharacterStatus();
         engine.showMessage("コマンドを選択して下さい");
+
+        for (int i=0;i<commandList.size();i++){
+            GameEngine.current.showMessage(i+1+" : "+commandList.get(i).getCommandName());
+        }
 
         final int input = engine.readNumber(commandList.size());
 
@@ -80,5 +92,16 @@ public class BattleScene extends Scene {
         engine.showMessage("入力に誤りがあります");
 
         return askCommand();
+    }
+
+    private void addExp(int exp){
+        GameEngine.current.showMessage("経験値を"+exp+"手に入れた!");
+        final int level = mainCharacter.getLevel();
+        mainCharacter.setExp(enemy.getLevel());
+
+        if(mainCharacter.getLevel()!=level){
+            GameEngine.current.showMessage("レベルが上った!!");
+            engine.showMainCharacterStatus();
+        }
     }
 }

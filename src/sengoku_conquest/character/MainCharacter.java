@@ -15,7 +15,7 @@ public class MainCharacter extends Character{
     private Job job;
 
     public MainCharacter(Job job) {
-        super(new Status(job.getHp(),job.getAtk(),job.getDef(),job.getEp()),job.getType().name(),1);
+        super(new Status(job.getHp(),job.getEp(),job.getAtk(),job.getDef()),job.getType().name(),1);
         this.job = job;
     }
 
@@ -36,8 +36,8 @@ public class MainCharacter extends Character{
             final Status currentStatus=getStatus();
             Status nextStatus = new Status(currentStatus.getMaxHp()+5, currentStatus.getCurrentEp(), currentStatus.getAtk()+2, getStatus().getDef()+2);
             setStatus(nextStatus);
-            nextStatus.setCurrentHp(nextStatus.getCurrentHp()+5);
-            nextStatus.setCurrentEp(nextStatus.getCurrentEp());
+            nextStatus.setCurrentHp(currentStatus.getCurrentHp()+5);
+            nextStatus.setCurrentEp(currentStatus.getCurrentEp());
         }
     }
 

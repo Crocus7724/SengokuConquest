@@ -3,6 +3,10 @@ package sengoku_conquest.character;
 import javafx.application.Application;
 import sengoku_conquest.GameApplication;
 
+import static sengoku_conquest.character.JobType.ASHIGARU;
+import static sengoku_conquest.character.JobType.KOMUSOU;
+import static sengoku_conquest.character.JobType.NINJA;
+
 /**
  * Created by C011457331 on 2016/11/18.
  */
@@ -42,13 +46,25 @@ public class Job {
         atk=type.getAtk();
         def=type.getDef();
         ep=type.getEp();
+        switch (type){
+            case SAMURAI:
+                specialAttack=SamuraiAttack;
+                break;
+            case NINJA:
+                specialAttack=NinjaAttack;
+                break;
+            case ASHIGARU:
+                specialAttack=AshigaruAttack;
+                break;
+            case KOMUSOU:
+                specialAttack=KomusouAttack;
+                break;
+        }
     }
 
-    // 特殊攻撃初期化処理
-    public void initializeSpecialAtack(){
-
+    public SpecialAttack getSpecialAttack() {
+        return specialAttack;
     }
-
 
     private SpecialAttack SamuraiAttack=new SpecialAttack() {
         @Override
@@ -61,6 +77,11 @@ public class Job {
         @Override
         public void didAttacked(EnemyCharacter character) {
 
+        }
+
+        @Override
+        public String getName() {
+            return "居合切り";
         }
     };
 
@@ -77,6 +98,11 @@ public class Job {
 
 
         }
+
+        @Override
+        public String getName() {
+            return "変わり身の術";
+        }
     };
 
     private SpecialAttack AshigaruAttack=new SpecialAttack() {
@@ -90,6 +116,11 @@ public class Job {
         @Override
         public void didAttacked(EnemyCharacter character) {
 
+        }
+
+        @Override
+        public String getName() {
+            return "一揆";
         }
     };
 
@@ -117,6 +148,11 @@ public class Job {
         @Override
         public void didAttacked(EnemyCharacter character) {
 
+        }
+
+        @Override
+        public String getName() {
+            return "吸魂";
         }
     };
 }
