@@ -207,4 +207,12 @@ public final class GameEngine {
 
         showMessage("]");
     }
+
+    public void wait(int milliseconds){
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+
+        }
+    }
 }
