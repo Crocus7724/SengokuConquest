@@ -29,7 +29,7 @@ public class BattleScene extends Scene {
 
     @Override
     void start() {
-        engine.showMessage(enemy.getName() + "が現れた!!");
+        engine.showMessage(enemy.getName()+" Level"+enemy.getLevel() + "が現れた!!");
 
         if (!run()) {
             GameApplication.current.nextScene(new EndScene());
@@ -77,6 +77,7 @@ public class BattleScene extends Scene {
 
     private BattleCommandHandler askCommand() {
         GameEngine.current.showMainCharacterStatus();
+        GameEngine.current.showBar("敵体力 : ", enemy.getStatus().getMaxHp(), enemy.getStatus().getCurrentHp());
         engine.showMessage("コマンドを選択して下さい");
 
         for (int i=0;i<commandList.size();i++){
@@ -85,8 +86,10 @@ public class BattleScene extends Scene {
 
         final int input = engine.readNumber(commandList.size());
 
-        if (input <= commandList.size()) {
-            return commandList.get(input - 1);
+        if(input!=-1){
+            if (input <= commandList.size()) {
+                return commandList.get(input - 1);
+            }
         }
 
         engine.showMessage("入力に誤りがあります");
