@@ -23,6 +23,7 @@ public class MoveCommand extends AreaCommandHandler {
 
         final int nextAreaNumber = selectMoveCommand();
 
+        GameApplication.current.decreaseTurn();
         GameApplication.current.nextScene(new AreaScene(GameApplication.current.getMap().get(nextAreaNumber)));
         return true;
     }
