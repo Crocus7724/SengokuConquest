@@ -2,6 +2,7 @@ package sengoku_conquest.character;
 
 import javafx.application.Application;
 import sengoku_conquest.GameApplication;
+import sengoku_conquest.GameEngine;
 
 import static sengoku_conquest.character.JobType.ASHIGARU;
 import static sengoku_conquest.character.JobType.KOMUSOU;
@@ -71,6 +72,7 @@ public class Job {
         public void attack(EnemyCharacter character) {
             MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
             int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 1.45)),character.getStatus().getDef());
+            GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた!!");
             character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
         }
 
@@ -86,17 +88,21 @@ public class Job {
     };
 
     private SpecialAttack NinjaAttack=new SpecialAttack() {
+        private int hpBeforeAttacked;
+        private MainCharacter mainCharacter;
         @Override
         public void attack(EnemyCharacter character) {
-            MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
+            mainCharacter= GameApplication.current.getMainCharacter();
+            hpBeforeAttacked=mainCharacter.getStatus().getCurrentHp();
             int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 0.8)),character.getStatus().getDef());
             character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
+            GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた");
         }
 
         @Override
         public void didAttacked(EnemyCharacter character) {
-
-
+            GameEngine.current.showMessage("しかし、身代わりだった!!");
+            mainCharacter.getStatus().setCurrentHp(hpBeforeAttacked);
         }
 
         @Override
@@ -106,9 +112,12 @@ public class Job {
     };
 
     private SpecialAttack AshigaruAttack=new SpecialAttack() {
+        private MainCharacter mainCharacter;
+        private int hpBeforeAttacked;
         @Override
         public void attack(EnemyCharacter character) {
-            MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
+            mainCharacter= GameApplication.current.getMainCharacter();
+            hpBeforeAttacked=mainCharacter.getStatus().getCurrentHp();
             int damage=calc((mainCharacter.getStatus().getAtk()),character.getStatus().getDef());
             character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
         }
@@ -129,16 +138,15 @@ public class Job {
         public void attack(EnemyCharacter character) {
             MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
             int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 1.2)),character.getStatus().getDef());
-            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
+            GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた");
+            int didDamage = character.getStatus().getCurrentHp() - damage;
+            if (didDamage < 0) {
+                didDamage=character.getStatus().getCurrentHp();
+            }
+            character.getStatus().setCurrentHp(didDamage);
 
-
-//
-//            int recoveryHp;
-//            if(){
-//
-//            }
-
-
+            GameEngine.current.showMessage(mainCharacter.getName()+"は"+didDamage+"回復した!!");
+            mainCharacter.getStatus().setCurrentHp(didDamage);
         }
 
         @Override

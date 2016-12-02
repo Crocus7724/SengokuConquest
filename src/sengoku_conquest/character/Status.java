@@ -10,16 +10,19 @@ public class Status {
     private int def = 0;
 
     public void setCurrentHp(int currentHp) {
-        if (currentHp < 0) {
+        if(currentHp>maxHp){
+            this.currentHp=maxHp;
+        }else if (currentHp < 0) {
             this.currentHp = 0;
         } else {
-
             this.currentHp = currentHp;
         }
     }
 
     public void setCurrentEp(int currentEp) {
-        if(currentEp<0){
+        if(currentEp>maxEp){
+            this.currentEp=maxEp;
+        } else if (currentEp < 0) {
             this.currentEp=0;
         }else {
             this.currentEp = currentEp;
