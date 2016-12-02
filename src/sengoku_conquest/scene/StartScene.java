@@ -27,14 +27,7 @@ public class StartScene extends Scene {
 
         // ルール表示
         if (input == 1) {
-            gm.showMessage("織田信長を倒そう\n" +
-                    "" +
-                    "" +
-                    "" +
-                    "" +
-                    "" +
-                    "" +
-                    "");
+            gm.showMessage("");
         }
         gm.showMessage("職を選択してください");
         JobType[] values = JobType.values();

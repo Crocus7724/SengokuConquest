@@ -34,7 +34,7 @@ public class MainCharacter extends Character{
             setLevel(level);
 
             final Status currentStatus=getStatus();
-            Status nextStatus = new Status(currentStatus.getMaxHp()+5, currentStatus.getCurrentEp(), currentStatus.getAtk()+2, getStatus().getDef()+2);
+            Status nextStatus = new Status(currentStatus.getMaxHp()+5, currentStatus.getMaxEp(), currentStatus.getAtk()+2, getStatus().getDef()+2);
             setStatus(nextStatus);
             nextStatus.setCurrentHp(currentStatus.getCurrentHp()+5);
             nextStatus.setCurrentEp(currentStatus.getCurrentEp());
