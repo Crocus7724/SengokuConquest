@@ -119,16 +119,12 @@ public class Job {
             mainCharacter= GameApplication.current.getMainCharacter();
             hpBeforeAttacked=mainCharacter.getStatus().getCurrentHp();
             int damage=calc((mainCharacter.getStatus().getAtk()),character.getStatus().getDef());
-            GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた!!");
             character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
         }
 
         @Override
         public void didAttacked(EnemyCharacter character) {
-            GameEngine.current.showMessage(mainCharacter.getName()+"の反撃!!");
-            final int damage = hpBeforeAttacked - mainCharacter.getStatus().getCurrentHp();
-            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
-            GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた");
+
         }
 
         @Override

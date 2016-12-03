@@ -5,7 +5,7 @@ import sengoku_conquest.GameEngine;
 import sengoku_conquest.character.Character;
 import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
-import sengoku_conquest.character.Status;
+import sengoku_conquest.item.EpItem;
 import sengoku_conquest.scene.command.*;
 
 import java.util.ArrayList;
@@ -35,6 +35,12 @@ public class BattleScene extends Scene {
         if (!run()) {
             GameApplication.current.nextScene(new EndScene());
         } else {
+            if(enemy.getLevel()==2){
+                final EpItem epItem = new EpItem();
+                GameEngine.current.showMessage(epItem.getName()+"を取得した!");
+                mainCharacter.getItems().add(epItem);
+            }
+
             GameApplication.current.previousScene();
         }
     }
@@ -71,7 +77,7 @@ public class BattleScene extends Scene {
                 addExp(enemy.getLevel());
                 GameApplication.current.increaseKilledCount();
                 int killcount =GameApplication.current.getKilledCount();
-                GameEngine.current.showMessage(killcount+"");
+                //GameEngine.current.showMessage(killcount+"");
                 if (killcount==3||killcount==6||killcount==9) {
                     GameApplication.current.increaseTurn(10);
                     GameEngine.current.showMessage("10ターンが回復した！");

@@ -32,7 +32,7 @@ public class SpecialAttackCommand extends NormalAttackCommand {
             attackCharacter(enemy,mainCharacter);
         }
 
-        if(!checkCharacterHp(mainCharacter)||mainCharacter.getJob().getType()!= JobType.NINJA){
+        if(!checkCharacterHp(mainCharacter)&&mainCharacter.getJob().getType()!=JobType.NINJA){
             return false;
         }
 
