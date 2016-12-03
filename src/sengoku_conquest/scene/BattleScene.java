@@ -66,6 +66,8 @@ public class BattleScene extends Scene {
                 GameApplication.current.decreaseTurn();
                 GameApplication.current.previousScene();
                 return true;
+            }else {
+                return run();
             }
         }
 
