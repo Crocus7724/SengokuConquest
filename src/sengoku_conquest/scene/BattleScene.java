@@ -35,8 +35,6 @@ public class BattleScene extends Scene {
         if (!run()) {
             GameApplication.current.nextScene(new EndScene());
         } else {
-            GameApplication.current.increaseKilledCount();
-
             if(enemy.getLevel()==2){
                 final EpItem epItem = new EpItem();
                 GameEngine.current.showMessage(epItem.getName()+"を取得した!");
@@ -77,6 +75,13 @@ public class BattleScene extends Scene {
             } else if (enemy.getStatus().getCurrentHp() <= 0) {
                 GameEngine.current.showMessage(enemy.getName() + "を倒した!!");
                 addExp(enemy.getLevel());
+                GameApplication.current.increaseKilledCount();
+                int killcount =GameApplication.current.getKilledCount();
+                //GameEngine.current.showMessage(killcount+"");
+                if (killcount==3||killcount==6||killcount==9) {
+                    GameApplication.current.increaseTurn(10);
+                    GameEngine.current.showMessage("10ターンが回復した！");
+                }
                 return true;
             }
         }
