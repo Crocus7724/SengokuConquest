@@ -45,7 +45,7 @@ public class SpecialAttackCommand extends NormalAttackCommand {
 
     @Override
     public String getCommandName() {
-        return "特殊攻撃";
+        return mainCharacter.getJob().getSpecialAttack().getName();
     }
 
     private void doSpecialAttack(EnemyCharacter character){
