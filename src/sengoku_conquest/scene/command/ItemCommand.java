@@ -1,6 +1,7 @@
 package sengoku_conquest.scene.command;
 
 import sengoku_conquest.GameApplication;
+import sengoku_conquest.character.Status;
 import sengoku_conquest.item.EpItem;
 import sengoku_conquest.item.HpItem;
 import sengoku_conquest.item.Item;
@@ -66,35 +67,38 @@ public class ItemCommand extends AreaCommandHandler {
 
         if (hasHpItem == false) {
             if (input == 1) {
-                for (int i = 0; i < itemList.size(); i++) {
-                    if (itemList.get(i) instanceof EpItem) {
-                        useItem(i);
-                        break;
-                    }
-                }
-                return true;
+                input = 2;
             }
-        } else {
-            switch (input) {
-                case 1:
-                    Optional<Item> hpItem = itemList.stream().filter(x -> x instanceof HpItem).findFirst();
-                    if (hpItem.isPresent()) {
-                        useItem(itemList.indexOf(hpItem.get()));
-                        engine.showMessage("HPが回復しました。");
-                        engine.showMessage("HP:" + GameApplication.current.getMainCharacter().getStatus().getCurrentHp());
-                        return true;
-                    }
-                case 2:
-                    Optional<Item> epItem = itemList.stream().filter(x -> x instanceof EpItem).findFirst();
-                    if (epItem.isPresent()) {
-                        useItem(itemList.indexOf(epItem.get()));
-                        engine.showMessage("EP:" + GameApplication.current.getMainCharacter().getStatus().getCurrentEp());
-                        return true;
-                    }
-
-            }
-
         }
+
+        final Status status = GameApplication.current.getMainCharacter().getStatus();
+
+        switch (input) {
+            case 1:
+                if(status.getCurrentHp()==status.getMaxHp()){
+                    engine.showMessage("HPは満タンです!");
+                    return true;
+                }
+                Optional<Item> hpItem = itemList.stream().filter(x -> x instanceof HpItem).findFirst();
+                if (hpItem.isPresent()) {
+                    useItem(itemList.indexOf(hpItem.get()));
+                    engine.showMessage("HPが回復しました。");
+                    engine.showMessage("HP:" + GameApplication.current.getMainCharacter().getStatus().getCurrentHp());
+                    return true;
+                }
+            case 2:
+                if(status.getCurrentEp()==status.getMaxEp()){
+                    engine.showMessage("EPは満タンです!");
+                    return false;
+                }
+                Optional<Item> epItem = itemList.stream().filter(x -> x instanceof EpItem).findFirst();
+                if (epItem.isPresent()) {
+                    useItem(itemList.indexOf(epItem.get()));
+                    engine.showMessage("EP:" + GameApplication.current.getMainCharacter().getStatus().getCurrentEp());
+                    return true;
+                }
+        }
+
         return null;
     }
 
