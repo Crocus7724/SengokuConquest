@@ -50,8 +50,6 @@ public class AreaScene extends Scene {
 
     @Override
     void start() {
-        GameEngine.current.showMessage("現在位置 : " + area.getAreaNum());
-        GameEngine.current.showMessage("ターン数 : "+GameApplication.current.getTurn());
         if (area instanceof ItemArea) {
             getItemFromArea((ItemArea) area);
         } else if (area instanceof BossArea) {
@@ -65,6 +63,9 @@ public class AreaScene extends Scene {
             }
 
         }
+
+        GameEngine.current.showMessage("現在位置 : " + area.getAreaNum());
+        GameEngine.current.showMessage("ターン数 : "+GameApplication.current.getTurn());
 
         selectCommand();
         start();
@@ -82,6 +83,7 @@ public class AreaScene extends Scene {
             GameApplication.current.previousScene();
             return;
         }else if(area.getAreaNum()==14&&GameApplication.current.getKilledCount()<4){
+            GameApplication.current.increaseTurn(1);
             GameApplication.current.previousScene();
             return;
         }
