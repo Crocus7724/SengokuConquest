@@ -114,7 +114,10 @@ public class AreaScene extends Scene {
         if (input == i + 1) {
             itemCommand.doExecute(area);
         } else {
-            commandList.get(input - 1).doExecute(area);
+            final Boolean result = commandList.get(input - 1).doExecute(area);
+            if(!result){
+                selectCommand();
+            }
         }
     }
 

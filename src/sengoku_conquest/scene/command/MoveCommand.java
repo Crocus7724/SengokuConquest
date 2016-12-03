@@ -22,7 +22,9 @@ public class MoveCommand extends AreaCommandHandler {
         this.area = parameter;
 
         final int nextAreaNumber = selectMoveCommand();
-
+        if(nextAreaNumber == -1){
+            return false;
+        }
         GameApplication.current.decreaseTurn();
         GameApplication.current.nextScene(new AreaScene(GameApplication.current.getMap().get(nextAreaNumber)));
         return true;
@@ -58,6 +60,10 @@ public class MoveCommand extends AreaCommandHandler {
             engine.showMessage(i + ":西");
             map.put(i, "W");
         }
+
+        i++;
+        engine.showMessage(i+"戻る");
+
         int input = engine.readNumber(i);
 
         if (input == -1) {
@@ -66,15 +72,18 @@ public class MoveCommand extends AreaCommandHandler {
         }
 
         String s = map.get(input);
-        if (s.equals("E")) {
+        if (s == null && input == i) {
+            return -1;
+        } else if (s.equals("E")) {
             return area.getNextAreaInfo().getEast();
         } else if (s.equals("N")) {
             return area.getNextAreaInfo().getNorth();
         } else if (s.equals("S")) {
             return area.getNextAreaInfo().getSouth();
-        } else {
+        } else if(s.equals("W")) {
             return area.getNextAreaInfo().getWest();
         }
+        return selectMoveCommand();
     }
 
 }
