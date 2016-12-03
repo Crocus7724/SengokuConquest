@@ -30,7 +30,7 @@ public class GameApplication {
     private int killedCount=0;
 
     public void gameStart() {
-        increaseTurn(30);
+        increaseTurn(20);
         createMapData();
 
         nextScene(new StartScene());
