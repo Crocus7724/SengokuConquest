@@ -18,7 +18,7 @@ public class StartScene extends Scene {
         gm.showMessage("2：ルール表示");
         gm.showMessage("3：ゲームスタート");
 
-        int input = GameEngine.current.readNumber(2);
+        int input = GameEngine.current.readNumber(3);
 
         if (input == -1) {
             gm.showMessage("値が不正です。");
