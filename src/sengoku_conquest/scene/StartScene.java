@@ -29,13 +29,16 @@ public class StartScene extends Scene {
 
         // ストーリー表示
         if (input == 1) {
-            gm.showMessage(Strings.GAME_STORY);
-            gm.showMessage(Strings.GAME_RULE);
+            gm.showMessage(Strings.STORY);
+            start();
+            return;
         }
 
         // ルール表示
         if (input == 2) {
-            gm.showMessage(Strings.GAME_RULE);
+            gm.showMessage(Strings.RULE);
+            start();
+            return;
         }
         gm.showMessage("職を選択してください");
         JobType[] values = JobType.values();

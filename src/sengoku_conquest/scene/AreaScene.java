@@ -26,7 +26,6 @@ public class AreaScene extends Scene {
     private MainCharacter character = GameApplication.current.getMainCharacter();
     private List<AreaCommandHandler> commandList = new ArrayList<>();
     private AreaCommandHandler itemCommand = new ItemCommand();
-    private int turn = 0;
 
     public AreaScene(Area area) {
         this.area = area;
@@ -60,18 +59,22 @@ public class AreaScene extends Scene {
             final EnemyArea enemyArea = (EnemyArea) this.area;
 
             if (enemyArea.getEnemy().getStatus().getCurrentHp() > 0) {
-                turn = GameApplication.current.getTurn();
                 GameApplication.current.nextScene(new BattleScene(enemyArea.getEnemy()));
             }
 
         }
 
+        start(true);
+    }
+
+    private void start(boolean isInitial){
         GameEngine.current.showReachedMap();
+        if (isInitial) GameApplication.current.decreaseTurn();
         GameEngine.current.showMessage("現在位置 : " + area.getAreaNum());
         GameEngine.current.showMessage("ターン数 : "+GameApplication.current.getTurn());
 
         selectCommand();
-        start();
+        start(false);
     }
 
     @Override
