@@ -33,7 +33,26 @@ public class BossScene extends Scene{
         if (GameApplication.current.getMainCharacter().getLevel() < 4) {
             GameEngine.current.showMessage("不思議なチカラで阻まれた!!");
             GameApplication.current.previousScene();
+            return;
         }
+
+        engine.showMessage("この先に" + boss.getName() + "がいます。");
+        engine.showMessage(boss.getName() + "に挑みますか?");
+        engine.showMessage("1 : はい");
+        engine.showMessage("2 : いいえ");
+        final int input = engine.readNumber(2);
+
+        if (input == -1) {
+            engine.showMessage("値が不正です");
+            start();
+            return;
+        }
+
+        if (input == 2) {
+            GameApplication.current.previousScene();
+            return;
+        }
+
         engine.showMessage(boss.getName()+"が現れた!!");
         selectCommand();
     }
