@@ -5,6 +5,7 @@ import sengoku_conquest.GameEngine;
 import sengoku_conquest.character.Job;
 import sengoku_conquest.character.JobType;
 import sengoku_conquest.character.MainCharacter;
+import sengoku_conquest.const_values.Strings;
 
 /**
  * Created by Yamamoto on 2016/11/18.
@@ -28,12 +29,16 @@ public class StartScene extends Scene {
 
         // ストーリー表示
         if (input == 1) {
-            gm.showMessage("");
+            gm.showMessage(Strings.STORY);
+            start();
+            return;
         }
 
         // ルール表示
         if (input == 2) {
-            gm.showMessage("");
+            gm.showMessage(Strings.RULE);
+            start();
+            return;
         }
         gm.showMessage("職を選択してください");
         JobType[] values = JobType.values();
