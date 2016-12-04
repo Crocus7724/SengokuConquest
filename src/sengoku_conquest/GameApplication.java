@@ -29,10 +29,13 @@ public class GameApplication {
     private MainCharacter mainCharacter;
     private int killedCount=0;
 
+    private Area currentArea;
+
     public void gameStart() {
         increaseTurn(20);
         createMapData();
-
+        currentArea=getMap().get(17);
+        //GameEngine.current.showAllMap();
         nextScene(new StartScene());
     }
 
@@ -93,6 +96,14 @@ public class GameApplication {
 
     public int getKilledCount(){
         return killedCount;
+    }
+
+    public Area getCurrentArea() {
+        return currentArea;
+    }
+
+    public void setCurrentArea(Area currentArea) {
+        this.currentArea = currentArea;
     }
 
     private void createMapData() {
