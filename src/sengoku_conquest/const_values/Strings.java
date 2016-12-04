@@ -91,4 +91,5 @@ public class Strings {
             "　敵のレベルが自分のレベルより2つ高いと敵に勝つのは難しいぞ\n" +
             "　織田信長は体力が低くなると特殊攻撃を使うので注意が必要だ";
 
+    public static final String ANVISIBLE_CHARACTER=" ";
 }

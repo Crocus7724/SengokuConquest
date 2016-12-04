@@ -1,7 +1,9 @@
 package sengoku_conquest;
 
 import sengoku_conquest.character.MainCharacter;
+import sengoku_conquest.map.Area;
 import sengoku_conquest.utilities.Action;
+import sengoku_conquest.utilities.ArtGenerater;
 import sengoku_conquest.utilities.Predicate;
 
 import java.io.BufferedReader;
@@ -151,16 +153,11 @@ public final class GameEngine {
     }
 
     public void showAllMap() {
-        String[][] map=new String[7][6];
-        Map<Integer,String> shownMap=new HashMap<>();
+        showMessage(ArtGenerater.GenerateMap(true));
+    }
 
-        for (String[] s:map){
-            for (String m:s){
-                m="";
-            }
-        }
-
-
+    public void showReachedMap(){
+        showMessage(ArtGenerater.GenerateMap(false));
     }
 
     private void writeHorizontalLine(String title, int length) {

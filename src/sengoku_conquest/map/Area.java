@@ -7,6 +7,8 @@ public class Area {
     private int areaNum =17;
     private String areaName ="start";
 
+    private boolean isReached=false;
+
     private NextAreaInfo nextAreaInfo;
 
     public Area(int areaNum, String areaName, NextAreaInfo nextAreaInfo) {
@@ -25,5 +27,13 @@ public class Area {
 
     public NextAreaInfo getNextAreaInfo() {
         return nextAreaInfo;
+    }
+
+    public boolean isReached() {
+        return isReached;
+    }
+
+    public void setReached(boolean reached) {
+        isReached = reached;
     }
 }
