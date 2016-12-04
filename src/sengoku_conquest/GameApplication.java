@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
 import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
+import sengoku_conquest.const_values.Consts;
 import sengoku_conquest.item.HpItem;
 import sengoku_conquest.item.Item;
 import sengoku_conquest.map.*;
@@ -32,7 +33,7 @@ public class GameApplication {
     private Area currentArea;
 
     public void gameStart() {
-        increaseTurn(20);
+        increaseTurn(Consts.INITIAL_TURN + 1);
         createMapData();
         currentArea=getMap().get(17);
         //GameEngine.current.showAllMap();
