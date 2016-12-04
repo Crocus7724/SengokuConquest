@@ -25,7 +25,7 @@ public class MoveCommand extends AreaCommandHandler {
         if(nextAreaNumber == -1){
             return false;
         }
-        GameApplication.current.decreaseTurn();
+
         GameApplication.current.nextScene(new AreaScene(GameApplication.current.getMap().get(nextAreaNumber)));
         return true;
     }
