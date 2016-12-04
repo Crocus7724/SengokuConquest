@@ -6,6 +6,7 @@ import sengoku_conquest.character.BossCharacter;
 import sengoku_conquest.character.Character;
 import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
+import sengoku_conquest.const_values.Consts;
 import sengoku_conquest.utilities.DamageCalcurator;
 
 /**
@@ -59,7 +60,8 @@ public class NormalAttackCommand extends BattleCommandHandler {
             boss.setCharged(true);
         } else {
             engine.showMessage(enemy.getName() + "は全ての力を解き放った!!");
-            final int damage = DamageCalcurator.calc((int) (enemy.getStatus().getAtk() * 1.5), mainCharacter.getStatus().getDef());
+            final int damage = DamageCalcurator.calc((int) (enemy.getStatus().getAtk() * Consts.BOSS_SPECIAL_ATTACK),
+                    mainCharacter.getStatus().getDef());
             engine.showMessage(mainCharacter.getName() + "は" + damage + "のダメージ!");
             didAttacked(mainCharacter, damage);
         }
