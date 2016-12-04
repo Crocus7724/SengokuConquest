@@ -12,12 +12,11 @@ import sengoku_conquest.utilities.DamageCalcurator;
  * Created by Yamamoto on 2016/11/24.
  */
 public class NormalAttackCommand extends BattleCommandHandler {
-    protected static boolean isSpecialAttacked;
     protected GameEngine engine = GameEngine.current;
     protected MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
 
     public NormalAttackCommand() {
-        isSpecialAttacked = false;
+
     }
 
     @Override
@@ -56,16 +55,20 @@ public class NormalAttackCommand extends BattleCommandHandler {
     protected void doEnemySpecialAttackIfHalfHp(EnemyCharacter enemy) {
         final BossCharacter boss = (BossCharacter) enemy;
         if (!boss.getIsCharged()) {
-            engine.showMessage("溜めているしている・・・");
+            engine.showMessage(boss.getName() + "は溜めている・・・");
             boss.setCharged(true);
         } else {
             engine.showMessage(enemy.getName() + "は全ての力を解き放った!!");
-            DamageCalcurator.calc(enemy.getStatus().getAtk() * 2, mainCharacter.getStatus().getDef());
+            final int damage = DamageCalcurator.calc((int) (enemy.getStatus().getAtk() * 1.5), mainCharacter.getStatus().getDef());
+            engine.showMessage(mainCharacter.getName() + "は" + damage + "のダメージ!");
+            didAttacked(mainCharacter, damage);
         }
     }
 
     protected boolean isEnemySpecialAttackConditions(EnemyCharacter enemy) {
-        return enemy.getLevel() == 4 && !isSpecialAttacked && enemy.getStatus().getCurrentHp() < enemy.getStatus().getCurrentHp() / 2;
+        return enemy.getLevel() == 4
+                && enemy.getStatus().getCurrentEp() > 0
+                && enemy.getStatus().getCurrentHp() <= 70;
     }
 
     private void didAttacked(Character character, int damage) {
