@@ -5,6 +5,9 @@ package sengoku_conquest.const_values;
  * 固定文字を入れるところ
  */
 public class Strings {
+    /**
+     * ストーリー
+     */
     public final static String STORY = "主人公は激怒した。必ず、かの邪智暴虐の魔王を除かなければならぬと決意した。主人公には政治がわからぬ。けれども邪悪に対しては、人一倍に敏感であった。\n" +
             "主人公は内気な妹と二人暮しだ。この妹は結婚式も間近なのである。それゆえ、今日未明主人公は村を出発し、花嫁の衣裳やら祝宴の御馳走やらを買いに3マスはなれた此の京の都にやって来た。\n" +
             "\n" +
@@ -49,6 +52,9 @@ public class Strings {
             "竹馬の友は、深夜、王城に召された。「第六天魔王　織田信長」の面前で、友と友は、二年ぶりで相逢うた。主人公は、友に一切の事情を語った。\n" +
             "友は無言で首肯き、主人公をひしと抱きしめた。友と友の間は、それでよかった。竹馬の友は、縄打たれた。主人公は、すぐに出発した。初夏、満天の星である。\n";
 
+    /**
+     * ゲームルール
+     */
     public final static String RULE = "ルール\n" +
             "竹馬の友のために織田信長を倒そう\n" +
             "日本を旅して大名を倒しレベルを上げよう\n" +
@@ -104,5 +110,33 @@ public class Strings {
             "　敵のレベルが自分のレベルより2つ高いと敵に勝つのは難しいぞ\n" +
             "　織田信長は体力が低くなると特殊攻撃を使うので注意が必要だ\n";
 
+    /**
+     * ボスの名前
+     */
+    public static final String BOSS_NAME="織田信長";
+
+    /**
+     * 侍の特殊攻撃名
+     */
+    public static final String SPECIAL_ATTACK_SAMURAI="居合い斬り";
+
+    /**
+     * 忍者の特殊攻撃名
+     */
+    public static final String SPECIAL_ATTACK_NINJA="変わり身の術";
+
+    /**
+     * 足軽の特殊攻撃名
+     */
+    public static final String SPECIAL_ATTACK_ASHIGARU="一揆";
+
+    /**
+     * 虚無僧の特殊攻撃名
+     */
+    public static final String SPECIAL_ATTACK_KOMUSOU="吸魂";
+
+    /**
+     * 空白でない不可視文字(マップ表示用)
+     */
     public static final String ANVISIBLE_CHARACTER=" ";
 }

@@ -1,6 +1,7 @@
 package sengoku_conquest.character;
 
 import sengoku_conquest.GameApplication;
+import sengoku_conquest.const_values.Consts;
 import sengoku_conquest.item.Item;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class MainCharacter extends Character{
     private Job job;
 
     public MainCharacter(Job job) {
-        super(new Status(job.getHp(),job.getEp(),job.getAtk(),job.getDef()),job.getType().name(),1);
+        super(new Status(job.getHp(),job.getEp(),job.getAtk(),job.getDef()),job.getType().name(), Consts.INIT_PLAYER_LEVEL);
         this.job = job;
     }
 
@@ -23,18 +24,22 @@ public class MainCharacter extends Character{
         this.exp += exp;
         int level = getLevel();
 
-        if(level==1 && this.exp>=1
-                || level==2 && this.exp>=4
-                || level==3 && this.exp>=7
-                || level==4 && this.exp>=10
-                || level==5 && this.exp>=15
+        if(level==1 && this.exp>=Consts.REQUIRED_LEVEL2_EXP
+                || level==2 && this.exp>=Consts.REQUIRED_LEVEL3_EXP
+                || level==3 && this.exp>=Consts.REQUIRED_LEVEL4_EXP
+                || level==4 && this.exp>=Consts.REQUIRED_LEVEL5_EXP
+                || level==5 && this.exp>=Consts.REQUIRED_LEVEL6_EXP
                 ){
             level++;
 
             setLevel(level);
 
             final Status currentStatus=getStatus();
-            Status nextStatus = new Status(currentStatus.getMaxHp()+5, currentStatus.getMaxEp(), currentStatus.getAtk()+2, getStatus().getDef()+2);
+            Status nextStatus = new Status(
+                    currentStatus.getMaxHp()+Consts.INCREASE_HP_NEXT_LEVEL,
+                    currentStatus.getMaxEp(),
+                    currentStatus.getAtk()+Consts.INCREASE_ATTACK_NEXT_LEVEL,
+                    getStatus().getDef()+Consts.INCREASE_DEF_NEXT_LEVEL);
             setStatus(nextStatus);
             nextStatus.setCurrentHp(currentStatus.getCurrentHp()+5);
             nextStatus.setCurrentEp(currentStatus.getCurrentEp());

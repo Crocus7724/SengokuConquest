@@ -7,6 +7,11 @@ import sengoku_conquest.character.Status;
  * 定数の値を定義するところ
  */
 public class Consts {
+
+    /*******************************************
+        システムの定数値
+     *******************************************/
+
     /**
      * マップの縦幅
      */
@@ -19,6 +24,140 @@ public class Consts {
      * 最初の所持ターン数
      */
     public static final int INITIAL_TURN = 20;
+
+    /*******************************************
+         プレイヤーの定数値
+     *******************************************/
+
+    /**
+     * 侍の初期HP
+     */
+    public static final int SAMURAI_INIT_HP=105;
+
+    /**
+     * 侍の初期攻撃力
+     */
+    public static final int SAMURAI_INIT_ATTACK=50;
+
+    /**
+     * 侍の初期防御力
+     */
+    public static final int SAMURAI_INIT_DEF=30;
+
+    /**
+     * 侍の初期EP
+     */
+    public static final int SAMURAI_INIT_EP=3;
+
+    /**
+     * 忍者の初期HP
+     */
+    public static final int NINJA_INIT_HP=85;
+
+    /**
+     * 忍者の初期攻撃力
+     */
+    public static final int NINJA_INIT_ATTACK=60;
+
+    /**
+     * 忍者の初期防御力
+     */
+    public static final int NINJA_INIT_DEF=30;
+
+    /**
+     * 忍者の初期EP
+     */
+    public static final int NINJA_INIT_EP=2;
+
+    /**
+     * 足軽の初期HP
+     */
+    public static final int ASHIGARU_INIT_HP=110;
+
+    /**
+     * 足軽の初期攻撃力
+     */
+    public static final int ASHIGARU_INIT_ATTACK=40;
+
+    /**
+     * 足軽の初期防御力
+     */
+    public static final int ASHIGARU_INIT_DEF=35;
+
+    /**
+     * 足軽の初期EP
+     */
+    public static final int ASHIGARU_INIT_EP=4;
+
+    /**
+     * 虚無僧の初期HP
+     */
+    public static final int KOMUSOU_INIT_HP=90;
+
+    /**
+     * 虚無僧の初期攻撃力
+     */
+    public static final int KOMUSOU_INIT_ATTACK=45;
+
+    /**
+     * 虚無僧の初期防御力
+     */
+    public static final int KOMUSOU_INIT_DEF=30;
+
+    /**
+     * 虚無僧の初期EP
+     */
+    public static final int KOMUSOU_INIT_EP=4;
+
+    /**
+     * 初期プレイヤーレベル
+     */
+    public static final int INIT_PLAYER_LEVEL=1;
+
+    /**
+     * LEVEL2に必要な経験値
+     */
+    public static final int REQUIRED_LEVEL2_EXP=1;
+
+    /**
+     * LEVEL3に必要な経験値
+     */
+    public static final int REQUIRED_LEVEL3_EXP=4;
+
+    /**
+     * LEVEL4に必要な経験値
+     */
+    public static final int REQUIRED_LEVEL4_EXP=7;
+
+    /**
+     * LEVEL5に必要な経験値
+     */
+    public static final int REQUIRED_LEVEL5_EXP=10;
+
+    /**
+     * LEVEL6に必要な経験値
+     */
+    public static final int REQUIRED_LEVEL6_EXP=15;
+
+    /**
+     * レベルアップ時のHPの増加分
+     */
+    public static final int INCREASE_HP_NEXT_LEVEL=5;
+
+    /**
+     * レベルアップ時の攻撃力の増加分
+     */
+    public static final int INCREASE_ATTACK_NEXT_LEVEL=2;
+
+    /**
+     * レベルアップ時の防御力の増加分
+     */
+    public static final int INCREASE_DEF_NEXT_LEVEL=2;
+
+    /*******************************************
+        敵キャラクターの定数値
+     *******************************************/
+
     /**
      * ボス特殊攻撃倍率
      */

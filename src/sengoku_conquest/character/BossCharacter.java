@@ -1,12 +1,14 @@
 package sengoku_conquest.character;
 
+import sengoku_conquest.const_values.Strings;
+
 /**
  * Created by C0114105 on 2016/11/25.
  */
 public class BossCharacter extends EnemyCharacter {
     public boolean isCharged;//ためたのかどうか
     public BossCharacter(){
-        super("織田信長",4);
+        super(Strings.BOSS_NAME,4);
         this.isCharged = false;
     }
 

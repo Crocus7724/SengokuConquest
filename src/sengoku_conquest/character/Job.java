@@ -3,6 +3,7 @@ package sengoku_conquest.character;
 import javafx.application.Application;
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
+import sengoku_conquest.const_values.Strings;
 import sengoku_conquest.utilities.DamageCalcurator;
 
 import static sengoku_conquest.character.JobType.ASHIGARU;
@@ -84,7 +85,7 @@ public class Job {
 
         @Override
         public String getName() {
-            return "居合切り";
+            return Strings.SPECIAL_ATTACK_SAMURAI;
         }
     };
 
@@ -108,7 +109,7 @@ public class Job {
 
         @Override
         public String getName() {
-            return "変わり身の術";
+            return Strings.SPECIAL_ATTACK_NINJA;
         }
     };
 
@@ -134,7 +135,7 @@ public class Job {
 
         @Override
         public String getName() {
-            return "一揆";
+            return Strings.SPECIAL_ATTACK_ASHIGARU;
         }
     };
 
@@ -161,7 +162,7 @@ public class Job {
 
         @Override
         public String getName() {
-            return "吸魂";
+            return Strings.SPECIAL_ATTACK_KOMUSOU;
         }
     };
 }
