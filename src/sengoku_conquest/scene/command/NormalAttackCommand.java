@@ -64,6 +64,7 @@ public class NormalAttackCommand extends BattleCommandHandler {
                     mainCharacter.getStatus().getDef());
             engine.showMessage(mainCharacter.getName() + "は" + damage + "のダメージ!");
             didAttacked(mainCharacter, damage);
+            enemy.getStatus().setCurrentEp(enemy.getStatus().getCurrentEp() - 1);
         }
     }
 
