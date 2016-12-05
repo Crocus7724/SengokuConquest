@@ -16,13 +16,13 @@ public class EnemyCharacter extends Character {
     private static Status initStatus(int level){
         switch (level){
             case 1:
-                return new Status(70,0,45,20);
+                return new Status(70,0,50,20);
             case 2:
-                return new Status(80,0,55,20);
+                return new Status(80,0,55,25);
             case 3:
                 return new Status(90,0,60,30);
             case 4:
-                return new Status(150,1,65,35);
+                return new Status(150,1,66,35);
         }
 
         return null;
