@@ -1,6 +1,8 @@
 package sengoku_conquest.item;
 
 import sengoku_conquest.character.Character;
+import sengoku_conquest.const_values.Consts;
+import sengoku_conquest.const_values.Strings;
 
 /**
  * Created by C0114544 on 2016/11/18.
@@ -9,10 +11,10 @@ import sengoku_conquest.character.Character;
 public class EpItem implements Item{
     @Override
     public String getName() {
-        return "いにしえの秘薬";
+        return Strings.EP_ITEM_NAME;
     }
 
-    public int recoveryEp = 3;
+    public int recoveryEp = Consts.RECOVERY_EP_VALUE;
 
     @Override
     public void useItem(Character character) {

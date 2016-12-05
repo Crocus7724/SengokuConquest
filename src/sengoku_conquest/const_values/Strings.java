@@ -136,6 +136,16 @@ public class Strings {
     public static final String SPECIAL_ATTACK_KOMUSOU="吸魂";
 
     /**
+     * HPアイテム名
+     */
+    public static final String HP_ITEM_NAME="握り飯";
+
+    /**
+     * EPアイテム名
+     */
+    public static final String EP_ITEM_NAME="いにしえの秘薬";
+
+    /**
      * 空白でない不可視文字(マップ表示用)
      */
     public static final String ANVISIBLE_CHARACTER=" ";

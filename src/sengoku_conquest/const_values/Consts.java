@@ -155,6 +155,20 @@ public class Consts {
     public static final int INCREASE_DEF_NEXT_LEVEL=2;
 
     /*******************************************
+         アイテムの定数値
+     *******************************************/
+
+    /**
+     * HPアイテムの回復量
+     */
+    public static final int RECOVERY_HP_VALUE=50;
+
+    /**
+     * EPアイテムの回復量
+     */
+    public static final int RECOVERY_EP_VALUE=3;
+
+    /*******************************************
         敵キャラクターの定数値
      *******************************************/
 
