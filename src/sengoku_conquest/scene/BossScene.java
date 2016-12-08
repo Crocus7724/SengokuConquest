@@ -37,10 +37,10 @@ public class BossScene extends Scene{
             return;
         }
 
-        engine.showMessage(boss.getName() + Strings.BOSS_EXISTS);
-        engine.showMessage(boss.getName() + Strings.BOSS_CHALLENGE);
-        engine.showMessage("1 : "+Strings.YES);
-        engine.showMessage("2 : "+Strings.NO);
+        engine.showFormattedMessage(Strings.BOSS_EXISTS,boss.getName());
+        engine.showFormattedMessage(Strings.BOSS_CHALLENGE,boss.getName());
+        engine.showCommandMessage(1,Strings.YES);
+        engine.showCommandMessage(2,Strings.NO);
         final int input = engine.readNumber(2);
 
         if (input == -1) {
@@ -54,7 +54,7 @@ public class BossScene extends Scene{
             return;
         }
 
-        engine.showMessage(boss.getName()+Strings.APPEAR_ENEMY);
+        engine.showFormattedMessage(Strings.APPEAR_ENEMY,boss.getName(),boss.getLevel());
         selectCommand();
     }
 
@@ -70,11 +70,11 @@ public class BossScene extends Scene{
 
     private void selectCommand(){
         engine.showMainCharacterStatus();
-        GameEngine.current.showBar(Strings.ENEMY_HP+" : ", boss.getStatus().getMaxHp(), boss.getStatus().getCurrentHp());
+        GameEngine.current.showBar(Strings.ENEMY_HP, boss.getStatus().getMaxHp(), boss.getStatus().getCurrentHp());
         engine.showMessage(Strings.SELECT_COMMAND);
 
         for (int i = 0; i < commandList.size(); i++) {
-            engine.showMessage(i+1+" : "+commandList.get(i).getCommandName());
+            engine.showCommandMessage(i+1,commandList.get(i).getCommandName());
         }
 
         final int input = engine.readNumber(commandList.size());

@@ -42,6 +42,10 @@ public class Consts {
 
     public static final int START_POSITION=17;
 
+    public static final int BOSS_POSITION=14;
+
+    public static final int RANDOM_DAMAGE_RANGE=3;
+
     /*******************************************
          プレイヤーの定数値
      *******************************************/

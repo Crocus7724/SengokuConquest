@@ -1,7 +1,6 @@
 package sengoku_conquest;
 
 import sengoku_conquest.character.MainCharacter;
-import sengoku_conquest.map.Area;
 import sengoku_conquest.utilities.Action;
 import sengoku_conquest.utilities.ArtGenerater;
 import sengoku_conquest.utilities.Predicate;
@@ -17,6 +16,10 @@ import java.util.*;
 
 public final class GameEngine {
     public static final GameEngine current = new GameEngine();
+
+    public static Formatter getFormatter() {
+        return new Formatter();
+    }
 
     private int indentation = 0;
 
@@ -83,6 +86,14 @@ public final class GameEngine {
         indentation++;
         indentedMessage.accept();
         indentation--;
+    }
+
+    public void showFormattedMessage(String message,Object... args){
+        showMessage(getFormatter().format(message,args).toString());
+    }
+
+    public void showCommandMessage(int commandNumber,String command){
+        showMessage(commandNumber+" : "+command);
     }
 
     public void showBoxMessage(String title, String... messages) {

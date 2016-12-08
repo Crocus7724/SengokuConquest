@@ -71,8 +71,8 @@ public class AreaScene extends Scene {
     private void start(boolean isInitial){
         GameEngine.current.showReachedMap();
         if (isInitial) GameApplication.current.decreaseTurn();
-        GameEngine.current.showMessage(Strings.CURRENT_POSITION+" : " + area.getAreaNum());
-        GameEngine.current.showMessage(Strings.CURRENT_TURN+" : "+GameApplication.current.getTurn());
+        GameEngine.current.showFormattedMessage(Strings.CURRENT_POSITION, area.getAreaNum());
+        GameEngine.current.showFormattedMessage(Strings.CURRENT_TURN,GameApplication.current.getTurn());
 
         selectCommand();
         start(false);
@@ -103,13 +103,13 @@ public class AreaScene extends Scene {
         int i=0;
 
         for (; i < commandList.size(); i++) {
-            engine.showMessage(i + 1 + " : " + commandList.get(i).getCommandName());
+            engine.showCommandMessage(i + 1 ,commandList.get(i).getCommandName());
         }
 
         boolean hasItem = false;
 
         if (character.getItems().size() > 0) {
-            engine.showMessage(i + 1 + " : " + itemCommand.getCommandName());
+            engine.showCommandMessage(i + 1  , itemCommand.getCommandName());
             hasItem = true;
         }
 
@@ -134,7 +134,7 @@ public class AreaScene extends Scene {
         if (area.isFind()) return;
         final Item item = area.getItem();
 
-        engine.showMessage(item.getName() + Strings.FIND_ITEM);
+        engine.showFormattedMessage(Strings.FIND_ITEM,item.getName() );
 
         GameApplication.current.getMainCharacter().getItems().add(item);
     }

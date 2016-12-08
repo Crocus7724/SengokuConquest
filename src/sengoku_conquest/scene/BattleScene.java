@@ -31,14 +31,14 @@ public class BattleScene extends Scene {
 
     @Override
     void start() {
-        engine.showMessage(enemy.getName()+ Strings.LEVEL+enemy.getLevel() + Strings.APPEAR_ENEMY);
+        engine.showFormattedMessage(Strings.APPEAR_ENEMY,enemy.getName(),enemy.getLevel());
 
         if (!run()) {
             GameApplication.current.nextScene(new EndScene());
         } else {
             if(enemy.getLevel()== Consts.FIND_ITEM_CONDITION){
                 final EpItem epItem = new EpItem();
-                GameEngine.current.showMessage(epItem.getName()+Strings.FIND_ITEM);
+                GameEngine.current.showFormattedMessage(Strings.FIND_ITEM,epItem.getName());
                 mainCharacter.getItems().add(epItem);
             }
 
@@ -76,14 +76,14 @@ public class BattleScene extends Scene {
             if (GameApplication.current.getMainCharacter().getStatus().getCurrentHp() <= 0) {
                 return false;
             } else if (enemy.getStatus().getCurrentHp() <= 0) {
-                GameEngine.current.showMessage(enemy.getName() + Strings.KILL_ENEMY);
+                GameEngine.current.showFormattedMessage(Strings.KILL_ENEMY,enemy.getName());
                 addExp(enemy.getLevel());
                 GameApplication.current.increaseKilledCount();
                 int killcount =GameApplication.current.getKilledCount();
                 //GameEngine.current.showMessage(killcount+"");
                 if (killcount%Consts.RECOVERY_TURN_CONDITION==0) {
                     GameApplication.current.increaseTurn(Consts.RECOVERY_TURN);
-                    GameEngine.current.showMessage(Strings.RECOVERY_TURN);
+                    GameEngine.current.showFormattedMessage(Strings.RECOVERY_TURN,Consts.RECOVERY_TURN);
                 }
                 return true;
             }
@@ -93,11 +93,11 @@ public class BattleScene extends Scene {
 
     private BattleCommandHandler askCommand() {
         GameEngine.current.showMainCharacterStatus();
-        GameEngine.current.showBar(Strings.ENEMY_HP+" : ", enemy.getStatus().getMaxHp(), enemy.getStatus().getCurrentHp());
+        GameEngine.current.showBar(Strings.ENEMY_HP, enemy.getStatus().getMaxHp(), enemy.getStatus().getCurrentHp());
         engine.showMessage(Strings.SELECT_COMMAND);
 
         for (int i=0;i<commandList.size();i++){
-            GameEngine.current.showMessage(i+1+" : "+commandList.get(i).getCommandName());
+            GameEngine.current.showCommandMessage(i+1,commandList.get(i).getCommandName());
         }
 
         final int input = engine.readNumber(commandList.size());
@@ -114,7 +114,7 @@ public class BattleScene extends Scene {
     }
 
     private void addExp(int exp){
-        GameEngine.current.showMessage(exp+Strings.GET_EXP);
+        GameEngine.current.showFormattedMessage(Strings.GET_EXP,mainCharacter.getName(),exp);
         final int level = mainCharacter.getLevel();
         mainCharacter.setExp(enemy.getLevel());
 

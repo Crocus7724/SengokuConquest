@@ -41,7 +41,7 @@ public class MainCharacter extends Character{
                     currentStatus.getAtk()+Consts.INCREASE_ATTACK_NEXT_LEVEL,
                     getStatus().getDef()+Consts.INCREASE_DEF_NEXT_LEVEL);
             setStatus(nextStatus);
-            nextStatus.setCurrentHp(currentStatus.getCurrentHp()+5);
+            nextStatus.setCurrentHp(currentStatus.getCurrentHp()+Consts.INCREASE_HP_NEXT_LEVEL);
             nextStatus.setCurrentEp(currentStatus.getCurrentEp());
         }
     }

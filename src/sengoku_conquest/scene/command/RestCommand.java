@@ -29,8 +29,8 @@ public class RestCommand extends AreaCommandHandler {
 
     private boolean askRest(){
         engine.showMessage(Strings.QUESTION_REST);
-        engine.showMessage("1 : "+ Strings.YES);
-        engine.showMessage("2 : "+Strings.NO);
+        engine.showCommandMessage(1,Strings.YES);
+        engine.showCommandMessage(2,Strings.NO);
         final int input = engine.readNumber(2);
 
         if(input==-1){

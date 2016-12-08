@@ -16,9 +16,9 @@ public class StartScene extends Scene {
     @Override
     void start() {
         GameEngine gm = GameEngine.current;
-        gm.showMessage("1 : "+Strings.SHOW_STORY);
-        gm.showMessage("2 : "+Strings.SHOW_RULE);
-        gm.showMessage("3 : "+Strings.GAME_START);
+        gm.showCommandMessage(1,Strings.SHOW_STORY);
+        gm.showCommandMessage(2,Strings.SHOW_RULE);
+        gm.showCommandMessage(3,Strings.GAME_START);
 
         int input = GameEngine.current.readNumber(3);
 
@@ -45,7 +45,7 @@ public class StartScene extends Scene {
         JobType[] values = JobType.values();
         for (int i = 0; i < values.length; i++) {
             JobType type = values[i];
-            gm.showMessage(i + 1 + " : " + type.name());
+            gm.showCommandMessage(i + 1 ,type.name());
         }
 
         int num = gm.readNumber(values.length);

@@ -111,16 +111,16 @@ public class GameApplication {
         Area[] areaList = MappingData.createArea();
 
         //スタートエリア初期化
-        Area startArea = areaList[17 - 1];
-        map.put(17, new EmptyArea(startArea.getAreaNum(), startArea.getAreaName(), startArea.getNextAreaInfo()));
+        Area startArea = areaList[Consts.START_POSITION - 1];
+        map.put(Consts.START_POSITION, new EmptyArea(startArea.getAreaNum(), startArea.getAreaName(), startArea.getNextAreaInfo()));
         startArea = areaList[16 - 1];
         map.put(16, new EmptyArea(startArea.getAreaNum(), startArea.getAreaName(), startArea.getNextAreaInfo()));
 
         createItemArea(areaList);
 
         //ボスエリア初期化
-        Area bossArea = areaList[14 - 1];
-        map.put(14, new BossArea(bossArea.getAreaNum(), bossArea.getAreaName(), bossArea.getNextAreaInfo()));
+        Area bossArea = areaList[Consts.BOSS_POSITION - 1];
+        map.put(Consts.BOSS_POSITION, new BossArea(bossArea.getAreaNum(), bossArea.getAreaName(), bossArea.getNextAreaInfo()));
 
         //ボスマス周り初期化
         for (int i = 12; i < 20; i++) {
@@ -188,7 +188,7 @@ public class GameApplication {
             count++;
             return createNotContainsKey(start, end);
         }catch (StackOverflowError error){
-            System.out.println(start+" : "+end);
+
         }
 
         return createNotContainsKey(start,end);

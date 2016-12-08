@@ -1,14 +1,9 @@
 package sengoku_conquest.character;
 
-import javafx.application.Application;
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
 import sengoku_conquest.const_values.Strings;
 import sengoku_conquest.utilities.DamageCalcurator;
-
-import static sengoku_conquest.character.JobType.ASHIGARU;
-import static sengoku_conquest.character.JobType.KOMUSOU;
-import static sengoku_conquest.character.JobType.NINJA;
 
 /**
  * Created by C011457331 on 2016/11/18.
@@ -74,7 +69,7 @@ public class Job {
         public void attack(EnemyCharacter character) {
             MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
             int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 1.45)),character.getStatus().getDef());
-            GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた!!");
+            GameEngine.current.showFormattedMessage(Strings.DAMAGE,character.getName(),damage);
             character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
         }
 
@@ -98,12 +93,12 @@ public class Job {
             hpBeforeAttacked=mainCharacter.getStatus().getCurrentHp();
             int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 0.8)),character.getStatus().getDef());
             character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
-            GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた");
+            GameEngine.current.showFormattedMessage(Strings.DAMAGE,character.getName(),damage);
         }
 
         @Override
         public void didAttacked(EnemyCharacter character) {
-            GameEngine.current.showMessage("しかし、身代わりだった!!");
+            GameEngine.current.showMessage(Strings.SCAPEGOATED);
             mainCharacter.getStatus().setCurrentHp(hpBeforeAttacked);
         }
 
@@ -121,16 +116,16 @@ public class Job {
             mainCharacter= GameApplication.current.getMainCharacter();
             hpBeforeAttacked=mainCharacter.getStatus().getCurrentHp();
             int damage=calc((mainCharacter.getStatus().getAtk()),character.getStatus().getDef());
-            GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた!!");
+            GameEngine.current.showFormattedMessage(Strings.DAMAGE,character.getName(),damage);
             character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
         }
 
         @Override
         public void didAttacked(EnemyCharacter character) {
-            GameEngine.current.showMessage(mainCharacter.getName()+"の反撃!!");
+            GameEngine.current.showFormattedMessage(Strings.COUNTER_ATTACK,mainCharacter.getName());
             final int damage = hpBeforeAttacked - mainCharacter.getStatus().getCurrentHp();
             character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
-            GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた");
+            GameEngine.current.showFormattedMessage(Strings.DAMAGE,character.getName(),damage);
         }
 
         @Override
@@ -144,14 +139,14 @@ public class Job {
         public void attack(EnemyCharacter character) {
             MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
             int damage= DamageCalcurator.calc(((int) (mainCharacter.getStatus().getAtk() * 1.2)),character.getStatus().getDef());
-            GameEngine.current.showMessage(character.getName()+"に"+damage+"のダメージを与えた");
+            GameEngine.current.showFormattedMessage(Strings.DAMAGE,character.getName(),damage);
             int didDamage = character.getStatus().getCurrentHp() - damage;
             if (didDamage < 0) {
                 damage=character.getStatus().getCurrentHp();
             }
             character.getStatus().setCurrentHp(didDamage);
 
-            GameEngine.current.showMessage(mainCharacter.getName()+"は"+damage+"回復した!!");
+            GameEngine.current.showFormattedMessage(Strings.RECOVERY_DAMAGE,mainCharacter.getName(),damage);
             mainCharacter.getStatus().setCurrentHp(mainCharacter.getStatus().getCurrentHp()+damage);
         }
 

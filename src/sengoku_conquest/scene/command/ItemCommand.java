@@ -43,18 +43,18 @@ public class ItemCommand extends AreaCommandHandler {
         if (hpItemCount > 0) {
             hasHpItem = true;
             n++;
-            engine.showMessage(n + " : "+ Strings.HP_ITEM_NAME+":" + hpItemCount + Strings.ITEM_COUNT);
+            engine.showCommandMessage(n, GameEngine.getFormatter().format(Strings.SHOW_ITEM,Strings.HP_ITEM_NAME, hpItemCount).toString());
         }
 
         boolean hasEpItem = false;
         if (epItemCount > 0) {
             hasEpItem = true;
             n++;
-            engine.showMessage(n + " : "+Strings.EP_ITEM_NAME+":" + epItemCount + Strings.ITEM_COUNT);
+            engine.showCommandMessage(n, GameEngine.getFormatter().format(Strings.SHOW_ITEM,Strings.EP_ITEM_NAME, epItemCount).toString());
         }
 
         n++;
-        engine.showMessage(n+" : "+Strings.NOT_USE);
+        engine.showCommandMessage(n,Strings.NOT_USE);
         int input = GameEngine.current.readNumber(n);
 
         if (input == -1) {
@@ -84,7 +84,7 @@ public class ItemCommand extends AreaCommandHandler {
                 if (hpItem.isPresent()) {
                     useItem(itemList.indexOf(hpItem.get()));
                     engine.showMessage(Strings.RECOVERY_HP);
-                    engine.showMessage(Strings.HP+" : " + GameApplication.current.getMainCharacter().getStatus().getCurrentHp());
+                    engine.showMessage(GameEngine.getFormatter().format(Strings.HP,GameApplication.current.getMainCharacter().getStatus().getCurrentHp()).toString());
                     return true;
                 }
             case 2:
@@ -96,7 +96,7 @@ public class ItemCommand extends AreaCommandHandler {
                 if (epItem.isPresent()) {
                     useItem(itemList.indexOf(epItem.get()));
                     engine.showMessage(Strings.RECOVERY_EP);
-                    engine.showMessage(Strings.EP+" : " + GameApplication.current.getMainCharacter().getStatus().getCurrentEp());
+                    engine.showMessage(GameEngine.getFormatter().format(Strings.EP,GameApplication.current.getMainCharacter().getStatus().getCurrentEp()).toString());
                     return true;
                 }
         }

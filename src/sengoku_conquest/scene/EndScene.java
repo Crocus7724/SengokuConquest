@@ -18,12 +18,14 @@ public class EndScene extends Scene {
 
     @Override
     void start() {
-        engine.showMessage(Strings.GAME_OVER);
         if (GameApplication.current.getTurn() <= 0) {
-             engine.showMessage(Strings.GAME_OVER_NOTING_TURN);
+            engine.showMessage(Strings.GAME_OVER);
+            engine.showMessage(Strings.GAME_OVER_NOTING_TURN);
         } else if (GameApplication.current.getMainCharacter().getStatus().getCurrentHp() <= 0) {
+            engine.showMessage(Strings.GAME_OVER);
             engine.showMessage(Strings.GAME_OVER_BATTLE_);
         } else {
+            engine.showMessage(Strings.GAME_CLEAR);
             engine.showMessage(Strings.GAME_OVER_CLEAR);
         }
 

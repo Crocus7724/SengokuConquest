@@ -43,27 +43,27 @@ public class MoveCommand extends AreaCommandHandler {
         if (area.getNextAreaInfo().getEast() != -1) {
 
             i++;
-            engine.showMessage(i +" : "+ Strings.EAST);
+            engine.showCommandMessage(i, Strings.EAST);
             map.put(i, Strings.EAST);
         }
         if (area.getNextAreaInfo().getNorth() != -1) {
             i++;
-            engine.showMessage(i +" : "+Strings.NORTH);
+            engine.showCommandMessage(i ,Strings.NORTH);
             map.put(i, Strings.NORTH);
         }
         if (area.getNextAreaInfo().getSouth() != -1) {
             i++;
-            engine.showMessage(i +" : "+Strings.SOUTH);
+            engine.showCommandMessage(i,Strings.SOUTH);
             map.put(i, Strings.SOUTH);
         }
         if (area.getNextAreaInfo().getWest() != -1) {
             i++;
-            engine.showMessage(i +" : "+Strings.WEST);
+            engine.showCommandMessage(i,Strings.WEST);
             map.put(i, Strings.WEST);
         }
 
         i++;
-        engine.showMessage(i+" : "+Strings.RETURN);
+        engine.showCommandMessage(i,Strings.RETURN);
 
         int input = engine.readNumber(i);
 

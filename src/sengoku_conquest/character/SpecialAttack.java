@@ -1,5 +1,7 @@
 package sengoku_conquest.character;
 
+import sengoku_conquest.const_values.Consts;
+
 import java.util.Random;
 
 /**
@@ -16,6 +18,6 @@ public abstract class SpecialAttack {
     }
 
     private int getRandomDamage(){
-        return r.nextInt(3)-1;
+        return r.nextInt(Consts.RANDOM_DAMAGE_RANGE)-1;
     }
 }
