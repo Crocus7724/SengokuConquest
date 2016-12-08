@@ -45,25 +45,25 @@ public class NormalAttackCommand extends BattleCommandHandler {
     }
 
     protected void attackCharacter(Character attacker, Character defender) {
-        engine.showFormattedMessage( Strings.ATTACK,attacker.getName());
+        engine.showFormattedMessage(Strings.ATTACK, attacker.getName());
 
         final int damage = DamageCalcurator.calc(attacker.getStatus().getAtk(), defender.getStatus().getDef());
 
-        engine.showFormattedMessage(Strings.DAMAGE,defender.getName(),damage);
+        engine.showFormattedMessage(Strings.DAMAGE, defender.getName(), damage);
 
         didAttacked(defender, damage);
     }
 
     protected void doEnemySpecialAttackIfHalfHp(EnemyCharacter enemy) {
         final BossCharacter boss = (BossCharacter) enemy;
-        if (!boss.getIsCharged()) {
-            engine.showFormattedMessage(Strings.CHARGE_BOSS,boss.getName());
+        if (!boss.isCharged()) {
+            engine.showFormattedMessage(Strings.CHARGE_BOSS, boss.getName());
             boss.setCharged(true);
         } else {
-            engine.showFormattedMessage(Strings.SPECIAL_ATTACK_BOSS,enemy.getName());
+            engine.showFormattedMessage(Strings.SPECIAL_ATTACK_BOSS, enemy.getName());
             final int damage = DamageCalcurator.calc((int) (enemy.getStatus().getAtk() * Consts.BOSS_SPECIAL_ATTACK),
                     mainCharacter.getStatus().getDef());
-            engine.showFormattedMessage(Strings.DAMAGE,mainCharacter.getName(),damage);
+            engine.showFormattedMessage(Strings.DAMAGE, mainCharacter.getName(), damage);
             didAttacked(mainCharacter, damage);
             enemy.getStatus().setCurrentEp(enemy.getStatus().getCurrentEp() - 1);
         }

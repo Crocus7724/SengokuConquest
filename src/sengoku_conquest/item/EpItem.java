@@ -8,7 +8,7 @@ import sengoku_conquest.const_values.Strings;
  * Created by C0114544 on 2016/11/18.
  */
 
-public class EpItem implements Item{
+public class EpItem implements Item {
     @Override
     public String getName() {
         return Strings.EP_ITEM_NAME;
@@ -18,8 +18,8 @@ public class EpItem implements Item{
 
     @Override
     public void useItem(Character character) {
-        int ep  = character.getStatus().getCurrentEp() + recoveryEp;
-        if(ep > character.getStatus().getMaxEp()) {
+        int ep = character.getStatus().getCurrentEp() + recoveryEp;
+        if (ep > character.getStatus().getMaxEp()) {
             ep = character.getStatus().getMaxEp();
         }
         character.getStatus().setCurrentEp(ep);

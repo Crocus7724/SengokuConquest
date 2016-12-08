@@ -8,7 +8,7 @@ import sengoku_conquest.const_values.Strings;
  * Created by Yamamoto on 2016/11/24.
  */
 public class EscapeCommand extends BattleCommandHandler {
-    private GameEngine engine=GameEngine.current;
+    private GameEngine engine = GameEngine.current;
 
     @Override
     protected Boolean execute(EnemyCharacter parameter) {
@@ -20,15 +20,15 @@ public class EscapeCommand extends BattleCommandHandler {
         return Strings.ESCAPE_COMMAND_NAME;
     }
 
-    private boolean askEscape(){
+    private boolean askEscape() {
         engine.showMessage(Strings.REALLY_ESCAPE);
 
-        engine.showMessage("1 : "+Strings.YES);
-        engine.showMessage("2 : "+Strings.NO);
+        engine.showCommandMessage(1, Strings.YES);
+        engine.showCommandMessage(2, Strings.NO);
 
-        final int input=engine.readNumber(2);
+        final int input = engine.readNumber(2);
 
-        if(input==-1){
+        if (input == -1) {
             engine.showMessage(Strings.INVALID_INPUT);
             return askEscape();
         }

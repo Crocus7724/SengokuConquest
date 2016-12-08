@@ -76,8 +76,8 @@ class MapCreater {
                         box[2].append(createMiddle(area));
                         box[3].append(createFourth(area));
                         box[4].append(createFooter(area));
-                    }else {
-                        for (StringBuilder builder:box)builder.append(createBlank());
+                    } else {
+                        for (StringBuilder builder : box) builder.append(createBlank());
                     }
                 } else {
                     for (StringBuilder builder : box) {
@@ -88,7 +88,7 @@ class MapCreater {
 
             Arrays.stream(box)
                     .map(StringBuilder::toString)
-                    .filter(x->!x.matches("^ *$"))
+                    .filter(x -> !x.matches("^ *$"))
                     .forEach(x -> all.append(x).append("\n"));
         }
 
@@ -155,7 +155,7 @@ class MapCreater {
 
         // 西に進めたら空白
         if (area.getNextAreaInfo().getWest() != -1) {
-            builder.append(Strings.ANVISIBLE_CHARACTER+"   ");
+            builder.append(Strings.ANVISIBLE_CHARACTER + "   ");
         } else {
             builder.append("|   ");
         }
@@ -169,7 +169,7 @@ class MapCreater {
 
         // 東に進めたら空白
         if (area.getNextAreaInfo().getEast() != -1) {
-            builder.append(Strings.ANVISIBLE_CHARACTER+"   ");
+            builder.append(Strings.ANVISIBLE_CHARACTER + "   ");
         } else {
             builder.append("   |");
         }
@@ -196,7 +196,7 @@ class MapCreater {
         return builder.toString();
     }
 
-    private String  createBlank(){
+    private String createBlank() {
         return "         ";
     }
 }

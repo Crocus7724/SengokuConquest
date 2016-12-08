@@ -88,12 +88,12 @@ public final class GameEngine {
         indentation--;
     }
 
-    public void showFormattedMessage(String message,Object... args){
-        showMessage(getFormatter().format(message,args).toString());
+    public void showFormattedMessage(String message, Object... args) {
+        showMessage(getFormatter().format(message, args).toString());
     }
 
-    public void showCommandMessage(int commandNumber,String command){
-        showMessage(commandNumber+" : "+command);
+    public void showCommandMessage(int commandNumber, String command) {
+        showMessage(commandNumber + " : " + command);
     }
 
     public void showBoxMessage(String title, String... messages) {
@@ -167,7 +167,7 @@ public final class GameEngine {
         showMessage(ArtGenerater.GenerateMap(true));
     }
 
-    public void showReachedMap(){
+    public void showReachedMap() {
         showMessage(ArtGenerater.GenerateMap(false));
     }
 
@@ -197,16 +197,12 @@ public final class GameEngine {
         return builder.toString();
     }
 
-    private String convertString(int i) {
-        return String.valueOf(i);
-    }
-
     public void showBar(String title, int max, int par) {
-        int b = max/20;
+        int b = max / 20;
         show(title + "[");
 
         for (int i = 0; i < 20; i++) {
-            if (i*b<=par) {
+            if (i * b <= par) {
                 show("=");
                 continue;
             }
@@ -216,7 +212,7 @@ public final class GameEngine {
         showMessage("]");
     }
 
-    public void wait(int milliseconds){
+    public void wait(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException e) {

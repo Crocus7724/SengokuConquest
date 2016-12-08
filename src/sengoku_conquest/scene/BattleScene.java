@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class BattleScene extends Scene {
     private final GameEngine engine = GameEngine.current;
-    private final MainCharacter mainCharacter=GameApplication.current.getMainCharacter();
+    private final MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
     private final EnemyCharacter enemy;
     private List<BattleCommandHandler> commandList;
 
@@ -31,14 +31,14 @@ public class BattleScene extends Scene {
 
     @Override
     void start() {
-        engine.showFormattedMessage(Strings.APPEAR_ENEMY,enemy.getName(),enemy.getLevel());
+        engine.showFormattedMessage(Strings.APPEAR_ENEMY, enemy.getName(), enemy.getLevel());
 
         if (!run()) {
             GameApplication.current.nextScene(new EndScene());
         } else {
-            if(enemy.getLevel()== Consts.FIND_ITEM_CONDITION){
+            if (enemy.getLevel() == Consts.FIND_ITEM_CONDITION) {
                 final EpItem epItem = new EpItem();
-                GameEngine.current.showFormattedMessage(Strings.FIND_ITEM,epItem.getName());
+                GameEngine.current.showFormattedMessage(Strings.FIND_ITEM, epItem.getName());
                 mainCharacter.getItems().add(epItem);
             }
 
@@ -67,23 +67,23 @@ public class BattleScene extends Scene {
                 GameApplication.current.decreaseTurn();
                 GameApplication.current.previousScene();
                 return true;
-            }else {
+            } else {
                 return run();
             }
         }
 
-        if(command.doExecute(enemy)) {
+        if (command.doExecute(enemy)) {
             if (GameApplication.current.getMainCharacter().getStatus().getCurrentHp() <= 0) {
                 return false;
             } else if (enemy.getStatus().getCurrentHp() <= 0) {
-                GameEngine.current.showFormattedMessage(Strings.KILL_ENEMY,enemy.getName());
+                GameEngine.current.showFormattedMessage(Strings.KILL_ENEMY, enemy.getName());
                 addExp(enemy.getLevel());
                 GameApplication.current.increaseKilledCount();
-                int killcount =GameApplication.current.getKilledCount();
+                int killcount = GameApplication.current.getKilledCount();
                 //GameEngine.current.showMessage(killcount+"");
-                if (killcount%Consts.RECOVERY_TURN_CONDITION==0) {
+                if (killcount % Consts.RECOVERY_TURN_CONDITION == 0) {
                     GameApplication.current.increaseTurn(Consts.RECOVERY_TURN);
-                    GameEngine.current.showFormattedMessage(Strings.RECOVERY_TURN,Consts.RECOVERY_TURN);
+                    GameEngine.current.showFormattedMessage(Strings.RECOVERY_TURN, Consts.RECOVERY_TURN);
                 }
                 return true;
             }
@@ -96,13 +96,13 @@ public class BattleScene extends Scene {
         GameEngine.current.showBar(Strings.ENEMY_HP, enemy.getStatus().getMaxHp(), enemy.getStatus().getCurrentHp());
         engine.showMessage(Strings.SELECT_COMMAND);
 
-        for (int i=0;i<commandList.size();i++){
-            GameEngine.current.showCommandMessage(i+1,commandList.get(i).getCommandName());
+        for (int i = 0; i < commandList.size(); i++) {
+            GameEngine.current.showCommandMessage(i + 1, commandList.get(i).getCommandName());
         }
 
         final int input = engine.readNumber(commandList.size());
 
-        if(input!=-1){
+        if (input != -1) {
             if (input <= commandList.size()) {
                 return commandList.get(input - 1);
             }
@@ -113,12 +113,12 @@ public class BattleScene extends Scene {
         return askCommand();
     }
 
-    private void addExp(int exp){
-        GameEngine.current.showFormattedMessage(Strings.GET_EXP,mainCharacter.getName(),exp);
+    private void addExp(int exp) {
+        GameEngine.current.showFormattedMessage(Strings.GET_EXP, mainCharacter.getName(), exp);
         final int level = mainCharacter.getLevel();
         mainCharacter.setExp(enemy.getLevel());
 
-        if(mainCharacter.getLevel()!=level){
+        if (mainCharacter.getLevel() != level) {
             GameEngine.current.showMessage(Strings.LEVEL_UP);
             engine.showMainCharacterStatus();
         }

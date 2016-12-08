@@ -118,162 +118,162 @@ public class Strings {
             "マーケテイング担当　山田諒　\n" +
             "プレイ担当　　　　　YOU　　 \n";
 
-    public static final String GAME_OVER="GAME OVER...";
+    public static final String GAME_OVER = "GAME OVER...";
 
-    public static final String GAME_CLEAR="GAME CLEAR!!";
+    public static final String GAME_CLEAR = "GAME CLEAR!!";
 
-    public static final String GAME_OVER_NOTING_TURN="行動ターンがなくなってしまった！！";
+    public static final String GAME_OVER_NOTING_TURN = "行動ターンがなくなってしまった！！";
 
     public static final String GAME_OVER_BATTLE_ = "戦闘に敗北してしまった...世界は暗黒に包まれた...\n";
 
-    public static final String GAME_OVER_CLEAR="見事全国を制覇しました!!\n";
+    public static final String GAME_OVER_CLEAR = "見事全国を制覇しました!!\n";
 
-    public static final String DAMAGE="%sに%dのダメージ!!";
+    public static final String DAMAGE = "%sに%dのダメージ!!";
 
     /**
      * ボスの名前
      */
-    public static final String BOSS_NAME="織田信長";
+    public static final String BOSS_NAME = "織田信長";
 
     /**
      * 侍の特殊攻撃名
      */
-    public static final String SPECIAL_ATTACK_SAMURAI="居合い斬り";
+    public static final String SPECIAL_ATTACK_SAMURAI = "居合い斬り";
 
     /**
      * 忍者の特殊攻撃名
      */
-    public static final String SPECIAL_ATTACK_NINJA="変わり身の術";
+    public static final String SPECIAL_ATTACK_NINJA = "変わり身の術";
 
     /**
      * 足軽の特殊攻撃名
      */
-    public static final String SPECIAL_ATTACK_ASHIGARU="一揆";
+    public static final String SPECIAL_ATTACK_ASHIGARU = "一揆";
 
     /**
      * 虚無僧の特殊攻撃名
      */
-    public static final String SPECIAL_ATTACK_KOMUSOU="吸魂";
+    public static final String SPECIAL_ATTACK_KOMUSOU = "吸魂";
 
     /**
      * HPアイテム名
      */
-    public static final String HP_ITEM_NAME="握り飯";
+    public static final String HP_ITEM_NAME = "握り飯";
 
     /**
      * EPアイテム名
      */
-    public static final String EP_ITEM_NAME="いにしえの秘薬";
+    public static final String EP_ITEM_NAME = "いにしえの秘薬";
 
-    public static final String SCAPEGOATED ="しかし、身代わりだった!!";
+    public static final String SCAPEGOATED = "しかし、身代わりだった!!";
 
-    public static final String COUNTER_ATTACK="%sの反撃!!";
+    public static final String COUNTER_ATTACK = "%sの反撃!!";
 
-    public static final String RECOVERY_DAMAGE="%sは%d回復した!!";
+    public static final String RECOVERY_DAMAGE = "%sは%d回復した!!";
 
     /**
      * 逃走コマンド名
      */
-    public static final String ESCAPE_COMMAND_NAME="逃走";
+    public static final String ESCAPE_COMMAND_NAME = "逃走";
 
-    public static final String MOVE_COMMAND_NAME="移動";
+    public static final String MOVE_COMMAND_NAME = "移動";
 
-    public static final String ITEM_COMMAND_NAME="アイテム使用";
+    public static final String ITEM_COMMAND_NAME = "アイテム使用";
 
-    public static final String NORMAL_ATTACK_COMMAND_NAME ="通常攻撃";
+    public static final String NORMAL_ATTACK_COMMAND_NAME = "通常攻撃";
 
-    public static final String REST_COMMAND_NAME="休憩";
+    public static final String REST_COMMAND_NAME = "休憩";
 
-    public static final String SHOW_STATUS_COMMAND_NAME="ステータスを表示する";
+    public static final String SHOW_STATUS_COMMAND_NAME = "ステータスを表示する";
 
-    public static final String SHOW_ITEM="%s : %d個";
+    public static final String SHOW_ITEM = "%s : %d個";
 
-    public static final String NOT_USE="使用しない";
+    public static final String NOT_USE = "使用しない";
 
-    public static final String REALLY_ESCAPE="本当に逃走しますか?";
+    public static final String REALLY_ESCAPE = "本当に逃走しますか?";
 
-    public static final String QUESTION_REST ="1ターン消費してHPを30回復します。よろしいですか？";
+    public static final String QUESTION_REST = "1ターン消費してHPを30回復します。よろしいですか？";
 
-    public static final String SELECTED_USE_ITEM="使用するアイテムを選択して下さい";
+    public static final String SELECTED_USE_ITEM = "使用するアイテムを選択して下さい";
 
-    public static final String APPEAR_ENEMY ="%s LEVEL:%dが現れた!!";
+    public static final String APPEAR_ENEMY = "%s LEVEL:%dが現れた!!";
 
-    public static final String FIND_ITEM="%sを手に入れた!";
+    public static final String FIND_ITEM = "%sを手に入れた!";
 
-    public static final String FULL_HP="HPは満タンです!";
+    public static final String FULL_HP = "HPは満タンです!";
 
-    public static final String FULL_EP="EPは満タンです!";
+    public static final String FULL_EP = "EPは満タンです!";
 
-    public static final String RECOVERY_HP="HPを回復しました";
+    public static final String RECOVERY_HP = "HPを回復しました";
 
-    public static final String RECOVERY_EP="EPを回復しました";
+    public static final String RECOVERY_EP = "EPを回復しました";
 
-    public static final String NOT_HAVE_EP="EPが足りません";
+    public static final String NOT_HAVE_EP = "EPが足りません";
 
-    public static final String ATTACK="%sの攻撃!";
+    public static final String ATTACK = "%sの攻撃!";
 
-    public static final String CHARGE_BOSS="%sは力を溜めている・・・";
+    public static final String CHARGE_BOSS = "%sは力を溜めている・・・";
 
-    public static final String SPECIAL_ATTACK_BOSS="%sは全ての力を解き放った!!";
+    public static final String SPECIAL_ATTACK_BOSS = "%sは全ての力を解き放った!!";
 
-    public static final String USE_SPECIAL_ATTACK="%sを使った!";
+    public static final String USE_SPECIAL_ATTACK = "%sを使った!";
 
-    public static final String ESCAPED="逃走した!";
+    public static final String ESCAPED = "逃走した!";
 
-    public static final String KILL_ENEMY="%sを倒した!!";
+    public static final String KILL_ENEMY = "%sを倒した!!";
 
-    public static final String RECOVERY_TURN="%dターン回復した!";
+    public static final String RECOVERY_TURN = "%dターン回復した!";
 
-    public static final String GET_EXP="%sは%d経験値を手に入れた!";
+    public static final String GET_EXP = "%sは%d経験値を手に入れた!";
 
-    public static final String LEVEL_UP="レベルが上った!!";
+    public static final String LEVEL_UP = "レベルが上った!!";
 
-    public static final String ENEMY_HP="敵HP : ";
+    public static final String ENEMY_HP = "敵HP : ";
 
-    public static final String HP="HP : %d";
+    public static final String HP = "HP : %d";
 
-    public static final String EP="EP : %d";
+    public static final String EP = "EP : %d";
 
-    public static final String LEVEL="LEVEL : %d";
+    public static final String LEVEL = "LEVEL : %d";
 
-    public static final String EAST="東";
+    public static final String EAST = "東";
 
-    public static final String NORTH="北";
+    public static final String NORTH = "北";
 
-    public static final String SOUTH="南";
+    public static final String SOUTH = "南";
 
-    public static final String WEST="西";
+    public static final String WEST = "西";
 
-    public static final String CURRENT_POSITION="現在位置 : %d";
+    public static final String CURRENT_POSITION = "現在位置 : %d";
 
-    public static final String CURRENT_TURN="ターン数 : %d";
+    public static final String CURRENT_TURN = "ターン数 : %d";
 
-    public static final String SELECT_COMMAND="コマンドを入力して下さい";
+    public static final String SELECT_COMMAND = "コマンドを入力して下さい";
 
-    public static final String INVALID_BOSS_CHALLENGE ="不思議なチカラで阻まれた!";
+    public static final String INVALID_BOSS_CHALLENGE = "不思議なチカラで阻まれた!";
 
-    public static final String BOSS_EXISTS="%sがこの先にいます。";
+    public static final String BOSS_EXISTS = "%sがこの先にいます。";
 
-    public static final String BOSS_CHALLENGE="%sに挑みますか?";
+    public static final String BOSS_CHALLENGE = "%sに挑みますか?";
 
-    public static final String YES="はい";
+    public static final String YES = "はい";
 
-    public static final String NO="いいえ";
+    public static final String NO = "いいえ";
 
-    public static final String RETURN="戻る";
+    public static final String RETURN = "戻る";
 
-    public static final String INVALID_INPUT="入力に誤りがあります";
+    public static final String INVALID_INPUT = "入力に誤りがあります";
 
-    public static final String SHOW_STORY="物語を読む";
+    public static final String SHOW_STORY = "物語を読む";
 
-    public static final String SHOW_RULE="ルール表示";
+    public static final String SHOW_RULE = "ルール表示";
 
-    public static final String GAME_START="ゲームスタート";
+    public static final String GAME_START = "ゲームスタート";
 
-    public static final String SELECT_JOB="職業を選択して下さい";
+    public static final String SELECT_JOB = "職業を選択して下さい";
 
     /**
      * 空白でない不可視文字(マップ表示用)
      */
-    public static final String ANVISIBLE_CHARACTER=" ";
+    public static final String ANVISIBLE_CHARACTER = " ";
 }

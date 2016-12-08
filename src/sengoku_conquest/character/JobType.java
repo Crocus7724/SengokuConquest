@@ -21,8 +21,7 @@ public enum JobType {
     KOMUSOU(Consts.KOMUSOU_INIT_HP,
             Consts.KOMUSOU_INIT_ATTACK,
             Consts.KOMUSOU_INIT_DEF,
-            Consts.KOMUSOU_INIT_EP),
-    ;
+            Consts.KOMUSOU_INIT_EP),;
 
     public int getHp() {
         return hp;

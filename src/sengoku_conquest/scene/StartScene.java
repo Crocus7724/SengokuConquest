@@ -16,9 +16,9 @@ public class StartScene extends Scene {
     @Override
     void start() {
         GameEngine gm = GameEngine.current;
-        gm.showCommandMessage(1,Strings.SHOW_STORY);
-        gm.showCommandMessage(2,Strings.SHOW_RULE);
-        gm.showCommandMessage(3,Strings.GAME_START);
+        gm.showCommandMessage(1, Strings.SHOW_STORY);
+        gm.showCommandMessage(2, Strings.SHOW_RULE);
+        gm.showCommandMessage(3, Strings.GAME_START);
 
         int input = GameEngine.current.readNumber(3);
 
@@ -45,7 +45,7 @@ public class StartScene extends Scene {
         JobType[] values = JobType.values();
         for (int i = 0; i < values.length; i++) {
             JobType type = values[i];
-            gm.showCommandMessage(i + 1 ,type.name());
+            gm.showCommandMessage(i + 1, type.name());
         }
 
         int num = gm.readNumber(values.length);
@@ -65,23 +65,6 @@ public class StartScene extends Scene {
 
     }
 
-    // 選択チェック
-    private static int check(GameEngine gm, int max) {
-        String str = gm.readLineFromUserInput();
-
-        if (str == null || !str.matches("[0-9]")) {
-            gm.showMessage(Strings.SELECT_COMMAND);
-            return check(gm, max);
-        }
-        int num = Integer.parseInt(str);
-        if (num < 1 || num >= max) {
-            gm.showMessage("選択肢の数字を入力してください");
-            return check(gm, max);
-        }
-        return num;
-    }
-
-
     @Override
     void end() {
 
@@ -91,5 +74,4 @@ public class StartScene extends Scene {
     void restart() {
 
     }
-
 }

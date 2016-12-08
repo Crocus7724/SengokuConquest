@@ -16,14 +16,12 @@ public class MoveCommand extends AreaCommandHandler {
     private GameEngine engine = GameEngine.current;
     private Area area;
 
-    GameEngine gm = new GameEngine();
-
     @Override
     protected Boolean execute(Area parameter) {
         this.area = parameter;
 
         final int nextAreaNumber = selectMoveCommand();
-        if(nextAreaNumber == -1){
+        if (nextAreaNumber == -1) {
             return false;
         }
 
@@ -48,22 +46,22 @@ public class MoveCommand extends AreaCommandHandler {
         }
         if (area.getNextAreaInfo().getNorth() != -1) {
             i++;
-            engine.showCommandMessage(i ,Strings.NORTH);
+            engine.showCommandMessage(i, Strings.NORTH);
             map.put(i, Strings.NORTH);
         }
         if (area.getNextAreaInfo().getSouth() != -1) {
             i++;
-            engine.showCommandMessage(i,Strings.SOUTH);
+            engine.showCommandMessage(i, Strings.SOUTH);
             map.put(i, Strings.SOUTH);
         }
         if (area.getNextAreaInfo().getWest() != -1) {
             i++;
-            engine.showCommandMessage(i,Strings.WEST);
+            engine.showCommandMessage(i, Strings.WEST);
             map.put(i, Strings.WEST);
         }
 
         i++;
-        engine.showCommandMessage(i,Strings.RETURN);
+        engine.showCommandMessage(i, Strings.RETURN);
 
         int input = engine.readNumber(i);
 
@@ -81,7 +79,7 @@ public class MoveCommand extends AreaCommandHandler {
             return area.getNextAreaInfo().getNorth();
         } else if (s.equals(Strings.SOUTH)) {
             return area.getNextAreaInfo().getSouth();
-        } else if(s.equals(Strings.WEST)) {
+        } else if (s.equals(Strings.WEST)) {
             return area.getNextAreaInfo().getWest();
         }
         return selectMoveCommand();

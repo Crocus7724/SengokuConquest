@@ -56,7 +56,4 @@ public class RestCommand extends AreaCommandHandler {
 
         return result;
     }
-
-
-
 }

@@ -11,15 +11,15 @@ import java.util.List;
  */
 public class BattleTest {
 
-    private int[] expList={0,1,4,7,10,15};
+    private int[] expList = {0, 1, 4, 7, 10, 15};
 
     public void testNormalAttack() {
         int tryCount = 1000000;
 
         System.out.println("通常攻撃時テスト\n\n");
-        for (int exp=0;exp<expList.length;exp++) {
+        for (int exp = 0; exp < expList.length; exp++) {
             System.out.println("-----------------------------");
-            System.out.println("MainCharacter　レベル:"+(exp+1));
+            System.out.println("MainCharacter　レベル:" + (exp + 1));
             System.out.println("-----------------------------");
             for (int i = 1; i < 5; i++) {
                 System.out.println("=====================");

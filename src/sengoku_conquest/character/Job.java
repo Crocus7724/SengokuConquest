@@ -11,6 +11,9 @@ import sengoku_conquest.utilities.DamageCalcurator;
 public class Job {
     private int hp = 0;
     private int ep = 0;
+    private int atk = 0;
+    private int def = 0;
+    private JobType type;
     private SpecialAttack specialAttack;
 
     public int getHp() {
@@ -33,29 +36,24 @@ public class Job {
         return type;
     }
 
-    private int atk = 0;
-    private int def = 0;
-
-    JobType type;
-
     public Job(JobType type) {
         this.type = type;
-        hp=type.getHp();
-        atk=type.getAtk();
-        def=type.getDef();
-        ep=type.getEp();
-        switch (type){
+        hp = type.getHp();
+        atk = type.getAtk();
+        def = type.getDef();
+        ep = type.getEp();
+        switch (type) {
             case SAMURAI:
-                specialAttack=SamuraiAttack;
+                specialAttack = SamuraiAttack;
                 break;
             case NINJA:
-                specialAttack=NinjaAttack;
+                specialAttack = NinjaAttack;
                 break;
             case ASHIGARU:
-                specialAttack=AshigaruAttack;
+                specialAttack = AshigaruAttack;
                 break;
             case KOMUSOU:
-                specialAttack=KomusouAttack;
+                specialAttack = KomusouAttack;
                 break;
         }
     }
@@ -64,13 +62,13 @@ public class Job {
         return specialAttack;
     }
 
-    private SpecialAttack SamuraiAttack=new SpecialAttack() {
+    private SpecialAttack SamuraiAttack = new SpecialAttack() {
         @Override
         public void attack(EnemyCharacter character) {
             MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
-            int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 1.45)),character.getStatus().getDef());
-            GameEngine.current.showFormattedMessage(Strings.DAMAGE,character.getName(),damage);
-            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
+            int damage = calc(((int) (mainCharacter.getStatus().getAtk() * 1.45)), character.getStatus().getDef());
+            GameEngine.current.showFormattedMessage(Strings.DAMAGE, character.getName(), damage);
+            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp() - damage);
         }
 
         @Override
@@ -84,16 +82,17 @@ public class Job {
         }
     };
 
-    private SpecialAttack NinjaAttack=new SpecialAttack() {
+    private SpecialAttack NinjaAttack = new SpecialAttack() {
         private int hpBeforeAttacked;
         private MainCharacter mainCharacter;
+
         @Override
         public void attack(EnemyCharacter character) {
-            mainCharacter= GameApplication.current.getMainCharacter();
-            hpBeforeAttacked=mainCharacter.getStatus().getCurrentHp();
-            int damage=calc(((int) (mainCharacter.getStatus().getAtk() * 0.8)),character.getStatus().getDef());
-            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
-            GameEngine.current.showFormattedMessage(Strings.DAMAGE,character.getName(),damage);
+            mainCharacter = GameApplication.current.getMainCharacter();
+            hpBeforeAttacked = mainCharacter.getStatus().getCurrentHp();
+            int damage = calc(((int) (mainCharacter.getStatus().getAtk() * 0.8)), character.getStatus().getDef());
+            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp() - damage);
+            GameEngine.current.showFormattedMessage(Strings.DAMAGE, character.getName(), damage);
         }
 
         @Override
@@ -108,24 +107,25 @@ public class Job {
         }
     };
 
-    private SpecialAttack AshigaruAttack=new SpecialAttack() {
+    private SpecialAttack AshigaruAttack = new SpecialAttack() {
         private MainCharacter mainCharacter;
         private int hpBeforeAttacked;
+
         @Override
         public void attack(EnemyCharacter character) {
-            mainCharacter= GameApplication.current.getMainCharacter();
-            hpBeforeAttacked=mainCharacter.getStatus().getCurrentHp();
-            int damage=calc((mainCharacter.getStatus().getAtk()),character.getStatus().getDef());
-            GameEngine.current.showFormattedMessage(Strings.DAMAGE,character.getName(),damage);
-            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
+            mainCharacter = GameApplication.current.getMainCharacter();
+            hpBeforeAttacked = mainCharacter.getStatus().getCurrentHp();
+            int damage = calc((mainCharacter.getStatus().getAtk()), character.getStatus().getDef());
+            GameEngine.current.showFormattedMessage(Strings.DAMAGE, character.getName(), damage);
+            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp() - damage);
         }
 
         @Override
         public void didAttacked(EnemyCharacter character) {
-            GameEngine.current.showFormattedMessage(Strings.COUNTER_ATTACK,mainCharacter.getName());
+            GameEngine.current.showFormattedMessage(Strings.COUNTER_ATTACK, mainCharacter.getName());
             final int damage = hpBeforeAttacked - mainCharacter.getStatus().getCurrentHp();
-            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp()-damage);
-            GameEngine.current.showFormattedMessage(Strings.DAMAGE,character.getName(),damage);
+            character.getStatus().setCurrentHp(character.getStatus().getCurrentHp() - damage);
+            GameEngine.current.showFormattedMessage(Strings.DAMAGE, character.getName(), damage);
         }
 
         @Override
@@ -134,20 +134,20 @@ public class Job {
         }
     };
 
-    private SpecialAttack KomusouAttack=new SpecialAttack() {
+    private SpecialAttack KomusouAttack = new SpecialAttack() {
         @Override
         public void attack(EnemyCharacter character) {
             MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
-            int damage= DamageCalcurator.calc(((int) (mainCharacter.getStatus().getAtk() * 1.2)),character.getStatus().getDef());
-            GameEngine.current.showFormattedMessage(Strings.DAMAGE,character.getName(),damage);
+            int damage = DamageCalcurator.calc(((int) (mainCharacter.getStatus().getAtk() * 1.2)), character.getStatus().getDef());
+            GameEngine.current.showFormattedMessage(Strings.DAMAGE, character.getName(), damage);
             int didDamage = character.getStatus().getCurrentHp() - damage;
             if (didDamage < 0) {
-                damage=character.getStatus().getCurrentHp();
+                damage = character.getStatus().getCurrentHp();
             }
             character.getStatus().setCurrentHp(didDamage);
 
-            GameEngine.current.showFormattedMessage(Strings.RECOVERY_DAMAGE,mainCharacter.getName(),damage);
-            mainCharacter.getStatus().setCurrentHp(mainCharacter.getStatus().getCurrentHp()+damage);
+            GameEngine.current.showFormattedMessage(Strings.RECOVERY_DAMAGE, mainCharacter.getName(), damage);
+            mainCharacter.getStatus().setCurrentHp(mainCharacter.getStatus().getCurrentHp() + damage);
         }
 
         @Override

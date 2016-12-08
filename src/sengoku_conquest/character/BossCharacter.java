@@ -7,12 +7,15 @@ import sengoku_conquest.const_values.Strings;
  */
 public class BossCharacter extends EnemyCharacter {
     public boolean isCharged;//ためたのかどうか
-    public BossCharacter(){
-        super(Strings.BOSS_NAME,4);
+
+    public BossCharacter() {
+        super(Strings.BOSS_NAME, 4);
         this.isCharged = false;
     }
 
-    public boolean getIsCharged(){return isCharged;}
+    public boolean isCharged() {
+        return isCharged;
+    }
     //↑一応作ったけどいるかどうか不明メソッド名も仮
 
     public void setCharged(boolean charged) {

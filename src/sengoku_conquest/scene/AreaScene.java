@@ -68,11 +68,11 @@ public class AreaScene extends Scene {
         start(true);
     }
 
-    private void start(boolean isInitial){
+    private void start(boolean isInitial) {
         GameEngine.current.showReachedMap();
         if (isInitial) GameApplication.current.decreaseTurn();
         GameEngine.current.showFormattedMessage(Strings.CURRENT_POSITION, area.getAreaNum());
-        GameEngine.current.showFormattedMessage(Strings.CURRENT_TURN,GameApplication.current.getTurn());
+        GameEngine.current.showFormattedMessage(Strings.CURRENT_TURN, GameApplication.current.getTurn());
 
         selectCommand();
         start(false);
@@ -89,7 +89,7 @@ public class AreaScene extends Scene {
             GameApplication.current.setIsEscaped(false);
             GameApplication.current.previousScene();
             return;
-        }else if(area.getAreaNum()==14){
+        } else if (area.getAreaNum() == 14) {
             GameApplication.current.increaseTurn(1);
             GameApplication.current.previousScene();
             return;
@@ -100,16 +100,16 @@ public class AreaScene extends Scene {
 
     private void selectCommand() {
         engine.showMessage(Strings.SELECT_COMMAND);
-        int i=0;
+        int i = 0;
 
         for (; i < commandList.size(); i++) {
-            engine.showCommandMessage(i + 1 ,commandList.get(i).getCommandName());
+            engine.showCommandMessage(i + 1, commandList.get(i).getCommandName());
         }
 
         boolean hasItem = false;
 
         if (character.getItems().size() > 0) {
-            engine.showCommandMessage(i + 1  , itemCommand.getCommandName());
+            engine.showCommandMessage(i + 1, itemCommand.getCommandName());
             hasItem = true;
         }
 
@@ -124,7 +124,7 @@ public class AreaScene extends Scene {
             itemCommand.doExecute(area);
         } else {
             final Boolean result = commandList.get(input - 1).doExecute(area);
-            if(!result){
+            if (!result) {
                 selectCommand();
             }
         }
@@ -134,7 +134,7 @@ public class AreaScene extends Scene {
         if (area.isFind()) return;
         final Item item = area.getItem();
 
-        engine.showFormattedMessage(Strings.FIND_ITEM,item.getName() );
+        engine.showFormattedMessage(Strings.FIND_ITEM, item.getName());
 
         GameApplication.current.getMainCharacter().getItems().add(item);
     }

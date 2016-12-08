@@ -7,5 +7,5 @@ import java.util.List;
 /**
  * Created by Yamamoto on 2016/11/25.
  */
-public abstract class AreaCommandHandler extends CommandHandler<Area,Boolean>{
+public abstract class AreaCommandHandler extends CommandHandler<Area, Boolean> {
 }

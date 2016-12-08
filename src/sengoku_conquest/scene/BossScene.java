@@ -18,13 +18,13 @@ import java.util.Map;
 /**
  * Created by Yamamoto on 2016/11/18.
  */
-public class BossScene extends Scene{
+public class BossScene extends Scene {
     private BossCharacter boss;
-    private List<BattleCommandHandler> commandList=new ArrayList<>();
-    private GameEngine engine=GameEngine.current;
+    private List<BattleCommandHandler> commandList = new ArrayList<>();
+    private GameEngine engine = GameEngine.current;
 
-    public BossScene(BossArea area){
-        this.boss= (BossCharacter) area.getEnemy();
+    public BossScene(BossArea area) {
+        this.boss = (BossCharacter) area.getEnemy();
         commandList.add(new NormalAttackCommand());
         commandList.add(new SpecialAttackCommand());
     }
@@ -37,10 +37,10 @@ public class BossScene extends Scene{
             return;
         }
 
-        engine.showFormattedMessage(Strings.BOSS_EXISTS,boss.getName());
-        engine.showFormattedMessage(Strings.BOSS_CHALLENGE,boss.getName());
-        engine.showCommandMessage(1,Strings.YES);
-        engine.showCommandMessage(2,Strings.NO);
+        engine.showFormattedMessage(Strings.BOSS_EXISTS, boss.getName());
+        engine.showFormattedMessage(Strings.BOSS_CHALLENGE, boss.getName());
+        engine.showCommandMessage(1, Strings.YES);
+        engine.showCommandMessage(2, Strings.NO);
         final int input = engine.readNumber(2);
 
         if (input == -1) {
@@ -54,7 +54,7 @@ public class BossScene extends Scene{
             return;
         }
 
-        engine.showFormattedMessage(Strings.APPEAR_ENEMY,boss.getName(),boss.getLevel());
+        engine.showFormattedMessage(Strings.APPEAR_ENEMY, boss.getName(), boss.getLevel());
         selectCommand();
     }
 
@@ -68,39 +68,31 @@ public class BossScene extends Scene{
 
     }
 
-    private void selectCommand(){
+    private void selectCommand() {
         engine.showMainCharacterStatus();
         GameEngine.current.showBar(Strings.ENEMY_HP, boss.getStatus().getMaxHp(), boss.getStatus().getCurrentHp());
         engine.showMessage(Strings.SELECT_COMMAND);
 
         for (int i = 0; i < commandList.size(); i++) {
-            engine.showCommandMessage(i+1,commandList.get(i).getCommandName());
+            engine.showCommandMessage(i + 1, commandList.get(i).getCommandName());
         }
 
         final int input = engine.readNumber(commandList.size());
 
-        if(input==-1){
+        if (input == -1) {
             engine.showMessage(Strings.INVALID_INPUT);
             selectCommand();
             return;
         }
 
-        if (commandList.get(input-1).doExecute(boss)) {
-            if(GameApplication.current.getMainCharacter().getStatus().getCurrentHp()<=0){
+        if (commandList.get(input - 1).doExecute(boss)) {
+            if (GameApplication.current.getMainCharacter().getStatus().getCurrentHp() <= 0) {
                 GameApplication.current.nextScene(new EndScene());
-            }else if(boss.getStatus().getCurrentHp()<=0) {
+            } else if (boss.getStatus().getCurrentHp() <= 0) {
                 GameApplication.current.nextScene(new EndScene());
             }
         }
 
         selectCommand();
-    }
-
-    private Map<String,String> get(){
-        final Map<String, String> s = new HashMap<>();
-        s.put("NAME",boss.getName());
-        s.put("HP",boss.getStatus().getCurrentHp()+"");
-
-        return s;
     }
 }

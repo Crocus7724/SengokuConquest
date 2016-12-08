@@ -1,6 +1,5 @@
 package sengoku_conquest.character;
 
-import com.sun.tools.internal.jxc.ap.Const;
 import sengoku_conquest.const_values.Consts;
 
 /**
@@ -12,12 +11,8 @@ public class EnemyCharacter extends Character {
     }
 //    private int pops = 0;
 
-    public int doSpecialAtack() {
-        return 0;
-    }
-
-    private static Status initStatus(int level){
-        switch (level){
+    private static Status initStatus(int level) {
+        switch (level) {
             case 1:
                 return new Status(
                         Consts.LEVEL1_ENEMY_HP,

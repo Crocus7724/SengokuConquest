@@ -9,6 +9,7 @@ import sengoku_conquest.const_values.Strings;
  */
 
 public class HpItem implements Item {
+    private int recoveryHP = Consts.RECOVERY_HP_VALUE;
 
     @Override
     public String getName() {
@@ -16,19 +17,16 @@ public class HpItem implements Item {
         return Strings.HP_ITEM_NAME;
     }
 
-    public int recoveryHP = Consts.RECOVERY_HP_VALUE;
-
     @Override
     public void useItem(Character character) {
-        int hp  = character.getStatus().getCurrentHp() + recoveryHP;
+        int hp = character.getStatus().getCurrentHp() + recoveryHP;
 
-        if(hp > character.getStatus().getMaxHp()) {
+        if (hp > character.getStatus().getMaxHp()) {
             hp = character.getStatus().getMaxHp();
         }
 
         character.getStatus().setCurrentHp(hp);
-
-        }
     }
+}
 
 

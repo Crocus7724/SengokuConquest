@@ -43,18 +43,18 @@ public class ItemCommand extends AreaCommandHandler {
         if (hpItemCount > 0) {
             hasHpItem = true;
             n++;
-            engine.showCommandMessage(n, GameEngine.getFormatter().format(Strings.SHOW_ITEM,Strings.HP_ITEM_NAME, hpItemCount).toString());
+            engine.showCommandMessage(n, GameEngine.getFormatter().format(Strings.SHOW_ITEM, Strings.HP_ITEM_NAME, hpItemCount).toString());
         }
 
         boolean hasEpItem = false;
         if (epItemCount > 0) {
             hasEpItem = true;
             n++;
-            engine.showCommandMessage(n, GameEngine.getFormatter().format(Strings.SHOW_ITEM,Strings.EP_ITEM_NAME, epItemCount).toString());
+            engine.showCommandMessage(n, GameEngine.getFormatter().format(Strings.SHOW_ITEM, Strings.EP_ITEM_NAME, epItemCount).toString());
         }
 
         n++;
-        engine.showCommandMessage(n,Strings.NOT_USE);
+        engine.showCommandMessage(n, Strings.NOT_USE);
         int input = GameEngine.current.readNumber(n);
 
         if (input == -1) {
@@ -76,7 +76,7 @@ public class ItemCommand extends AreaCommandHandler {
 
         switch (input) {
             case 1:
-                if(status.getCurrentHp()==status.getMaxHp()){
+                if (status.getCurrentHp() == status.getMaxHp()) {
                     engine.showMessage(Strings.FULL_HP);
                     return true;
                 }
@@ -84,11 +84,11 @@ public class ItemCommand extends AreaCommandHandler {
                 if (hpItem.isPresent()) {
                     useItem(itemList.indexOf(hpItem.get()));
                     engine.showMessage(Strings.RECOVERY_HP);
-                    engine.showMessage(GameEngine.getFormatter().format(Strings.HP,GameApplication.current.getMainCharacter().getStatus().getCurrentHp()).toString());
+                    engine.showMessage(GameEngine.getFormatter().format(Strings.HP, GameApplication.current.getMainCharacter().getStatus().getCurrentHp()).toString());
                     return true;
                 }
             case 2:
-                if(status.getCurrentEp()==status.getMaxEp()){
+                if (status.getCurrentEp() == status.getMaxEp()) {
                     engine.showMessage(Strings.FULL_EP);
                     return false;
                 }
@@ -96,7 +96,7 @@ public class ItemCommand extends AreaCommandHandler {
                 if (epItem.isPresent()) {
                     useItem(itemList.indexOf(epItem.get()));
                     engine.showMessage(Strings.RECOVERY_EP);
-                    engine.showMessage(GameEngine.getFormatter().format(Strings.EP,GameApplication.current.getMainCharacter().getStatus().getCurrentEp()).toString());
+                    engine.showMessage(GameEngine.getFormatter().format(Strings.EP, GameApplication.current.getMainCharacter().getStatus().getCurrentEp()).toString());
                     return true;
                 }
         }

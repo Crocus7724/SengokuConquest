@@ -10,7 +10,7 @@ public class EnemyData {
     public final int popMax;
     public final EnemyCharacter enemy;
 
-    public EnemyData( EnemyCharacter enemy,int popMin, int popMax) {
+    public EnemyData(EnemyCharacter enemy, int popMin, int popMax) {
         this.popMin = popMin;
         this.popMax = popMax;
         this.enemy = enemy;
