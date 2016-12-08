@@ -88,8 +88,11 @@ public class BossScene extends Scene {
         if (commandList.get(input - 1).doExecute(boss)) {
             if (GameApplication.current.getMainCharacter().getStatus().getCurrentHp() <= 0) {
                 GameApplication.current.nextScene(new EndScene());
+                return;
             } else if (boss.getStatus().getCurrentHp() <= 0) {
+                engine.showFormattedMessage(Strings.KILL_ENEMY,boss.getName());
                 GameApplication.current.nextScene(new EndScene());
+                return;
             }
         }
 
