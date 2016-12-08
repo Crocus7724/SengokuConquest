@@ -50,7 +50,7 @@ public class SpecialAttackCommand extends NormalAttackCommand {
     }
 
     private void doSpecialAttack(EnemyCharacter character) {
-        engine.showFormattedMessage(Strings.USE_SPECIAL_ATTACK, specialAttack.getName());
+        engine.showFormattedMessage(Strings.USE_SPECIAL_ATTACK, mainCharacter.getName(), specialAttack.getName());
 
         specialAttack.attack(character);
     }

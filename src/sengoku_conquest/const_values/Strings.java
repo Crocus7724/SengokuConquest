@@ -216,7 +216,7 @@ public class Strings {
 
     public static final String SPECIAL_ATTACK_BOSS = "%sは全ての力を解き放った!!";
 
-    public static final String USE_SPECIAL_ATTACK = "%sを使った!";
+    public static final String USE_SPECIAL_ATTACK = "%sは%sを使った!";
 
     public static final String ESCAPED = "逃走した!";
 
