@@ -2,6 +2,7 @@ package sengoku_conquest.scene.command;
 
 import sengoku_conquest.GameEngine;
 import sengoku_conquest.character.EnemyCharacter;
+import sengoku_conquest.const_values.Strings;
 
 /**
  * Created by Yamamoto on 2016/11/24.
@@ -16,19 +17,19 @@ public class EscapeCommand extends BattleCommandHandler {
 
     @Override
     public String getCommandName() {
-        return "逃走";
+        return Strings.ESCAPE_COMMAND_NAME;
     }
 
     private boolean askEscape(){
-        engine.showMessage("本当に逃走しますか?");
+        engine.showMessage(Strings.REALLY_ESCAPE);
 
-        engine.showMessage("1 : はい");
-        engine.showMessage("2 : いいえ");
+        engine.showMessage("1 : "+Strings.YES);
+        engine.showMessage("2 : "+Strings.NO);
 
         final int input=engine.readNumber(2);
 
         if(input==-1){
-            engine.showMessage("入力に誤りがあります。");
+            engine.showMessage(Strings.INVALID_INPUT);
             return askEscape();
         }
 

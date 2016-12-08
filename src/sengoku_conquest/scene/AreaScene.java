@@ -4,6 +4,7 @@ package sengoku_conquest.scene;
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
 import sengoku_conquest.character.MainCharacter;
+import sengoku_conquest.const_values.Strings;
 import sengoku_conquest.item.Item;
 import sengoku_conquest.map.Area;
 import sengoku_conquest.map.BossArea;
@@ -42,7 +43,7 @@ public class AreaScene extends Scene {
 
             @Override
             public String getCommandName() {
-                return "ステータスを表示する";
+                return Strings.SHOW_STATUS_COMMAND_NAME;
             }
         });
     }
@@ -70,8 +71,8 @@ public class AreaScene extends Scene {
     private void start(boolean isInitial){
         GameEngine.current.showReachedMap();
         if (isInitial) GameApplication.current.decreaseTurn();
-        GameEngine.current.showMessage("現在位置 : " + area.getAreaNum());
-        GameEngine.current.showMessage("ターン数 : "+GameApplication.current.getTurn());
+        GameEngine.current.showMessage(Strings.CURRENT_POSITION+" : " + area.getAreaNum());
+        GameEngine.current.showMessage(Strings.CURRENT_TURN+" : "+GameApplication.current.getTurn());
 
         selectCommand();
         start(false);
@@ -98,7 +99,7 @@ public class AreaScene extends Scene {
     }
 
     private void selectCommand() {
-        engine.showMessage("コマンドを入力して下さい");
+        engine.showMessage(Strings.SELECT_COMMAND);
         int i=0;
 
         for (; i < commandList.size(); i++) {
@@ -115,7 +116,7 @@ public class AreaScene extends Scene {
         final int input = engine.readNumber(commandList.size() + (hasItem ? 1 : 0));
 
         if (input == -1) {
-            engine.showMessage("値が不正です");
+            engine.showMessage(Strings.INVALID_INPUT);
             selectCommand();
             return;
         }
@@ -133,7 +134,7 @@ public class AreaScene extends Scene {
         if (area.isFind()) return;
         final Item item = area.getItem();
 
-        engine.showMessage(item.getName() + "を見つけた!!");
+        engine.showMessage(item.getName() + Strings.FIND_ITEM);
 
         GameApplication.current.getMainCharacter().getItems().add(item);
     }

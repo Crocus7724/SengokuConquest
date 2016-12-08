@@ -5,6 +5,7 @@ import java.util.Map;
 
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
+import sengoku_conquest.const_values.Strings;
 import sengoku_conquest.map.Area;
 import sengoku_conquest.scene.AreaScene;
 
@@ -32,7 +33,7 @@ public class MoveCommand extends AreaCommandHandler {
 
     @Override
     public String getCommandName() {
-        return "移動";
+        return Strings.MOVE_COMMAND_NAME;
     }
 
     private int selectMoveCommand() {
@@ -42,45 +43,45 @@ public class MoveCommand extends AreaCommandHandler {
         if (area.getNextAreaInfo().getEast() != -1) {
 
             i++;
-            engine.showMessage(i + ":東");
-            map.put(i, "E");
+            engine.showMessage(i +" : "+ Strings.EAST);
+            map.put(i, Strings.EAST);
         }
         if (area.getNextAreaInfo().getNorth() != -1) {
             i++;
-            engine.showMessage(i + ":北");
-            map.put(i, "N");
+            engine.showMessage(i +" : "+Strings.NORTH);
+            map.put(i, Strings.NORTH);
         }
         if (area.getNextAreaInfo().getSouth() != -1) {
             i++;
-            engine.showMessage(i + ":南");
-            map.put(i, "S");
+            engine.showMessage(i +" : "+Strings.SOUTH);
+            map.put(i, Strings.SOUTH);
         }
         if (area.getNextAreaInfo().getWest() != -1) {
             i++;
-            engine.showMessage(i + ":西");
-            map.put(i, "W");
+            engine.showMessage(i +" : "+Strings.WEST);
+            map.put(i, Strings.WEST);
         }
 
         i++;
-        engine.showMessage(i+"戻る");
+        engine.showMessage(i+" : "+Strings.RETURN);
 
         int input = engine.readNumber(i);
 
         if (input == -1) {
-            engine.showMessage("値が不正です");
+            engine.showMessage(Strings.INVALID_INPUT);
             return selectMoveCommand();
         }
 
         String s = map.get(input);
         if (s == null && input == i) {
             return -1;
-        } else if (s.equals("E")) {
+        } else if (s.equals(Strings.EAST)) {
             return area.getNextAreaInfo().getEast();
-        } else if (s.equals("N")) {
+        } else if (s.equals(Strings.NORTH)) {
             return area.getNextAreaInfo().getNorth();
-        } else if (s.equals("S")) {
+        } else if (s.equals(Strings.SOUTH)) {
             return area.getNextAreaInfo().getSouth();
-        } else if(s.equals("W")) {
+        } else if(s.equals(Strings.WEST)) {
             return area.getNextAreaInfo().getWest();
         }
         return selectMoveCommand();

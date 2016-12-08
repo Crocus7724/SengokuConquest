@@ -5,6 +5,7 @@ import sengoku_conquest.GameEngine;
 import sengoku_conquest.character.Job;
 import sengoku_conquest.character.JobType;
 import sengoku_conquest.character.MainCharacter;
+import sengoku_conquest.const_values.Consts;
 import sengoku_conquest.const_values.Strings;
 
 /**
@@ -15,14 +16,14 @@ public class StartScene extends Scene {
     @Override
     void start() {
         GameEngine gm = GameEngine.current;
-        gm.showMessage("1：物語を読む");
-        gm.showMessage("2：ルール表示");
-        gm.showMessage("3：ゲームスタート");
+        gm.showMessage("1 : "+Strings.SHOW_STORY);
+        gm.showMessage("2 : "+Strings.SHOW_RULE);
+        gm.showMessage("3 : "+Strings.GAME_START);
 
         int input = GameEngine.current.readNumber(3);
 
         if (input == -1) {
-            gm.showMessage("値が不正です。");
+            gm.showMessage(Strings.INVALID_INPUT);
             start();
             return;
         }
@@ -40,7 +41,7 @@ public class StartScene extends Scene {
             start();
             return;
         }
-        gm.showMessage("職を選択してください");
+        gm.showMessage(Strings.SELECT_JOB);
         JobType[] values = JobType.values();
         for (int i = 0; i < values.length; i++) {
             JobType type = values[i];
@@ -50,7 +51,7 @@ public class StartScene extends Scene {
         int num = gm.readNumber(values.length);
 
         if (num == -1) {
-            gm.showMessage("入力が不正です");
+            gm.showMessage(Strings.INVALID_INPUT);
             start();
             return;
         }
@@ -60,7 +61,7 @@ public class StartScene extends Scene {
         GameApplication.current.setMainCharacter(new MainCharacter(job));
 
         // エリアシーンへ
-        GameApplication.current.nextScene(new AreaScene(GameApplication.current.getMap().get(17)));
+        GameApplication.current.nextScene(new AreaScene(GameApplication.current.getMap().get(Consts.START_POSITION)));
 
     }
 
@@ -69,7 +70,7 @@ public class StartScene extends Scene {
         String str = gm.readLineFromUserInput();
 
         if (str == null || !str.matches("[0-9]")) {
-            gm.showMessage("コマンドを入力しなおしてください");
+            gm.showMessage(Strings.SELECT_COMMAND);
             return check(gm, max);
         }
         int num = Integer.parseInt(str);

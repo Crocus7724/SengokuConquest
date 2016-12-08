@@ -110,6 +110,22 @@ public class Strings {
             "　敵のレベルが自分のレベルより2つ高いと敵に勝つのは難しいぞ\n" +
             "　織田信長は体力が低くなると特殊攻撃を使うので注意が必要だ\n";
 
+    public static final String STAFF_ROLL = "THANK YOU FOR PLAYING...\n" +
+            "           STAFF\n" +
+            "チームリーダー　　　江元和樹\n" +
+            "設計担当者　　　　　伊賀成寿\n" +
+            "プログラミング担当　山本一樹\n" +
+            "マーケテイング担当　山田諒　\n" +
+            "プレイ担当　　　　　YOU　　 \n";
+
+    public static final String GAME_OVER="GAME OVER...";
+
+    public static final String GAME_OVER_NOTING_TURN="行動ターンがなくなってしまった！！";
+
+    public static final String GAME_OVER_BATTLE_ = "戦闘に敗北してしまった...世界は暗黒に包まれた...\n";
+
+    public static final String GAME_OVER_CLEAR="見事全国を制覇しました!!\n";
+
     /**
      * ボスの名前
      */
@@ -144,6 +160,109 @@ public class Strings {
      * EPアイテム名
      */
     public static final String EP_ITEM_NAME="いにしえの秘薬";
+
+    /**
+     * 逃走コマンド名
+     */
+    public static final String ESCAPE_COMMAND_NAME="逃走";
+
+    public static final String MOVE_COMMAND_NAME="移動";
+
+    public static final String ITEM_COMMAND_NAME="アイテム使用";
+
+    public static final String NORMAL_ATTACK_COMMAND_NAME ="通常攻撃";
+
+    public static final String REST_COMMAND_NAME="休憩";
+
+    public static final String SHOW_STATUS_COMMAND_NAME="ステータスを表示する";
+
+    public static final String ITEM_COUNT="個";
+
+    public static final String NOT_USE="使用しない";
+
+    public static final String REALLY_ESCAPE="本当に逃走しますか?";
+
+    public static final String QUESTION_REST ="1ターン消費してHPを30回復します。よろしいですか？";
+
+    public static final String SELECTED_USE_ITEM="使用するアイテムを選択して下さい";
+
+    public static final String APPEAR_ENEMY ="が現れた!!";
+
+    public static final String FIND_ITEM="を手に入れた!";
+
+    public static final String FULL_HP="HPは満タンです!";
+
+    public static final String FULL_EP="EPは満タンです!";
+
+    public static final String RECOVERY_HP="HPを回復しました";
+
+    public static final String RECOVERY_EP="EPを回復しました";
+
+    public static final String NOT_HAVE_EP="EPが足りません";
+
+    public static final String ATTACK="の攻撃!";
+
+    public static final String DAMAGE="のダメージ!";
+
+    public static final String CHARGE_BOSS="は力を溜めている・・・";
+
+    public static final String SPECIAL_ATTACK_BOSS="は全ての力を解き放った!!";
+
+    public static final String USE_SPECIAL_ATTACK="を使った!";
+
+    public static final String ESCAPED="逃走した!";
+
+    public static final String KILL_ENEMY="を倒した!!";
+
+    public static final String RECOVERY_TURN=Consts.RECOVERY_TURN+"ターン回復した!";
+
+    public static final String GET_EXP="経験値体に入れた!";
+
+    public static final String LEVEL_UP="レベルが上った!!";
+
+    public static final String ENEMY_HP="敵体力";
+
+    public static final String HP="HP";
+
+    public static final String EP="EP";
+
+    public static final String LEVEL="LEVEL";
+
+    public static final String EAST="東";
+
+    public static final String NORTH="北";
+
+    public static final String SOUTH="南";
+
+    public static final String WEST="西";
+
+    public static final String CURRENT_POSITION="現在位置";
+
+    public static final String CURRENT_TURN="ターン数";
+
+    public static final String SELECT_COMMAND="コマンドを入力して下さい";
+
+    public static final String INVALID_BOSS_CHALLENGE ="不思議なチカラで阻まれた!";
+
+    public static final String BOSS_EXISTS="がこの先にいます。";
+
+    public static final String BOSS_CHALLENGE="に挑みますか?";
+
+    public static final String YES="はい";
+
+    public static final String NO="いいえ";
+
+    public static final String RETURN="戻る";
+
+    public static final String INVALID_INPUT="入力に誤りがあります";
+
+    public static final String SHOW_STORY="物語を読む";
+
+    public static final String SHOW_RULE="ルール表示";
+
+    public static final String GAME_START="ゲームスタート";
+
+    public static final String SELECT_JOB="職を選択して下さい";
 
     /**
      * 空白でない不可視文字(マップ表示用)

@@ -4,6 +4,7 @@ import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
 import sengoku_conquest.character.*;
 import sengoku_conquest.character.Character;
+import sengoku_conquest.const_values.Strings;
 
 /**
  * Created by Yamamoto on 2016/11/24.
@@ -16,7 +17,7 @@ public class SpecialAttackCommand extends NormalAttackCommand {
     protected Boolean execute(EnemyCharacter enemy) {
         final int currentEp = mainCharacter.getStatus().getCurrentEp();
         if(currentEp==0){
-            GameEngine.current.showMessage("EPが足りません");
+            GameEngine.current.showMessage(Strings.NOT_HAVE_EP);
             return false;
         }
 
@@ -49,7 +50,7 @@ public class SpecialAttackCommand extends NormalAttackCommand {
     }
 
     private void doSpecialAttack(EnemyCharacter character){
-        engine.showMessage(specialAttack.getName()+"を使った!!");
+        engine.showMessage(specialAttack.getName()+Strings.USE_SPECIAL_ATTACK);
 
         specialAttack.attack(character);
     }

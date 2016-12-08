@@ -25,6 +25,23 @@ public class Consts {
      */
     public static final int INITIAL_TURN = 20;
 
+    /**
+     * 回復するターン数
+     */
+    public static final int RECOVERY_TURN=10;
+
+    /**
+     * ターンが回復する条件(killCountの倍数)
+     */
+    public static final int RECOVERY_TURN_CONDITION=3;
+
+    /**
+     * ボスに挑める最低レベル
+     */
+    public static final int BOSS_CHALLENGE_LEVEL_CONDITION=3;
+
+    public static final int START_POSITION=17;
+
     /*******************************************
          プレイヤーの定数値
      *******************************************/
@@ -256,4 +273,14 @@ public class Consts {
      * LEVEL4敵キャラの防御力
      */
     public static final int LEVEL4_ENEMY_DEF = 35;
+
+    /**
+     * ボスの特殊攻撃をする条件(HP)
+     */
+    public static final int BOSS_SPECIAL_ATTACK_CONDITION=70;
+
+    /**
+     * EPアイテムを取得する条件(敵エネミーレベル)
+     */
+    public static final int FIND_ITEM_CONDITION=2;
 }

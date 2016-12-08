@@ -1,9 +1,10 @@
 package sengoku_conquest.scene;
 
-import com.sun.corba.se.impl.activation.CommandHandler;
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
 import sengoku_conquest.character.BossCharacter;
+import sengoku_conquest.const_values.Consts;
+import sengoku_conquest.const_values.Strings;
 import sengoku_conquest.map.BossArea;
 import sengoku_conquest.scene.command.BattleCommandHandler;
 import sengoku_conquest.scene.command.NormalAttackCommand;
@@ -30,20 +31,20 @@ public class BossScene extends Scene{
 
     @Override
     void start() {
-        if (GameApplication.current.getMainCharacter().getLevel() < 4) {
-            GameEngine.current.showMessage("不思議なチカラで阻まれた!!");
+        if (GameApplication.current.getMainCharacter().getLevel() <= Consts.BOSS_CHALLENGE_LEVEL_CONDITION) {
+            GameEngine.current.showMessage(Strings.INVALID_BOSS_CHALLENGE);
             GameApplication.current.previousScene();
             return;
         }
 
-        engine.showMessage("この先に" + boss.getName() + "がいます。");
-        engine.showMessage(boss.getName() + "に挑みますか?");
-        engine.showMessage("1 : はい");
-        engine.showMessage("2 : いいえ");
+        engine.showMessage(boss.getName() + Strings.BOSS_EXISTS);
+        engine.showMessage(boss.getName() + Strings.BOSS_CHALLENGE);
+        engine.showMessage("1 : "+Strings.YES);
+        engine.showMessage("2 : "+Strings.NO);
         final int input = engine.readNumber(2);
 
         if (input == -1) {
-            engine.showMessage("値が不正です");
+            engine.showMessage(Strings.INVALID_INPUT);
             start();
             return;
         }
@@ -53,7 +54,7 @@ public class BossScene extends Scene{
             return;
         }
 
-        engine.showMessage(boss.getName()+"が現れた!!");
+        engine.showMessage(boss.getName()+Strings.APPEAR_ENEMY);
         selectCommand();
     }
 
@@ -69,8 +70,8 @@ public class BossScene extends Scene{
 
     private void selectCommand(){
         engine.showMainCharacterStatus();
-        GameEngine.current.showBar("敵体力 : ", boss.getStatus().getMaxHp(), boss.getStatus().getCurrentHp());
-        engine.showMessage("コマンドを選択して下さい");
+        GameEngine.current.showBar(Strings.ENEMY_HP+" : ", boss.getStatus().getMaxHp(), boss.getStatus().getCurrentHp());
+        engine.showMessage(Strings.SELECT_COMMAND);
 
         for (int i = 0; i < commandList.size(); i++) {
             engine.showMessage(i+1+" : "+commandList.get(i).getCommandName());
@@ -79,7 +80,7 @@ public class BossScene extends Scene{
         final int input = engine.readNumber(commandList.size());
 
         if(input==-1){
-            engine.showMessage("値が不正です");
+            engine.showMessage(Strings.INVALID_INPUT);
             selectCommand();
             return;
         }

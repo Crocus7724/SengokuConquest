@@ -2,6 +2,7 @@ package sengoku_conquest.scene.command;
 
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.character.Status;
+import sengoku_conquest.const_values.Strings;
 import sengoku_conquest.item.EpItem;
 import sengoku_conquest.item.HpItem;
 import sengoku_conquest.item.Item;
@@ -36,28 +37,28 @@ public class ItemCommand extends AreaCommandHandler {
             }
         }
 
-        engine.showMessage("使用するアイテムを選択してください。");
+        engine.showMessage(Strings.SELECTED_USE_ITEM);
 
         boolean hasHpItem = false;
         if (hpItemCount > 0) {
             hasHpItem = true;
             n++;
-            engine.showMessage(n + " : 握り飯:" + hpItemCount + "個");
+            engine.showMessage(n + " : "+ Strings.HP_ITEM_NAME+":" + hpItemCount + Strings.ITEM_COUNT);
         }
 
         boolean hasEpItem = false;
         if (epItemCount > 0) {
             hasEpItem = true;
             n++;
-            engine.showMessage(n + " : いにしえの秘薬:" + epItemCount + "個");
+            engine.showMessage(n + " : "+Strings.EP_ITEM_NAME+":" + epItemCount + Strings.ITEM_COUNT);
         }
 
         n++;
-        engine.showMessage(n+" : 使用しない");
+        engine.showMessage(n+" : "+Strings.NOT_USE);
         int input = GameEngine.current.readNumber(n);
 
         if (input == -1) {
-            engine.showMessage("正しい数字を入力してください。");
+            engine.showMessage(Strings.INVALID_INPUT);
             return execute(parameter);
         }
 
@@ -76,25 +77,26 @@ public class ItemCommand extends AreaCommandHandler {
         switch (input) {
             case 1:
                 if(status.getCurrentHp()==status.getMaxHp()){
-                    engine.showMessage("HPは満タンです!");
+                    engine.showMessage(Strings.FULL_HP);
                     return true;
                 }
                 Optional<Item> hpItem = itemList.stream().filter(x -> x instanceof HpItem).findFirst();
                 if (hpItem.isPresent()) {
                     useItem(itemList.indexOf(hpItem.get()));
-                    engine.showMessage("HPが回復しました。");
-                    engine.showMessage("HP:" + GameApplication.current.getMainCharacter().getStatus().getCurrentHp());
+                    engine.showMessage(Strings.RECOVERY_HP);
+                    engine.showMessage(Strings.HP+" : " + GameApplication.current.getMainCharacter().getStatus().getCurrentHp());
                     return true;
                 }
             case 2:
                 if(status.getCurrentEp()==status.getMaxEp()){
-                    engine.showMessage("EPは満タンです!");
+                    engine.showMessage(Strings.FULL_EP);
                     return false;
                 }
                 Optional<Item> epItem = itemList.stream().filter(x -> x instanceof EpItem).findFirst();
                 if (epItem.isPresent()) {
                     useItem(itemList.indexOf(epItem.get()));
-                    engine.showMessage("EP:" + GameApplication.current.getMainCharacter().getStatus().getCurrentEp());
+                    engine.showMessage(Strings.RECOVERY_EP);
+                    engine.showMessage(Strings.EP+" : " + GameApplication.current.getMainCharacter().getStatus().getCurrentEp());
                     return true;
                 }
         }
@@ -104,7 +106,7 @@ public class ItemCommand extends AreaCommandHandler {
 
     @Override
     public String getCommandName() {
-        return "アイテム使用";
+        return Strings.ITEM_COMMAND_NAME;
     }
 
     private void useItem(int index) {
