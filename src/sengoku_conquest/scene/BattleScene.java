@@ -2,9 +2,10 @@ package sengoku_conquest.scene;
 
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
-import sengoku_conquest.character.Character;
 import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
+import sengoku_conquest.const_values.Consts;
+import sengoku_conquest.const_values.Strings;
 import sengoku_conquest.item.EpItem;
 import sengoku_conquest.scene.command.*;
 
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class BattleScene extends Scene {
     private final GameEngine engine = GameEngine.current;
-    private final MainCharacter mainCharacter=GameApplication.current.getMainCharacter();
+    private final MainCharacter mainCharacter = GameApplication.current.getMainCharacter();
     private final EnemyCharacter enemy;
     private List<BattleCommandHandler> commandList;
 
@@ -30,14 +31,14 @@ public class BattleScene extends Scene {
 
     @Override
     void start() {
-        engine.showMessage(enemy.getName()+" Level"+enemy.getLevel() + "が現れた!!");
+        engine.showFormattedMessage(Strings.APPEAR_ENEMY, enemy.getName(), enemy.getLevel());
 
         if (!run()) {
             GameApplication.current.nextScene(new EndScene());
         } else {
-            if(enemy.getLevel()==2){
+            if (enemy.getLevel() == Consts.FIND_ITEM_CONDITION) {
                 final EpItem epItem = new EpItem();
-                GameEngine.current.showMessage(epItem.getName()+"を取得した!");
+                GameEngine.current.showFormattedMessage(Strings.FIND_ITEM, epItem.getName());
                 mainCharacter.getItems().add(epItem);
             }
 
@@ -61,28 +62,28 @@ public class BattleScene extends Scene {
 
         if (command instanceof EscapeCommand) {
             if (command.doExecute(enemy)) {
-                engine.showMessage("逃走した!!");
+                engine.showMessage(Strings.ESCAPED);
                 GameApplication.current.setIsEscaped(true);
                 GameApplication.current.decreaseTurn();
                 GameApplication.current.previousScene();
                 return true;
-            }else {
+            } else {
                 return run();
             }
         }
 
-        if(command.doExecute(enemy)) {
+        if (command.doExecute(enemy)) {
             if (GameApplication.current.getMainCharacter().getStatus().getCurrentHp() <= 0) {
                 return false;
             } else if (enemy.getStatus().getCurrentHp() <= 0) {
-                GameEngine.current.showMessage(enemy.getName() + "を倒した!!");
+                GameEngine.current.showFormattedMessage(Strings.KILL_ENEMY, enemy.getName());
                 addExp(enemy.getLevel());
                 GameApplication.current.increaseKilledCount();
-                int killcount =GameApplication.current.getKilledCount();
+                int killcount = GameApplication.current.getKilledCount();
                 //GameEngine.current.showMessage(killcount+"");
-                if (killcount==3||killcount==6||killcount==9) {
-                    GameApplication.current.increaseTurn(10);
-                    GameEngine.current.showMessage("10ターンが回復した！");
+                if (killcount % Consts.RECOVERY_TURN_CONDITION == 0) {
+                    GameApplication.current.increaseTurn(Consts.RECOVERY_TURN);
+                    GameEngine.current.showFormattedMessage(Strings.RECOVERY_TURN, Consts.RECOVERY_TURN);
                 }
                 return true;
             }
@@ -92,33 +93,33 @@ public class BattleScene extends Scene {
 
     private BattleCommandHandler askCommand() {
         GameEngine.current.showMainCharacterStatus();
-        GameEngine.current.showBar("敵体力 : ", enemy.getStatus().getMaxHp(), enemy.getStatus().getCurrentHp());
-        engine.showMessage("コマンドを選択して下さい");
+        GameEngine.current.showBar(Strings.ENEMY_HP, enemy.getStatus().getMaxHp(), enemy.getStatus().getCurrentHp());
+        engine.showMessage(Strings.SELECT_COMMAND);
 
-        for (int i=0;i<commandList.size();i++){
-            GameEngine.current.showMessage(i+1+" : "+commandList.get(i).getCommandName());
+        for (int i = 0; i < commandList.size(); i++) {
+            GameEngine.current.showCommandMessage(i + 1, commandList.get(i).getCommandName());
         }
 
         final int input = engine.readNumber(commandList.size());
 
-        if(input!=-1){
+        if (input != -1) {
             if (input <= commandList.size()) {
                 return commandList.get(input - 1);
             }
         }
 
-        engine.showMessage("入力に誤りがあります");
+        engine.showMessage(Strings.INVALID_INPUT);
 
         return askCommand();
     }
 
-    private void addExp(int exp){
-        GameEngine.current.showMessage("経験値を"+exp+"手に入れた!");
+    private void addExp(int exp) {
+        GameEngine.current.showFormattedMessage(Strings.GET_EXP, mainCharacter.getName(), exp);
         final int level = mainCharacter.getLevel();
         mainCharacter.setExp(enemy.getLevel());
 
-        if(mainCharacter.getLevel()!=level){
-            GameEngine.current.showMessage("レベルが上った!!");
+        if (mainCharacter.getLevel() != level) {
+            GameEngine.current.showMessage(Strings.LEVEL_UP);
             engine.showMainCharacterStatus();
         }
     }

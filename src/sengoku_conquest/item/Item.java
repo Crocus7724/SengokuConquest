@@ -8,5 +8,6 @@ import sengoku_conquest.character.Character;
 
 public interface Item {
     String getName();
+
     void useItem(Character character);
 }

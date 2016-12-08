@@ -15,12 +15,12 @@ public class CsvHelper {
      * @param path 読み込むcsvファイルのパス
      * @return カンマ(, )区切りの文字列を分割したものを列ごとにまとめたもの
      */
-    public static List<String[]> read(final String path,final boolean hasHeader) {
+    public static List<String[]> read(final String path, final boolean hasHeader) {
         List<String[]> lines = new ArrayList<>();
 
-        try(BufferedReader br=new BufferedReader(new FileReader(path))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
-            if(hasHeader)br.readLine();
+            if (hasHeader) br.readLine();
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("#") || line.isEmpty()) continue;
 

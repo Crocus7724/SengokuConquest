@@ -10,9 +10,9 @@ public class Status {
     private int def = 0;
 
     public void setCurrentHp(int currentHp) {
-        if(currentHp>maxHp){
-            this.currentHp=maxHp;
-        }else if (currentHp < 0) {
+        if (currentHp > maxHp) {
+            this.currentHp = maxHp;
+        } else if (currentHp < 0) {
             this.currentHp = 0;
         } else {
             this.currentHp = currentHp;
@@ -20,11 +20,11 @@ public class Status {
     }
 
     public void setCurrentEp(int currentEp) {
-        if(currentEp>maxEp){
-            this.currentEp=maxEp;
+        if (currentEp > maxEp) {
+            this.currentEp = maxEp;
         } else if (currentEp < 0) {
-            this.currentEp=0;
-        }else {
+            this.currentEp = 0;
+        } else {
             this.currentEp = currentEp;
         }
     }
@@ -62,7 +62,7 @@ public class Status {
         this.maxEp = maxEp;
         this.atk = atk;
         this.def = def;
-        this.currentHp=maxHp;
-        this.currentEp=maxEp;
+        this.currentHp = maxHp;
+        this.currentEp = maxEp;
     }
 }

@@ -1,6 +1,5 @@
 package sengoku_conquest.map;
 
-import sengoku_conquest.item.HpItem;
 import sengoku_conquest.item.Item;
 
 /**

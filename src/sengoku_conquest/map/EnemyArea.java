@@ -8,11 +8,10 @@ import sengoku_conquest.character.EnemyCharacter;
 public class EnemyArea extends Area {
     private EnemyCharacter enemy;
 
-    public EnemyArea(EnemyCharacter enemy,int areanum, String areaname, NextAreaInfo nextAreaInfo) {
+    public EnemyArea(EnemyCharacter enemy, int areanum, String areaname, NextAreaInfo nextAreaInfo) {
         super(areanum, areaname, nextAreaInfo);
-        this.enemy=enemy;
+        this.enemy = enemy;
     }
-
 
     public EnemyCharacter getEnemy() {
         return enemy;

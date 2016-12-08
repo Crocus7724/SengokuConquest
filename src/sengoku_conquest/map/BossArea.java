@@ -9,7 +9,7 @@ import sengoku_conquest.character.EnemyCharacter;
  */
 public class BossArea extends EnemyArea {
     public BossArea(int areaNum, String areaName, NextAreaInfo nextAreaInfo) {
-        super(new BossCharacter(),areaNum, areaName, nextAreaInfo);
+        super(new BossCharacter(), areaNum, areaName, nextAreaInfo);
     }
 
 }
