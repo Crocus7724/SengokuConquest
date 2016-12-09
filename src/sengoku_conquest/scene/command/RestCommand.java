@@ -2,8 +2,8 @@ package sengoku_conquest.scene.command;
 
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
-import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
+import sengoku_conquest.const_values.Strings;
 import sengoku_conquest.map.Area;
 
 /**
@@ -23,17 +23,18 @@ public class RestCommand extends AreaCommandHandler {
 
     @Override
     public String getCommandName() {
-        return "休憩";
+        return Strings.REST_COMMAND_NAME;
     }
 
 
     private boolean askRest(){
-        engine.showMessage("1ターン消費してHPを30回復します。よろしいですか？");
-        engine.showMessage("1:休憩する　2:やめる");
+        engine.showMessage(Strings.QUESTION_REST);
+        engine.showCommandMessage(1,Strings.YES);
+        engine.showCommandMessage(2,Strings.NO);
         final int input = engine.readNumber(2);
 
         if(input==-1){
-            engine.showMessage("入力が不正です");
+            engine.showMessage(Strings.INVALID_INPUT);
             return askRest();
         }
 
@@ -55,7 +56,4 @@ public class RestCommand extends AreaCommandHandler {
 
         return result;
     }
-
-
-
 }

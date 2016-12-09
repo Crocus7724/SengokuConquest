@@ -7,6 +7,7 @@ import sengoku_conquest.character.Character;
 import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
 import sengoku_conquest.const_values.Consts;
+import sengoku_conquest.const_values.Strings;
 import sengoku_conquest.utilities.DamageCalcurator;
 
 /**
@@ -40,29 +41,29 @@ public class NormalAttackCommand extends BattleCommandHandler {
 
     @Override
     public String getCommandName() {
-        return "通常攻撃";
+        return Strings.NORMAL_ATTACK_COMMAND_NAME;
     }
 
     protected void attackCharacter(Character attacker, Character defender) {
-        engine.showMessage(attacker.getName() + "の攻撃!");
+        engine.showFormattedMessage(Strings.ATTACK, attacker.getName());
 
         final int damage = DamageCalcurator.calc(attacker.getStatus().getAtk(), defender.getStatus().getDef());
 
-        engine.showMessage(damage + "のダメージ!");
+        engine.showFormattedMessage(Strings.DAMAGE, defender.getName(), damage);
 
         didAttacked(defender, damage);
     }
 
     protected void doEnemySpecialAttackIfHalfHp(EnemyCharacter enemy) {
         final BossCharacter boss = (BossCharacter) enemy;
-        if (!boss.getIsCharged()) {
-            engine.showMessage(boss.getName() + "は溜めている・・・");
+        if (!boss.isCharged()) {
+            engine.showFormattedMessage(Strings.CHARGE_BOSS, boss.getName());
             boss.setCharged(true);
         } else {
-            engine.showMessage(enemy.getName() + "は全ての力を解き放った!!");
+            engine.showFormattedMessage(Strings.SPECIAL_ATTACK_BOSS, enemy.getName());
             final int damage = DamageCalcurator.calc((int) (enemy.getStatus().getAtk() * Consts.BOSS_SPECIAL_ATTACK),
                     mainCharacter.getStatus().getDef());
-            engine.showMessage(mainCharacter.getName() + "は" + damage + "のダメージ!");
+            engine.showFormattedMessage(Strings.DAMAGE, mainCharacter.getName(), damage);
             didAttacked(mainCharacter, damage);
             enemy.getStatus().setCurrentEp(enemy.getStatus().getCurrentEp() - 1);
         }
@@ -71,7 +72,7 @@ public class NormalAttackCommand extends BattleCommandHandler {
     protected boolean isEnemySpecialAttackConditions(EnemyCharacter enemy) {
         return enemy.getLevel() == 4
                 && enemy.getStatus().getCurrentEp() > 0
-                && enemy.getStatus().getCurrentHp() <= 70;
+                && enemy.getStatus().getCurrentHp() <= Consts.BOSS_SPECIAL_ATTACK_CONDITION;
     }
 
     private void didAttacked(Character character, int damage) {

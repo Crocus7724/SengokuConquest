@@ -21,21 +21,20 @@ import sengoku_conquest.utilities.MappingData;
  * Created by C0114105 on 2016/11/18.
  */
 public class GameApplication {
-    private Random random = new Random((long) (Math.random() * 1000));
     private List<Scene> sceneList = new ArrayList<>();
     private int turn = 0;
     private int count;
     public static final GameApplication current = new GameApplication();
-    private boolean isEscaped=false;
+    private boolean isEscaped = false;
     private MainCharacter mainCharacter;
-    private int killedCount=0;
+    private int killedCount = 0;
 
     private Area currentArea;
 
     public void gameStart() {
         increaseTurn(Consts.INITIAL_TURN + 1);
         createMapData();
-        currentArea=getMap().get(17);
+        currentArea = getMap().get(17);
         //GameEngine.current.showAllMap();
         nextScene(new StartScene());
     }
@@ -54,11 +53,11 @@ public class GameApplication {
         return map;
     }
 
-    public void setIsEscaped(boolean isEscaped){
-        this.isEscaped=isEscaped;
+    public void setIsEscaped(boolean isEscaped) {
+        this.isEscaped = isEscaped;
     }
 
-    public boolean getIsEscaped(){
+    public boolean getIsEscaped() {
         return this.isEscaped;
     }
 
@@ -71,7 +70,7 @@ public class GameApplication {
     }
 
     public void previousScene() {
-        sceneList.remove(sceneList.size()-1);
+        sceneList.remove(sceneList.size() - 1);
         final Scene scene = sceneList.get(sceneList.size() - 1);
         scene.doRestart();
     }
@@ -91,11 +90,11 @@ public class GameApplication {
         return turn;
     }
 
-    public void increaseKilledCount(){
+    public void increaseKilledCount() {
         killedCount++;
     }
 
-    public int getKilledCount(){
+    public int getKilledCount() {
         return killedCount;
     }
 
@@ -111,16 +110,16 @@ public class GameApplication {
         Area[] areaList = MappingData.createArea();
 
         //スタートエリア初期化
-        Area startArea = areaList[17 - 1];
-        map.put(17, new EmptyArea(startArea.getAreaNum(), startArea.getAreaName(), startArea.getNextAreaInfo()));
+        Area startArea = areaList[Consts.START_POSITION - 1];
+        map.put(Consts.START_POSITION, new EmptyArea(startArea.getAreaNum(), startArea.getAreaName(), startArea.getNextAreaInfo()));
         startArea = areaList[16 - 1];
         map.put(16, new EmptyArea(startArea.getAreaNum(), startArea.getAreaName(), startArea.getNextAreaInfo()));
 
         createItemArea(areaList);
 
         //ボスエリア初期化
-        Area bossArea = areaList[14 - 1];
-        map.put(14, new BossArea(bossArea.getAreaNum(), bossArea.getAreaName(), bossArea.getNextAreaInfo()));
+        Area bossArea = areaList[Consts.BOSS_POSITION - 1];
+        map.put(Consts.BOSS_POSITION, new BossArea(bossArea.getAreaNum(), bossArea.getAreaName(), bossArea.getNextAreaInfo()));
 
         //ボスマス周り初期化
         for (int i = 12; i < 20; i++) {
@@ -143,13 +142,13 @@ public class GameApplication {
     private void createItemArea(Area[] areaList) {
         int key = createNotContainsKey(2, 11);
         Area itemArea = areaList[key - 1];
-        map.put(itemArea.getAreaNum(), new ItemArea(new HpItem(),itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        map.put(itemArea.getAreaNum(), new ItemArea(new HpItem(), itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
         key = createNotContainsKey(12, 18);
         itemArea = areaList[key - 1];
-        map.put(itemArea.getAreaNum(), new ItemArea(new HpItem(),itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        map.put(itemArea.getAreaNum(), new ItemArea(new HpItem(), itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
         key = createNotContainsKey(20, 25);
         itemArea = areaList[key - 1];
-        map.put(itemArea.getAreaNum(), new ItemArea(new HpItem(),itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
+        map.put(itemArea.getAreaNum(), new ItemArea(new HpItem(), itemArea.getAreaNum(), itemArea.getAreaName(), itemArea.getNextAreaInfo()));
     }
 
     private void createEnemyArea(Area[] areaList) {
@@ -162,7 +161,7 @@ public class GameApplication {
             } else {
                 key = createNotContainsKey(data.popMin, data.popMax);
             }
-            Area area = areaList[key-1];
+            Area area = areaList[key - 1];
             map.put(area.getAreaNum(), new EnemyArea(data.enemy, area.getAreaNum(), area.getAreaName(), area.getNextAreaInfo()));
         }
     }
@@ -170,8 +169,8 @@ public class GameApplication {
     private int createNotContainsKey(int start, int end) {
         try {
             if (count > 100) {
-                for (int i=start;i<=end;i++){
-                    if(!map.containsKey(i)){
+                for (int i = start; i <= end; i++) {
+                    if (!map.containsKey(i)) {
                         return i;
                     }
                 }
@@ -187,11 +186,11 @@ public class GameApplication {
 
             count++;
             return createNotContainsKey(start, end);
-        }catch (StackOverflowError error){
-            System.out.println(start+" : "+end);
+        } catch (StackOverflowError error) {
+
         }
 
-        return createNotContainsKey(start,end);
+        return createNotContainsKey(start, end);
     }
 }
 

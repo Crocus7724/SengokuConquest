@@ -4,10 +4,10 @@ package sengoku_conquest.map;
  * Created by C0114105 on 2016/11/18.
  */
 public class Area {
-    private int areaNum =17;
-    private String areaName ="start";
+    private int areaNum;
+    private String areaName;
 
-    private boolean isReached=false;
+    private boolean isReached = false;
 
     private NextAreaInfo nextAreaInfo;
 

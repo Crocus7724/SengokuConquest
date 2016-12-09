@@ -5,15 +5,14 @@ package sengoku_conquest.character;
  */
 public class Character {
     private Status status;
+    private String name;
+    private int level = 0;
 
     public Character(Status status, String name, int level) {
         this.status = status;
         this.name = name;
         this.level = level;
     }
-
-    private String name;
-    private int level = 0;
 
     public void setStatus(Status status) {
         this.status = status;

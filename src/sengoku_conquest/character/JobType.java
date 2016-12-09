@@ -1,14 +1,27 @@
 package sengoku_conquest.character;
 
+import sengoku_conquest.const_values.Consts;
+
 /**
  * Created by C011457331 on 2016/11/18.
  */
 public enum JobType {
-    SAMURAI(105,50,30,3),
-    NINJA(85,60,30,2),
-    ASHIGARU(110,40,35,4),
-    KOMUSOU(90,45,30,4),
-    ;
+    SAMURAI(Consts.SAMURAI_INIT_HP,
+            Consts.SAMURAI_INIT_ATTACK,
+            Consts.SAMURAI_INIT_DEF,
+            Consts.SAMURAI_INIT_EP),
+    NINJA(Consts.NINJA_INIT_HP,
+            Consts.NINJA_INIT_ATTACK,
+            Consts.NINJA_INIT_DEF,
+            Consts.NINJA_INIT_EP),
+    ASHIGARU(Consts.ASHIGARU_INIT_HP,
+            Consts.ASHIGARU_INIT_ATTACK,
+            Consts.ASHIGARU_INIT_DEF,
+            Consts.ASHIGARU_INIT_EP),
+    KOMUSOU(Consts.KOMUSOU_INIT_HP,
+            Consts.KOMUSOU_INIT_ATTACK,
+            Consts.KOMUSOU_INIT_DEF,
+            Consts.KOMUSOU_INIT_EP),;
 
     public int getHp() {
         return hp;
