@@ -41,24 +41,8 @@ public class StartScene extends Scene {
             start();
             return;
         }
-        gm.showMessage(Strings.SELECT_JOB);
-        JobType[] values = JobType.values();
-        for (int i = 0; i < values.length; i++) {
-            JobType type = values[i];
-            gm.showCommandMessage(i + 1, type.name());
-        }
 
-        int num = gm.readNumber(values.length);
-
-        if (num == -1) {
-            gm.showMessage(Strings.INVALID_INPUT);
-            start();
-            return;
-        }
-
-        Job job = new Job(values[num - 1]);
-
-        GameApplication.current.setMainCharacter(new MainCharacter(job));
+        selectJob(gm);
 
         // エリアシーンへ
         GameApplication.current.nextScene(new AreaScene(GameApplication.current.getMap().get(Consts.START_POSITION)));
@@ -74,4 +58,26 @@ public class StartScene extends Scene {
     void restart() {
 
     }
+
+    private void selectJob(GameEngine gm) {
+        gm.showMessage(Strings.SELECT_JOB);
+        JobType[] values = JobType.values();
+        for (int i = 0; i < values.length; i++) {
+            JobType type = values[i];
+            gm.showCommandMessage(i + 1, type.name());
+        }
+
+        int num = gm.readNumber(values.length);
+
+        if (num == -1) {
+            gm.showMessage(Strings.INVALID_INPUT);
+            selectJob(gm);
+            return;
+        }
+
+        Job job = new Job(values[num - 1]);
+        GameApplication.current.setMainCharacter(new MainCharacter(job));
+    }
+
+
 }

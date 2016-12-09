@@ -21,7 +21,7 @@ public class Consts {
     /**
      * 最初の所持ターン数
      */
-    public static final int INITIAL_TURN = 20;
+    public static final int INITIAL_TURN = 25;
 
     /**
      * 回復するターン数
@@ -101,7 +101,7 @@ public class Consts {
     /**
      * 足軽の初期防御力
      */
-    public static final int ASHIGARU_INIT_DEF = 35;
+    public static final int ASHIGARU_INIT_DEF = 36;
 
     /**
      * 足軽の初期EP
@@ -194,7 +194,7 @@ public class Consts {
     /**
      * ボス特殊攻撃倍率
      */
-    public static final double BOSS_SPECIAL_ATTACK = 1.4;
+    public static final double BOSS_SPECIAL_ATTACK = 1.43;
 
     /**
      * LEVEL1敵キャラのHP
