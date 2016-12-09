@@ -162,7 +162,7 @@ class MapCreater {
 
         // プレイヤーがいたら●
         if (GameApplication.current.getCurrentArea().getAreaNum() == area.getAreaNum()) {
-            builder.append("●");
+            builder.append("P");
         } else {
             builder.append(" ");
         }
