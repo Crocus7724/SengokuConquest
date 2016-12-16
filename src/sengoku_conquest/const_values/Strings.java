@@ -18,7 +18,7 @@ public class Strings {
             "　 　　 　 　　　 ,llll　　　'''' 　,llll''llll,,　llllll'''llll,　,llll'''llllll　lll 　 llll　,llll'''llll,　,,lll''''lll, '''llll'''''\n" +
             "　　 　　　　　　 'llll, 　　,llll　llll 　 llll　lll 　 lll　llll 　 lll　llll　 lllll　lll'''''''lll'　''llllllll,, 　lll\n" +
             "　　　　　　　　 　''lllll,,,,llll''　 'llll,,,llll'　llll 　 llll　'llll,,,llllll　lll,,,,llllll　''llll,,,llll'　'lll,,,,,lll'　 llll,,,,\n" +
-            "　　 　 　　　　　 　 　　　 　 　 　　　　　　　　 　　 lll";
+            "　　 　 　　　　　 　 　　　 　 　 　　　　　　　　 　　 lll\n";
 
     /**
      * ストーリー
@@ -44,7 +44,6 @@ public class Strings {
             "　日本を旅して大名を倒しレベルを上げて、竹馬の友のために織田信長を倒そう\n" +
             "　レベル4にならないと織田信長に挑めないぞ\n" +
             "　戦闘に敗北もしくはターンが0になると敗北するので気をつけよう\n" +
-            "\n" +
             "コマンド説明\n" +
             "　移動　1ターン消費しマップの隣り合うマス東西南北に1マス移動\n" +
             "　休憩　1ターン消費しHP30回復\n" +
@@ -54,7 +53,6 @@ public class Strings {
             "　通常攻撃　ATK値攻撃\n" +
             "　特殊攻撃　EPを1消費する攻撃\n" +
             "　逃走　　　1ターン消費し1マス戻る(織田信長以外は必ず逃げられる)\n" +
-            "\n" +
             "職業説明\n" +
             "　SAMURAI(侍)　   難易度：普通  　　HP105 ATK50 DEF30 EP3\n"+
             "　                特殊攻撃：居合切り(通常攻撃の1.45倍ダメージ)\n" +
@@ -69,12 +67,12 @@ public class Strings {
             "　　            　特殊攻撃：吸魂(通常攻撃の1.2倍ダメージ、減らした体力分回復)\n" +
             "                  特徴：レベル低い敵から多くの体力を奪える\n" +
             "　※ステータスはLevel1の時のものです\n" +
-            "\n" +
             "ヒント\n" +
             "　マップアイコン　P：主人公,　S：織田信長(ボス),　A：Level3の敵,　B：Level2の敵,　C：Level1の敵\n" +
             "　大名は織田信長を含め9人いるぞ、主人公は最大レベル6まで強化できるぞ\n" +
             "　HP回復アイテムはマップに3つ隠れているぞ\n" +
             "　敵のレベルが自分のレベルより2つ高いと敵に勝つのは難しいぞ\n" +
+            "　戦闘中アイテムは使えないが逃げたときの敵の体力は持ち越しされるぞ\n" +
             "　織田信長は体力が低くなると特殊攻撃を使うので挑む前に準備が大切だ\n";
 
     public static final String STAFF_ROLL = "THANK YOU FOR PLAYING...\n" +
@@ -91,14 +89,14 @@ public class Strings {
 
     public static final String GAME_OVER_NOTING_TURN = "\n行動ターンがなくなってしまった！！\n\n" +
             "流石に疲労し、がくりと膝を折った。立ち上る事が出来ぬのだ。\n" +
-            "ああ、ここまで走破して来た主人公よ。真の勇者よ。今、ここで、動けなくなるとは情無い。\n" +
+            "ああ、ここまで走破して来た主人公よ。真の勇者よ。今、ここで、動けなくなるとは情け無い。\n" +
             "　全身萎えて、もはや芋虫ほどにも前進かなわぬ。私は、この大事な時に、精も根も尽きたのだ。\n" +
             "友よ、許してくれ。私たちは、本当に佳い友と友であったのだ。\n" +
             "――私は、死ぬよりつらい。私は、永遠に裏切り者だ。\n";
 
     public static final String GAME_OVER_BATTLE_ = "\n戦闘に敗北してしまった...\n\n" +
             "呼吸も出来ず、二度、三度、口から血が噴き出た。立ち上る事が出来ぬのだ。\n" +
-            "ああ、ここまで突破して来た主人公よ。真の勇者よ。今、ここで、動けなくなるとは情無い。\n" +
+            "ああ、ここまで突破して来た主人公よ。真の勇者よ。今、ここで、動けなくなるとは情け無い。\n" +
             "全身傷つき、もはや蟻一匹ほどにも戦うことができぬ。私は、この大事な時に、血も魂も尽きたのだ\n。" +
             "友よ、許してくれ。私たちは、本当に佳い友と友であったのだ。\n" +
             "――私は、死ぬよりつらい。私は、永遠に裏切り者だ。\n";
@@ -257,6 +255,14 @@ public class Strings {
     public static final String GAME_START = "ゲームスタート";
 
     public static final String SELECT_JOB = "職業を選択して下さい";
+
+    public static final String JOB_SAMURAI = "特殊攻撃で攻撃を食らう前に敵を撃破できる";
+
+    public static final String JOB_NINJA = "EP少ないが連続で攻撃できる特殊攻撃が強力";
+
+    public static final String JOB_ASHIGARU = "道中難しいがボスに強い";
+
+    public static final String JOB_KOMUSOU = "レベル低い敵から多くの体力を奪える";
 
     /**
      * 空白でない不可視文字(マップ表示用)

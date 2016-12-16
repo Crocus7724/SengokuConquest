@@ -16,8 +16,6 @@ public class StartScene extends Scene {
     @Override
     void start() {
         GameEngine gm = GameEngine.current;
-        gm.showMessage(Strings.TITLE);
-
         gm.showCommandMessage(1, Strings.SHOW_STORY);
         gm.showCommandMessage(2, Strings.SHOW_RULE);
         gm.showCommandMessage(3, Strings.GAME_START);
@@ -64,9 +62,12 @@ public class StartScene extends Scene {
     private void selectJob(GameEngine gm) {
         gm.showMessage(Strings.SELECT_JOB);
         JobType[] values = JobType.values();
+        String[] chara={Strings.JOB_SAMURAI, Strings.JOB_NINJA, Strings.JOB_ASHIGARU, Strings.JOB_KOMUSOU};
+
+
         for (int i = 0; i < values.length; i++) {
             JobType type = values[i];
-            gm.showCommandMessage(i + 1, type.name());
+            gm.showCommandMessage(i + 1, type.name() + " : " + chara[i]);
         }
 
         int num = gm.readNumber(values.length);
