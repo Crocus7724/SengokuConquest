@@ -64,10 +64,11 @@ public class StartScene extends Scene {
         JobType[] values = JobType.values();
         String[] chara={Strings.JOB_SAMURAI, Strings.JOB_NINJA, Strings.JOB_ASHIGARU, Strings.JOB_KOMUSOU};
 
+        int maxWord = MaxWordCount();
 
         for (int i = 0; i < values.length; i++) {
             JobType type = values[i];
-            gm.showCommandMessage(i + 1, wordCount(type.name()) + " : " + chara[i]);
+            gm.showCommandMessage(i + 1, getIndentation(type.name(),maxWord) + " : " + chara[i]);
         }
 
         int num = gm.readNumber(values.length);
@@ -82,9 +83,8 @@ public class StartScene extends Scene {
         GameApplication.current.setMainCharacter(new MainCharacter(job));
     }
 
-    public String wordCount(String title) {
+    private int MaxWordCount(){
         JobType[] values = JobType.values();
-
         int maxWord = 0;
 
         for (int i = 0; i < values.length; i++) {
@@ -94,13 +94,15 @@ public class StartScene extends Scene {
             }
         }
 
+        return maxWord;
+    }
+
+    private String getIndentation(String title, int maxWord) {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < maxWord-title.length() ; i++) {
             s.append(" ");
         }
-
         title += s;
-
         return title;
     }
 

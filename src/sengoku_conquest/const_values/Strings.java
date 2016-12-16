@@ -6,19 +6,9 @@ package sengoku_conquest.const_values;
  */
 public class Strings {
 
-    public final static String TITLE =
-            "　lllllllllll,,　　　　　　　　　　　 　　 　　　　　 　lll\n" +
-            "　ll,,,,　'''' 　 ,,,,,,,,, 　,,,,,,,,,,,,, 　 ,,,,,,,,,,,,,　,,,,,,,,,,　 llll　,,,,,,　,,, 　 ,,,\n" +
-            "　'''''''lllll,,　lllll,,,,lllll　llll''　lllll　llll　llll　,lll''　'llll, llll,,llll'' 　llll 　 lll\n" +
-            "'llll,, 　,,llll　lll,,　,,,,,　llll 　lllll　lllllllll''　 lll,,　,llll' llll'''''lll,　llll,　,,llll\n" +
-            "　''''''''''''' 　 '''''''''''　''''' 　'''''　lll''''''llll 　''''''''''　 ''' 　 ''''　'''''''''''''\n" +
-            "　　 　　　 　　　　　　 　　 　''''''''''''\n" +
-            "　　　 　 　　 　　　,,,,,,,,,,,\n" +
-            "　 　　　　　　　　llll'''　''llll,　　　　　　　　　　　　　　　　　　　　　　 　　　　　　　 llll\n" +
-            "　 　　 　 　　　 ,llll　　　'''' 　,llll''llll,,　llllll'''llll,　,llll'''llllll　lll 　 llll　,llll'''llll,　,,lll''''lll, '''llll'''''\n" +
-            "　　 　　　　　　 'llll, 　　,llll　llll 　 llll　lll 　 lll　llll 　 lll　llll　 lllll　lll'''''''lll'　''llllllll,, 　lll\n" +
-            "　　　　　　　　 　''lllll,,,,llll''　 'llll,,,llll'　llll 　 llll　'llll,,,llllll　lll,,,,llllll　''llll,,,llll'　'lll,,,,,lll'　 llll,,,,\n" +
-            "　　 　 　　　　　 　 　　　 　 　 　　　　　　　　 　　 lll\n";
+    public final static String TITLE ="+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+\n" +
+            "|S|e|n|g|o|k|u| |C|o|n|q|u|e|s|t|\n" +
+            "+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+";
 
     /**
      * ストーリー
@@ -56,16 +46,12 @@ public class Strings {
             "職業説明\n" +
             "　SAMURAI(侍)　   難易度：普通  　　HP105 ATK50 DEF30 EP3\n"+
             "　                特殊攻撃：居合切り(通常攻撃の1.45倍ダメージ)\n" +
-            "                  特徴：特殊攻撃で攻撃を食らう前に敵を撃破できる\n" +
             "　NINJA(忍者)   　難易度：やさしい  HP85 ATK60 DEF30 EP2\n" +
             "　　　            特殊攻撃：変わり身の術(通常攻撃の0.8倍ダメージ、次の攻撃のダメージを受けない)\n" +
-            "                  特徴：EP少ないが連続で攻撃できる特殊攻撃が強力\n" +
-            "　ASHIGARU(足軽)　難易度：難しい 　 HP110 ATK40 DEF35 EP4\n" +
+            "　ASHIGARU(足軽)　難易度：難しい 　 HP110 ATK40 DEF36 EP4\n" +
             "　　　            特殊攻撃：一揆(通常攻撃ダメージ、次の敵攻撃時反撃(自分が受けたダメージを与える))\n" +
-            "                  特徴：道中難しいがボスに強い\n" +
             "　KOMUSOU(虚無僧) 難易度：やさしい  HP90 ATK45 DEF30 EP4\n" +
             "　　            　特殊攻撃：吸魂(通常攻撃の1.2倍ダメージ、減らした体力分回復)\n" +
-            "                  特徴：レベル低い敵から多くの体力を奪える\n" +
             "　※ステータスはLevel1の時のものです\n" +
             "ヒント\n" +
             "　マップアイコン　P：主人公,　S：織田信長(ボス),　A：Level3の敵,　B：Level2の敵,　C：Level1の敵\n" +
