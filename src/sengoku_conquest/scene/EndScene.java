@@ -28,7 +28,10 @@ public class EndScene extends Scene {
         }
 
         engine.showMessage(Strings.STAFF_ROLL);
+        continueCommand();
+    }
 
+    private void continueCommand() {
         engine.showMessage("================================================");
         engine.showMessage("コンティニューしますか？");
         engine.showMessage("1:はい");
@@ -38,10 +41,13 @@ public class EndScene extends Scene {
         if (contenueNum == 1) {
             GameApplication.current.gameStart();
 
-        } else {
+        } else if(contenueNum == 2) {
+            engine.showMessage("ゲームを終了します");
             System.exit(1);
+        } else {
+            engine.showMessage(Strings.INVALID_INPUT);
+            continueCommand();
         }
-
     }
 
     @Override
