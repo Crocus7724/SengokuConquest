@@ -1,7 +1,5 @@
 package sengoku_conquest.scene;
 
-import com.sun.org.apache.xpath.internal.operations.String;
-
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.GameEngine;
 import sengoku_conquest.const_values.Strings;
@@ -31,7 +29,19 @@ public class EndScene extends Scene {
 
         engine.showMessage(Strings.STAFF_ROLL);
 
-        System.exit(1);
+        engine.showMessage("================================================");
+        engine.showMessage("コンティニューしますか？");
+        engine.showMessage("1:はい");
+        engine.showMessage("2:いいえ");
+
+        int contenueNum = engine.readNumber(2);
+        if (contenueNum == 1) {
+            GameApplication.current.gameStart();
+
+        } else {
+            System.exit(1);
+        }
+
     }
 
     @Override

@@ -1,16 +1,18 @@
 package sengoku_conquest;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
-import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.character.MainCharacter;
 import sengoku_conquest.const_values.Consts;
 import sengoku_conquest.item.HpItem;
-import sengoku_conquest.item.Item;
-import sengoku_conquest.map.*;
+import sengoku_conquest.map.Area;
+import sengoku_conquest.map.BossArea;
+import sengoku_conquest.map.EmptyArea;
+import sengoku_conquest.map.EnemyArea;
+import sengoku_conquest.map.ItemArea;
 import sengoku_conquest.scene.EndScene;
 import sengoku_conquest.scene.Scene;
 import sengoku_conquest.scene.StartScene;
@@ -32,9 +34,7 @@ public class GameApplication {
     private Area currentArea;
 
     public void gameStart() {
-        increaseTurn(Consts.INITIAL_TURN + 1);
-        createMapData();
-        currentArea = getMap().get(17);
+        initialize();
         //GameEngine.current.showAllMap();
         nextScene(new StartScene());
     }
@@ -106,7 +106,19 @@ public class GameApplication {
         this.currentArea = currentArea;
     }
 
+    private void initialize() {
+        map = new HashMap<>();
+        killedCount = 0;
+        count = 0;
+        sceneList = new ArrayList<>();
+        isEscaped = false;
+        turn = Consts.INITIAL_TURN + 1;
+        createMapData();
+        currentArea = getMap().get(17);
+    }
+
     private void createMapData() {
+        map = new HashMap<>();
         Area[] areaList = MappingData.createArea();
 
         //スタートエリア初期化

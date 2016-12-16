@@ -1,5 +1,18 @@
-# SengokuConquest
-実験Aのコンソールアプリ
+　lllllllllll,,　　　　　　　　　　　 　　 　　　　　 　lll  
+　ll,,,,　'''' 　 ,,,,,,,,, 　,,,,,,,,,,,,, 　 ,,,,,,,,,,,,,　,,,,,,,,,,　 llll　,,,,,,　,,, 　 ,,,  
+　'''''''lllll,,　lllll,,,,lllll　llll''　lllll　llll　llll　,lll''　'llll, llll,,llll'' 　llll 　 lll  
+'llll,, 　,,llll　lll,,　,,,,,　llll 　lllll　lllllllll''　 lll,,　,llll' llll'''''lll,　llll,　,,llll  
+　''''''''''''' 　 '''''''''''　''''' 　'''''　lll''''''llll 　''''''''''　 ''' 　 ''''　'''''''''''''  
+　　 　　　 　　　　　　 　　 　''''''''''''  
+　　　 　 　　 　　　,,,,,,,,,,,  
+　 　　　　　　　　llll'''　''llll,　　　　　　　　　　　　　　　　　　　　　　 　　　　　　　 llll  
+　 　　 　 　　　 ,llll　　　'''' 　,llll''llll,,　llllll'''llll,　,llll'''llllll　lll 　 llll　,llll'''llll,　,,lll''''lll, '''llll'''''  
+　　 　　　　　　 'llll, 　　,llll　llll 　 llll　lll 　 lll　llll 　 lll　llll　 lllll　lll'''''''lll'　''llllllll,, 　lll  
+　　　　　　　　 　''lllll,,,,llll''　 'llll,,,llll'　llll 　 llll　'llll,,,llllll　lll,,,,llllll　''llll,,,llll'　'lll,,,,,lll'　 llll,,,,  
+　　 　 　　　　　 　 　　　 　 　 　　　　　　　　 　　 lll  
+                                 
+                                 
+実験Aのコンソールゲーム
 
 ---
 
