@@ -67,7 +67,7 @@ public class StartScene extends Scene {
 
         for (int i = 0; i < values.length; i++) {
             JobType type = values[i];
-            gm.showCommandMessage(i + 1, type.name() + " : " + chara[i]);
+            gm.showCommandMessage(i + 1, wordCount(type.name()) + " : " + chara[i]);
         }
 
         int num = gm.readNumber(values.length);
@@ -80,6 +80,28 @@ public class StartScene extends Scene {
 
         Job job = new Job(values[num - 1]);
         GameApplication.current.setMainCharacter(new MainCharacter(job));
+    }
+
+    public String wordCount(String title) {
+        JobType[] values = JobType.values();
+
+        int maxWord = 0;
+
+        for (int i = 0; i < values.length; i++) {
+            JobType type = values[i];
+            if(maxWord < type.name().length()){
+                maxWord = type.name().length();
+            }
+        }
+
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < maxWord-title.length() ; i++) {
+            s.append(" ");
+        }
+
+        title += s;
+
+        return title;
     }
 
 
