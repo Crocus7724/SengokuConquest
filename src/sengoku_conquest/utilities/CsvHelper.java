@@ -1,8 +1,6 @@
 package sengoku_conquest.utilities;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class CsvHelper {
     public static List<String[]> read(final String path, final boolean hasHeader) {
         List<String[]> lines = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path),"UTF-8"))) {
             String line;
             if (hasHeader) br.readLine();
             while ((line = br.readLine()) != null) {

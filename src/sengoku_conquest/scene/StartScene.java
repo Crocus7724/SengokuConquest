@@ -15,6 +15,8 @@ public class StartScene extends Scene {
 
     @Override
     void start() {
+
+        GameEngine.current.showMessage(Strings.TITLE);
         GameEngine gm = GameEngine.current;
         gm.showCommandMessage(1, Strings.SHOW_STORY);
         gm.showCommandMessage(2, Strings.SHOW_RULE);
