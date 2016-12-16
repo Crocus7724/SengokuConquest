@@ -6,9 +6,19 @@ package sengoku_conquest.const_values;
  */
 public class Strings {
 
-    public final static String TITLE ="+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+\n" +
-            "|S|e|n|g|o|k|u| |C|o|n|q|u|e|s|t|\n" +
-            "+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+";
+    public final static String TITLE =
+            "　lllllllllll,,　　　　　　　　　　　 　　 　　　　　 　                        lll\n" +
+            "　ll,,,,　'''' 　 ,,,,,,,,, 　,,,,,,,,,,,,, 　 ,,,,,,,,,,,,,　,,,,,,,,,,　  llll　,,,,,,　 ,,, 　 ,,,\n" +
+            "　'''''''lllll,,　lll,,,lll    lllll　llll''　lllll　llll　  llll　,lll''　'llll, llll,,  llll'' 　llll\n" +
+            "'llll,, 　,,llll　lll,,　,,,,,　llll 　lllll　 lllllllll''　 lll,,　,llll'  llll'''''lll,　llll,　,,llll\n" +
+            "　''''''''''''' 　 '''''''''''　''''' 　'''''　lll''''''llll 　''''''''''　 ''' 　   ''''　'''''''''''''\n" +
+            "　　 　　　 　　　　　　 　　                  　''''''''''''\n" +
+            "　　　 　 　　 　　　,,,,,,,,,,,\n" +
+            "　 　　　　　　　　llll'''　''llll,　　　　　　　　　　　　　　　　　　　　　　 　　　　　　　                                        lll\n" +
+            "　 　　 　 　　　 ,llll　　　'''' 　,llll''llll,,　llllll'''llll,　,llll'''llllll　lll 　 llll　,llll'''llll,　 ,lll''''lll, '''llll'''''\n" +
+            "　　 　　　　　　   'llll, 　　,llll　llll 　 llll　   lll 　 lll　  llll 　   lll　llll　 lllll　lll'''''''''　   ''llllll,,   　lll\n" +
+            "　　　　　　　　 　''lllll,,,,llll''　 'llll,,,llll'　llll 　 llll　'llll,,,llllll　lll,,,,llllll''llll,,,llll'　'lll,,,,,lll'　 llll,,,,\n" +
+            "　　 　 　　　　　 　 　　　 　 　 　　　　　　　　 　　                          lll";
 
     /**
      * ストーリー
