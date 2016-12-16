@@ -1,5 +1,12 @@
 package sengoku_conquest.utilities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import sengoku_conquest.GameApplication;
 import sengoku_conquest.character.EnemyCharacter;
 import sengoku_conquest.const_values.Consts;
@@ -7,10 +14,6 @@ import sengoku_conquest.const_values.Strings;
 import sengoku_conquest.map.Area;
 import sengoku_conquest.map.EnemyArea;
 import sengoku_conquest.map.ItemArea;
-
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by Yamamoto on 2016/12/04.
@@ -23,9 +26,9 @@ public class ArtGenerater {
 }
 
 class MapCreater {
-    private static List<Place> areaMap = new ArrayList<>();
+    private List<Place> areaMap = new ArrayList<>();
 
-    static {
+    MapCreater() {
         final Map<Integer, Area> map = GameApplication.current.getMap();
         areaMap.add(new Place(1, 7, map.get(1)));
         areaMap.add(new Place(2, 7, map.get(2)));
@@ -160,9 +163,9 @@ class MapCreater {
             builder.append("|   ");
         }
 
-        // プレイヤーがいたら●
+        // プレイヤーがいたらP
         if (GameApplication.current.getCurrentArea().getAreaNum() == area.getAreaNum()) {
-            builder.append("●");
+            builder.append("P");
         } else {
             builder.append(" ");
         }
