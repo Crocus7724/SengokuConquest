@@ -1,10 +1,11 @@
 package test;
 
-import sengoku_conquest.GameApplication;
-import sengoku_conquest.character.*;
+import sengoku_conquest.character.EnemyCharacter;
+import sengoku_conquest.character.Job;
+import sengoku_conquest.character.JobType;
+import sengoku_conquest.character.MainCharacter;
+import sengoku_conquest.character.Status;
 import sengoku_conquest.utilities.DamageCalcurator;
-
-import java.util.List;
 
 /**
  * Created by Yamamoto on 2016/12/02.
@@ -14,7 +15,7 @@ public class BattleTest {
     private int[] expList = {0, 1, 4, 7, 10, 15};
 
     public void testNormalAttack() {
-        int tryCount = 1000000;
+        int tryCount = 1000;
 
         System.out.println("通常攻撃時テスト\n\n");
         for (int exp = 0; exp < expList.length; exp++) {
@@ -30,7 +31,8 @@ public class BattleTest {
                     int win = 0;
                     for (int j = 0; j < tryCount; j++) {
                         MainCharacter mainCharacter = new MainCharacter(new Job(type));
-                        mainCharacter.setExp(exp);
+                        mainCharacter.setExp(expList[exp]);
+                        // System.out.println(mainCharacter.getLevel());
                         EnemyCharacter enemyCharacter = new EnemyCharacter("レベル1", i);
                         final boolean isWin = attackNormalAttack(mainCharacter.getStatus(), enemyCharacter.getStatus());
                         if (isWin) {
