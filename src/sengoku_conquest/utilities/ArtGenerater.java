@@ -100,14 +100,14 @@ class MapCreater {
 
     private String createHeader(Area area) {
         StringBuilder builder = new StringBuilder();
-        builder.append("====");
+        builder.append("===");
         if (area.getNextAreaInfo().getNorth() != -1) {
-            builder.append(" ");
+            builder.append("   ");
         } else {
-            builder.append("=");
+            builder.append("===");
         }
 
-        builder.append("====");
+        builder.append("===");
 
         return builder.toString();
     }
@@ -186,15 +186,15 @@ class MapCreater {
 
     private String createFooter(Area area) {
         StringBuilder builder = new StringBuilder();
-        builder.append("====");
+        builder.append("===");
 
         if (area.getNextAreaInfo().getSouth() != -1) {
-            builder.append(" ");
+            builder.append("   ");
         } else {
-            builder.append("=");
+            builder.append("===");
         }
 
-        builder.append("====");
+        builder.append("===");
 
         return builder.toString();
     }

@@ -62,9 +62,13 @@ public class StartScene extends Scene {
     private void selectJob(GameEngine gm) {
         gm.showMessage(Strings.SELECT_JOB);
         JobType[] values = JobType.values();
+        String[] chara={Strings.JOB_SAMURAI, Strings.JOB_NINJA, Strings.JOB_ASHIGARU, Strings.JOB_KOMUSOU};
+
+        int maxWord = MaxWordCount();
+
         for (int i = 0; i < values.length; i++) {
             JobType type = values[i];
-            gm.showCommandMessage(i + 1, type.name());
+            gm.showCommandMessage(i + 1, getIndentation(type.name(),maxWord) + " : " + chara[i]);
         }
 
         int num = gm.readNumber(values.length);
@@ -79,5 +83,25 @@ public class StartScene extends Scene {
         GameApplication.current.setMainCharacter(new MainCharacter(job));
     }
 
+    private int MaxWordCount(){
+        JobType[] values = JobType.values();
+        int maxWord = 0;
 
+        for (int i = 0; i < values.length; i++) {
+            JobType type = values[i];
+            if(maxWord < type.name().length()){
+                maxWord = type.name().length();
+            }
+        }
+        return maxWord;
+    }
+
+    private String getIndentation(String title, int maxWord) {
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < maxWord-title.length() ; i++) {
+            s.append(" ");
+        }
+        title += s;
+        return title;
+    }
 }
