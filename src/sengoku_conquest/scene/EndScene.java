@@ -28,10 +28,10 @@ public class EndScene extends Scene {
         }
 
         engine.showMessage(Strings.STAFF_ROLL);
-        Continue();
+        continueCommand();
     }
 
-    private void Continue() {
+    private void continueCommand() {
         engine.showMessage("================================================");
         engine.showMessage("コンティニューしますか？");
         engine.showMessage("1:はい");
