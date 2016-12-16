@@ -46,7 +46,7 @@ public class EndScene extends Scene {
             System.exit(1);
         } else {
             engine.showMessage(Strings.INVALID_INPUT);
-            Continue();
+            continueCommand();
         }
     }
 
