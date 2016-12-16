@@ -158,7 +158,7 @@ class MapCreater {
 
         // 西に進めたら空白
         if (area.getNextAreaInfo().getWest() != -1) {
-            builder.append(Strings.ANVISIBLE_CHARACTER + "   ");
+            builder.append("'"+"   ");
         } else {
             builder.append("|   ");
         }
@@ -172,7 +172,7 @@ class MapCreater {
 
         // 東に進めたら空白
         if (area.getNextAreaInfo().getEast() != -1) {
-            builder.append(Strings.ANVISIBLE_CHARACTER + "   ");
+            builder.append("   "+"'");
         } else {
             builder.append("   |");
         }
