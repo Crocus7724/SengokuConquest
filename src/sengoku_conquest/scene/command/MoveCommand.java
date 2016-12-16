@@ -1,6 +1,8 @@
 package sengoku_conquest.scene.command;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import sengoku_conquest.GameApplication;
@@ -35,53 +37,49 @@ public class MoveCommand extends AreaCommandHandler {
     }
 
     private int selectMoveCommand() {
-        Map<Integer, String> map = new HashMap<>();
+        List<String> map = new ArrayList<>();
         int i = 0;
 
         if (area.getNextAreaInfo().getEast() != -1) {
-
-            i++;
-            engine.showCommandMessage(i, Strings.EAST);
-            map.put(i, Strings.EAST);
+            engine.showCommandMessage(1, Strings.EAST);
+            map.add(Strings.EAST);
         }
         if (area.getNextAreaInfo().getNorth() != -1) {
-            i++;
-            engine.showCommandMessage(i, Strings.NORTH);
-            map.put(i, Strings.NORTH);
+            engine.showCommandMessage(2, Strings.NORTH);
+            map.add(Strings.NORTH);
         }
         if (area.getNextAreaInfo().getSouth() != -1) {
-            i++;
-            engine.showCommandMessage(i, Strings.SOUTH);
-            map.put(i, Strings.SOUTH);
+            engine.showCommandMessage(3, Strings.SOUTH);
+            map.add(Strings.SOUTH);
         }
         if (area.getNextAreaInfo().getWest() != -1) {
-            i++;
-            engine.showCommandMessage(i, Strings.WEST);
-            map.put(i, Strings.WEST);
+            engine.showCommandMessage(4, Strings.WEST);
+            map.add(Strings.WEST);
         }
 
-        i++;
-        engine.showCommandMessage(i, Strings.RETURN);
+        engine.showCommandMessage(5, Strings.RETURN);
 
-        int input = engine.readNumber(i);
+        int input = engine.readNumber(5);
 
         if (input == -1) {
             engine.showMessage(Strings.INVALID_INPUT);
             return selectMoveCommand();
         }
 
-        String s = map.get(input);
-        if (s == null && input == i) {
-            return -1;
-        } else if (s.equals(Strings.EAST)) {
+        if (input == 1 && map.contains(Strings.EAST)) {
             return area.getNextAreaInfo().getEast();
-        } else if (s.equals(Strings.NORTH)) {
+        } else if (input == 2 && map.contains(Strings.NORTH)) {
             return area.getNextAreaInfo().getNorth();
-        } else if (s.equals(Strings.SOUTH)) {
+        } else if (input == 3 && map.contains(Strings.SOUTH)) {
             return area.getNextAreaInfo().getSouth();
-        } else if (s.equals(Strings.WEST)) {
+        } else if (input == 4 && map.contains(Strings.WEST)) {
             return area.getNextAreaInfo().getWest();
+        } else if (input == 5) {
+            return -1;
         }
+
+        engine.showMessage(Strings.INVALID_INPUT);
+
         return selectMoveCommand();
     }
 
