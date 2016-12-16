@@ -18,37 +18,13 @@ public class StartScene extends Scene {
 
         GameEngine.current.showMessage(Strings.TITLE);
         GameEngine gm = GameEngine.current;
-        gm.showCommandMessage(1, Strings.SHOW_STORY);
-        gm.showCommandMessage(2, Strings.SHOW_RULE);
-        gm.showCommandMessage(3, Strings.GAME_START);
+        gm.showMessage(Strings.TITLE);
 
-        int input = GameEngine.current.readNumber(3);
-
-        if (input == -1) {
-            gm.showMessage(Strings.INVALID_INPUT);
-            start();
-            return;
-        }
-
-        // ストーリー表示
-        if (input == 1) {
-            gm.showMessage(Strings.STORY);
-            start();
-            return;
-        }
-
-        // ルール表示
-        if (input == 2) {
-            gm.showMessage(Strings.RULE);
-            start();
-            return;
-        }
+        startCommand(gm);
 
         selectJob(gm);
 
-        // エリアシーンへ
         GameApplication.current.nextScene(new AreaScene(GameApplication.current.getMap().get(Consts.START_POSITION)));
-
     }
 
     @Override
@@ -59,6 +35,30 @@ public class StartScene extends Scene {
     @Override
     void restart() {
 
+    }
+
+    private void startCommand(GameEngine gm) {
+        gm.showCommandMessage(1, Strings.SHOW_STORY);
+        gm.showCommandMessage(2, Strings.SHOW_RULE);
+        gm.showCommandMessage(3, Strings.GAME_START);
+
+        int input = GameEngine.current.readNumber(3);
+
+        if (input == -1) {
+            gm.showMessage(Strings.INVALID_INPUT);
+            startCommand(gm);
+            return;
+        }
+        if (input == 1) {
+            gm.showMessage(Strings.STORY);
+            startCommand(gm);
+            return;
+        }
+        if (input == 2) {
+            gm.showMessage(Strings.RULE);
+            startCommand(gm);
+            return;
+        }
     }
 
     private void selectJob(GameEngine gm) {
