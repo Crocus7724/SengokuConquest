@@ -19,19 +19,21 @@ public class EndScene extends Scene {
         if (GameApplication.current.getTurn() <= 0) {
             engine.showMessage(Strings.GAME_OVER);
             engine.showMessage(Strings.GAME_OVER_NOTING_TURN);
+            continueCommand(false);
         } else if (GameApplication.current.getMainCharacter().getStatus().getCurrentHp() <= 0) {
             engine.showMessage(Strings.GAME_OVER);
             engine.showMessage(Strings.GAME_OVER_BATTLE_);
+            continueCommand(false);
         } else {
             engine.showMessage(Strings.GAME_CLEAR);
             engine.showMessage(Strings.GAME_OVER_CLEAR);
+            continueCommand(true);
         }
 
         engine.showMessage(Strings.STAFF_ROLL);
-        continueCommand();
     }
 
-    private void continueCommand() {
+    private void continueCommand(boolean isClear) {
         engine.showMessage("================================================");
         engine.showMessage("コンティニューしますか？");
         engine.showMessage("1:はい");
@@ -39,6 +41,9 @@ public class EndScene extends Scene {
 
         int contenueNum = engine.readNumber(2);
         if (contenueNum == 1) {
+            if (!isClear){
+                engine.showMessage(Strings.GAME_CONTINUE);
+            }
             GameApplication.current.gameStart();
 
         } else if(contenueNum == 2) {
@@ -46,7 +51,7 @@ public class EndScene extends Scene {
             System.exit(1);
         } else {
             engine.showMessage(Strings.INVALID_INPUT);
-            continueCommand();
+            continueCommand(isClear);
         }
     }
 
