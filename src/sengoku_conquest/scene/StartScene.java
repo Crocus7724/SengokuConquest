@@ -93,7 +93,6 @@ public class StartScene extends Scene {
                 maxWord = type.name().length();
             }
         }
-
         return maxWord;
     }
 
@@ -105,6 +104,4 @@ public class StartScene extends Scene {
         title += s;
         return title;
     }
-
-
 }
